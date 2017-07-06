@@ -30,12 +30,11 @@
 	left: 140px;
 	top: 219px;
 	width:390px;
-	height: 78px;            
-	display: flex;            
-	align-items: flex-end;
+	height: 78px;           
 }
 .nav{
 	width: 358px;
+	height:0;
 	background: rgba(0,0,0,0.2);
 	padding: 25px 0 10px 22px;
 	color:#fff;
