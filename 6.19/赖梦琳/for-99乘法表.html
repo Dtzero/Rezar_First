@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	#box{
+        		width:549px;
+        		border-left:1px solid #000;
+        		border-bottom:1px solid #000;
+        	}
+       		#box span{
+       			display:inline-block;
+       			width:60px;
+       			text-align:center;
+				border:1px solid #000;
+				border-bottom:none;
+				border-left:none;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById('box')
+			//var str = '';
+
+			for( var i = 1; i <= 9 ; i++ ){
+				box.innerHTML += '<div>';
+				//str +='<div>';
+				for( var j = 1; j <= i; j++ ){
+					box.innerHTML +='<span>'+j+'X'+i+'='+j*i+'</span>';
+					//str +='<span>'+j+'X'+i+'='+j*i+'</span>';
+				}
+				box.innerHTML += '</div>';
+				//str += '</div>';
+			}
+			//box.innerHTML = str;
+		</script>
+	</body>
+</html>

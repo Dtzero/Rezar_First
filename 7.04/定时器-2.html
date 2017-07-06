@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<script>
+			var n = 0;
+			function fn(num){
+				n += num;
+				console.log("我被打印出来了:" + n);
+			}			
+			setInterval(fn,1000,10);//第三个数字是给fn传的实参;
+			setInterval(fn,1000,20);//第三个数字是给fn传的实参;
+		</script>
+	</body>
+</html>

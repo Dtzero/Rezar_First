@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<div class="wrap clearfix">
+		<div class="box fl">
+			<div class="top"></div>
+			<div class="second">
+				<div class="content">
+					<ul id="list">
+						<!--<li>
+							<span></span>
+						</li>-->
+					</ul>
+				</div>
+				<div class="shuru">
+					<img src="images/bl.png" id="photo"/>
+					<input type="text" value="大家好，我是土豪~" id="message" />
+					<input type="button" value="发送" id="send" />
+				</div>
+			</div>
+			<div class="bottom"></div>
+		</div>
+	</div>
+	<script>
+		var photo = document.getElementById('photo')
+		var imgState = true;
+		var message = document.getElementById('message')
+		var send = document.getElementById('send')
+		var list = document.getElementById('list')
+
+		photo.onclick = function () {
+			if(imgState){
+					photo.src = 'images/hr.png';
+					imgState = false;
+				}else{
+					photo.src = 'images/bl.png';
+					imgState = true;
+				}
+			}
+		send.onclick = function (){		
+			if(message.value != ''){
+				if(imgState){
+					list.innerHTML = '<li class="li1"><span class="span1">'+message.value+'</span></li>' + list.innerHTML;
+					message.value = "";
+				}else{
+					list.innerHTML = '<li class="li2"><span class="span2">'+message.value+'</span></li>' + list.innerHTML;
+					message.value = "";
+				}
+			}
+			else{
+				alert("亲，输入点什么吧！");	
+			}	
+		}
+	</script>
+</body>
+</html>

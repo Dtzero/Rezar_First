@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<i class="txt">请输入QQ号码：</i>
+				<input type="text" class="text" />
+				<input type="button" value="保存" class="btn" />
+				<i class="dhk">请输入内容</i>
+			</div>
+		</div>	
+		<script>
+			var text = document.querySelector('.text');
+			var btn = document.querySelector('.btn');
+			var dhk = document.querySelector('.dhk');
+			var arr = ['请输入内容','前后不能有空格','不能有0在前面','请输入数字','不能是小数','请输入5-12位数字'];
+			var numberRegex = "/^[1-9][0-9]{4,11}$/";
+			var numberString = "1916851825";
+			console.log(numberString.match(numberRegex));			
+
+			btn.onclick = function(){
+				if(text.value == ''){
+					dhk.style.display = 'block';
+					dhk.innerHTML = arr[0];
+				}else if( text.value.charAt(0) == ' ' || text.value.charAt(text.value.length-1) == ' '){
+					dhk.style.display = 'block';
+					dhk.innerHTML = arr[1];
+				}else if( text.value.charAt(0) == 0 ){
+					dhk.style.display = 'block';
+					dhk.innerHTML = arr[2];
+				}else if( isNaN(Number(text.value)) ){
+					dhk.style.display = 'block';
+					dhk.innerHTML = arr[3];
+				} else if( parseInt(text.value) != Number(text.value) ){
+					dhk.style.display = 'block';
+					dhk.innerHTML = arr[4];
+				}else if( text.value.length < 5 || text.value.length > 12){
+					dhk.style.display = 'block';
+					dhk.innerHTML = arr[5];
+				}else if( text.value.length >= 5 || text.value.length <= 12){
+					dhk.style.display = 'none';
+				}
+			}
+		</script>
+	</body>
+</html>

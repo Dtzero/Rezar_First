@@ -1,0 +1,43 @@
+.wrap{
+	width: 1000px;
+	margin: 0 auto;	
+	border: 6px solid #e9e6e5;
+}
+.box-right{
+	width: 876px;
+	word-spacing: 0;
+}
+li{
+	width: 124px;
+	background: #000;
+	border-bottom: 1px solid #e6ebe4;
+	line-height: 123px;
+	color: #fff;
+	text-align: center;
+}
+img{
+	width: 876px;
+	height: 463px;
+	display: none;
+}
+span{
+	display: inline-block;
+	line-height: 36px;
+	background: #434345;
+	border-right: 1px solid #e6ebe4;
+	text-align: center;
+	color: #fff;
+}
+.span1{
+	width: 218px;
+}
+.span2{
+	width: 437px;
+}
+.last{
+	border-right: none;
+}
+.frist,.second,.third,.fourth{
+	display: none;
+	position: relative;
+}

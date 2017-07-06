@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="next" value="下一张" />
+	<br/>
+	<img src="./images/1.jpg" id="img" />
+	<script>
+		var next = document.getElementById('next');
+		var img = document.getElementById('img');
+		var n = 1;
+
+		next.onclick = function (){
+			n = n + 1;
+			if (n>4){
+				alert("亲，没有啦~");
+			}else{
+				img.src = './images/'+n+'.jpg';
+			}
+		}
+	</script>
+</body>
+</html>

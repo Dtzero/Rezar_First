@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+	</head>
+	<body>
+		<input type="button" value="按钮1" id="btn1" />
+		<br/>
+		<br/>
+		<input type="button" value="按钮2" id="btn2" />
+		<br/>
+		<br/>
+		<input id="txt" value="123" />
+		<input type="button"  value="按钮" id="btn" />
+		<br/>
+		<br/>
+		<input type="text" value="" id="message" />
+		<input type="button" value="按钮" id="send" />
+		<ul id="list">
+			<li></li>
+		</ul>
+		<script>
+
+			document.getElementById('btn1').onclick = function(){
+				document.getElementById('btn1').style.background = 'red'
+				document.getElementById('btn1').style.width = '100px'
+				document.getElementById('btn1').style.height = '100px'
+				console.log( btn1.style.width );
+			}
+
+			var btn2 = document.getElementById('btn2');
+			btn2.onclick = function(){
+				btn2.style.background = 'yellow'
+				btn2.style.width = '100px'
+				btn2.style.height = '100px'
+
+			}
+
+			var btn = document.getElementById("btn");
+			var txt = document.getElementById('txt');
+
+			btn.onclick = function (){
+				txt.value = 'hello';
+				console.log(txt.value)
+			}
+
+			var message = document.getElementById('message')
+			var send = document.getElementById('send')
+			var list = document.getElementById('list')
+
+			send.onclick = function () {
+				//list.innerHTML = message.value
+				var prevHTML = list.innerHTML
+				console.log(prevHTML);
+				//list.innerHTML =prevHTML + '<li>'+message.value+'</li>' 后写在下
+				list.innerHTML = '<li>'+message.value+'</li>'+ prevHTML
+				message.value = '';
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="next" value="下一张" />
+	<br/>
+	<img src="./images/1.jpg" id="img" />
+	<script>
+		var next = document.getElementById('next');
+		var img = document.getElementById('img');
+		//定义数组
+		var arr = ['./images/4.jpg','./images/1.jpg','./images/2.jpg','./images/3.jpg'];
+		//定义的目的是依次取数组的图片地址
+		var n = 0;
+		//给一个默认的图片
+		img.src = arr[n];
+
+		next.onclick = function (){
+			// n = n+1
+			n++ //n自增加1
+			console.log(arr[n]);
+			//数组的长度：arr.length
+			//n不能超过数组的长度：n>arr.length-1
+			if (n>arr.length-1){
+				n=0;
+			}
+				img.src = arr[n];	
+		}
+	</script>
+</body>
+</html>

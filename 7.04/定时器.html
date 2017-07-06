@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<script>
+		//重复执行定时器：
+		//setInterval(函数,间隔时间,函数实参);
+		//间隔时间单位为毫秒：ms;	
+			var n = 0;
+			setInterval(function fn(){
+				n++;
+				console.log("我被打印出来了:" + n);
+			},1000);
+
+			function fn(){
+				n++;
+				console.log("我又被打印出来了:" + n);
+			}
+			var n = 0;
+			setInterval(fn,1000);
+			
+			//setInterval('fn()',1000):可以执行，不被推荐
+		</script>
+	</body>
+</html>

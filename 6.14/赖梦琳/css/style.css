@@ -1,0 +1,72 @@
+.wrap{
+	width: 400px;
+	background: url(../images/bg1.png) no-repeat;
+	padding: 66px 33px 55px 89px;
+	margin:0 auto;
+}
+.box{
+	background: url(../images/k.png) no-repeat;
+	padding: 0 17px;
+	margin-right: 83px;
+}
+.top{
+	height: 45px;
+	background: url(../images/ht.png) no-repeat center 22px;
+}
+.second{
+	width: 318px;
+	border: 2px solid #bfbfbf;
+}
+.content{
+	height: 478px;
+	background: #fff;
+	padding-top: 20px;
+	overflow: hidden;
+}
+.content .li1{
+	margin-bottom: 20px;
+	background: url(../images/bl.png) no-repeat 267px;
+}
+.content .li2{
+	background: url(../images/hr.png) no-repeat 20px;
+	margin-bottom: 20px;
+}
+.content span{
+	display: inline-block;
+	width: 212px;
+	line-height: 40px;
+	padding: 0 10px 0 33px;
+	color: #fff;
+	word-break: break-all;
+}
+.content .span1{
+	background: url(../images/zise.png) no-repeat 20px;	
+	padding-left: 33px;
+}
+.content .span2{
+	background:url(../images/grey.png) no-repeat 64px;
+	color: #4e4e4e;
+	padding-left: 83px;
+}
+.shuru{
+	background:#e5e5e5;
+	padding: 11px 0 9px 17px;
+}
+#message{
+	width: 176px;
+	background: url(../images/shuru.png) no-repeat;
+	line-height: 40px;
+	margin-left: 8px;
+	padding-left: 14px;
+}
+#send{
+	font-size:16px;
+	color: #e15671;
+	font-weight: bold;
+	line-height: 40px;
+	margin-left: 9px;
+}
+.bottom{
+	height: 72px;
+	background: url(../images/logo.png) no-repeat center;
+}

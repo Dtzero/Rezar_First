@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="content">
+					<h2><i>|</i>总体评价</h2>
+					<div id="star">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<p id="btn"></p>
+					</div>
+				</div>
+				<div class="bottom">小提示：点击星星就能打分</div>
+			</div>
+			<script>
+			var spans = document.getElementsByTagName('span');
+			var btn = document.getElementById('btn');
+			var arr = ['极差','一般','不错','推荐','力推'];
+			var arr2 = ['./images/purplestar.png','./images/purplestar.png','./images/redstar.png','./images/redstar.png','./images/redstar.png']
+
+			for( var i = 0; i <spans.length ; i++ ){
+				spans.isChecked = false;//给当前span的（选中状态）设置为，默认值false;
+				spans[i].index = i; //记录当前进入函数时下标i的值；
+				spans[i].onmouseover = function (){
+					btn.style.display = 'block';
+					if(!this.isChecked){//如果当前星星未选中
+						for(var spanIndex = 0; spanIndex < spans.length ;spanIndex ++){
+							if(spanIndex <= this.index){//给滑过的星星之前的星星添加上样式
+								spans[spanIndex].style.backgroundImage = 'url('+arr2[this.index]+')';
+							}else{
+								//给滑过的星星之后的星星去掉上样式
+								spans[spanIndex].style.background = '';
+							}
+						}
+						btn.innerHTML = arr[this.index];
+					}else{
+						for(var spanIndex = 0; spanIndex < spans.length ;spanIndex ++){
+							if(spanIndex > this.index){
+								//给滑过的星星之后的星星去掉上样式
+								spans[spanIndex].style.background = '';
+							}else{
+								spans[spanIndex].style.backgroundImage = 'url('+arr2[this.index]+')';
+							}
+						}
+						btn.innerHTML = arr[this.index];
+					}
+				};
+				spans[i].onmouseout = function (){
+					if(!this.isChecked){			
+						btn.style.display = 'none';
+						for(var spanIndex = this.index; spanIndex >= 0 ;spanIndex --){
+							if(spans[spanIndex].isChecked){
+								btn.style.display = 'block';
+								btn.innerHTML = arr[spanIndex];
+								break;
+							}else{
+								spans[spanIndex].style.background = '';
+							}
+						}
+					}else{
+						for(var spanIndex = 0; spanIndex <= m ;spanIndex ++){
+							spans[spanIndex].style.backgroundImage = 'url('+arr2[m]+')';
+							btn.innerHTML = arr[spanIndex];
+						}
+					}
+				};
+				var m = 0;
+				spans[i].onclick = function (){	
+					btn.style.display = 'block';
+					btn.innerHTML = arr[this.index];
+					for(var spanIndex = 0; spanIndex < spans.length ;spanIndex ++){
+						if(spanIndex <= this.index){
+							spans[spanIndex].style.backgroundImage = 'url('+arr2[this.index]+')';
+							spans[spanIndex].isChecked = true;
+						}else{
+							spans[spanIndex].style.background = '';
+							spans[spanIndex].isChecked = false;
+						}
+					}
+					m = this.index;
+				};
+			}
+		</script>
+		</div>
+	</body>
+</html>

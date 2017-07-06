@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	#box{
+        		width:100px;
+        		height:100px;
+        		background:pink;
+        		position:absolute;
+        		top:10px;
+        		left:0;
+        	}
+        </style>
+	</head>
+
+	<body>
+		<div id="box"></div>
+		<script src="./js/utis.js"></script>
+		<script>
+			console.log( box.offsetLeft ); // 获取到元素left的偏移量
+			console.log( box.offsetTop ); // 获取到元素top的偏移量
+			var box = $('#box');
+			document.onclick = function (){
+				setInterval(function (){
+					box.style.left = box.offsetLeft + 1 + 'px';	
+				},10)	
+			}			
+		</script>
+	</body>
+</html>

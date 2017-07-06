@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				this 已经定义好的变量，this的值是不固定，根据执行的环境（上下文）决定this的值
+
+				1. 在一对script标签中，this的值为window
+					在浏览器中运行，执行的环境就是浏览器，浏览器中顶级对象为window
+					window 是窗口对象/顶级对象
+				2. this出现在函数中
+
+					this的值取决于函数的调用,谁调用函数this就指向谁
+
+					a. 直接调用 this => window
+					b. 事件调用 this => 触发事件的元素
+
+
+
+				知识点：
+					在一对script标签中定义的变量和函数，都会作为window的属性或方法
+			*/
+
+			var listlistlistlist = 123;
+
+			//console.log( this );  // window
+			//console.log( listlistlistlist );
+
+
+			function func(){
+				console.log(this);
+			}
+
+			func();  // 直接调用 this => window
+
+			window.onload = function(){
+				var test1 = document.querySelector("#test1");
+				var test2 = document.querySelector("#test2");
+
+				test1.onclick = func;
+				test2.onclick = func;
+
+			};
+
+
+		</script>
+	</head>
+
+	<body>
+		<button id="test1">测试this</button>
+		<button id="test2">测试this</button>
+	</body>
+</html>

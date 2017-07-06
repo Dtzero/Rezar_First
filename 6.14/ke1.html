@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="message">
+	<input type="button" value="按钮" id="send">
+	<ul id="list">
+		<!--<li>
+			<span></span>
+		</li>-->
+	</ul>
+	<script>
+		var message = document.getElementById('message')
+		var send = document.getElementById('send')
+		var list = document.getElementById('list')
+
+		send.onclick = function (){
+			list.innerHTML = '<li><span> '+ message.value+'</span></li>'+list.innerHTML
+			message.value = "";
+		}
+	</script>
+</body>
+</html>

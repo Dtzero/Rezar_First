@@ -1,0 +1,51 @@
+.slide{
+	width:518px;
+	height: 511px;
+	background: url(../images/bg.png) no-repeat;
+	padding: 6px 0 0 140px;
+	margin:50px auto;
+	position: relative;
+}
+.tagClient {
+	width: 380px;
+	height: 290px;
+	position: relative;
+	overflow: hidden;
+}
+.list {
+	list-style: none;
+	margin: 0px;
+	padding: 0;
+	width: 600%;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top:0;
+}
+.list li {
+	float: left;
+}
+#bottom{
+	position: absolute;
+	left: 140px;
+	top: 219px;
+	width:390px;
+	height: 78px;            
+	display: flex;            
+	align-items: flex-end;
+}
+.nav{
+	width: 358px;
+	background: rgba(0,0,0,0.2);
+	padding: 25px 0 10px 22px;
+	color:#fff;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	visibility: hidden;
+	overflow: hidden;
+}
+.nav p{
+	font-size: 16px;
+	line-height: 28px;
+}

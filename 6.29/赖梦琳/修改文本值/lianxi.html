@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<h2 class="txt">课程分类</h2>
+				<div class="content">
+					<div id="top">
+						<div class="div1 clearfix">
+							<p class="p1">妙味课堂最新开班</p>
+							<p class="p2"></p>
+						</div>
+						<div class="div2">
+							<input type="text" value="" class="text" />
+							<input type="button" value="保存" class="btn btn1" />
+							<input type="button" value="取消" class="btn" />
+						</div>
+					</div>
+					<div id="bottom">
+						<div class="div1 clearfix">
+							<p class="p1">妙味实体课堂</p>
+							<p class="p2"></p>
+						</div>
+						<div class="div2">
+							<input type="text" value="" class="text" />
+							<input type="button" value="保存" class="btn btn1" />
+							<input type="button" value="取消" class="btn" />
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>	
+		<script>
+			//声明变量
+			var tops = document.querySelector('#top');
+		 	var bottoms = document.querySelector('#bottom'); 
+		 	//设置实参
+		 	tab(tops);
+		 	tab(bottoms);
+		 	//封装函数
+		 	function tab(parent){
+		 		var inputs = parent.querySelectorAll('input');
+		 		var ps = parent.querySelectorAll('p');
+		 		var div1s = parent.querySelectorAll('.div1'); 
+		 		var div2s = parent.querySelectorAll('.div2'); 
+
+		 		for( var i = 0; i < ps.length; i++ ){
+			 		ps[1].onclick = function(){//绑定点击事件
+			 			inputs[0].value = ps[0].innerHTML;//给当前的文本框赋值，等于当前的标题值
+			 			inputs[0].select();
+			 			div1s[0].style.display = 'none';
+			 			div2s[0].style.display = 'block';
+			 			
+			 		};
+			 		inputs[1].onclick = function(){//绑定点击事件
+			 			ps[0].innerHTML = inputs[0].value;//给当前的标题赋值，等于当前的文本框值
+			 			div1s[0].style.display = 'block';
+			 			div2s[0].style.display = 'none';
+			 		};
+			 		inputs[2].onclick = function(){//绑定点击事件
+			 			div1s[0].style.display = 'block';
+			 			div2s[0].style.display = 'none';
+			 			
+			 		};
+			 	}	
+		 	}
+
+		</script>
+	</body>
+</html>

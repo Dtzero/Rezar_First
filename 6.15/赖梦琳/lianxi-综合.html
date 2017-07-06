@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div class="wrap">	
+	<div class="box clearfix">
+		<div class="left fl"></div>
+		<div class="content fl">
+			<div class="top">
+				<div class="qiehuan" class="clearfix">
+					<p id="xunhuan" class="fl">循环切换</p>
+           	 		<p id="shunxu" class="fl">顺序切换</p>
+				</div>
+				<p id="compainer">图片可从最后一张跳转到第一张循环切换</p>
+			</div>
+			<div class="middle">
+				<span id="tips">1/5</span>
+				<input type="button" id="prev" value="<" />
+				<input type="button" id="next" value=">" />
+				<img src="./images/1.png" id="img" />
+				<span id="tittle"></span>
+			</div>
+		</div>
+		<div class="right fl"></div>
+	</div>
+</div>
+	<script>
+		//声明变量
+		var xunhuan = document.getElementById('xunhuan');
+		var shunxu = document.getElementById('shunxu');
+		var prev = document.getElementById('prev');
+		var next = document.getElementById('next');
+		var img = document.getElementById('img');
+		var tips = document.getElementById('tips');
+		var tittle = document.getElementById('tittle');
+		//定义数组
+		var arr = ['./images/1.png','./images/2.png','./images/3.png','./images/4.png'];
+		//定义的目的是依次取数组的图片地址
+		var title = ['文字描述一','文字描述二','文字描述三','文字描述四'];
+		//定义的目的是依次取数组的文字描述
+		var n = 0;
+		var state = true;
+		//给一个默认的图片
+		img.src = arr[n];
+		tips.innerHTML = n+1+'/'+arr.length; //取值
+		tittle.innerHTML = title[n];	//取值
+		//循环切换时点击的操作
+		xunhuan.onclick = function () {
+  			xunhuan.style.backgroundColor = "#fff";
+ 	 		xunhuan.style.color = "#000";
+  			shunxu.style.backgroundColor = "#000";
+ 			shunxu.style.color = "#fff";
+  			state = true; //确定点击时的状态
+  			compainer.innerHTML = "图片可从最后一张跳转到第一张循环切换";
+	}
+		//顺序切换时点击的操作
+		shunxu.onclick = function () {
+  			shunxu.style.backgroundColor = "#fff";
+  			shunxu.style.color = "#000";
+  			xunhuan.style.backgroundColor = "#000";
+  			xunhuan.style.color = "#fff";
+  			state = false;//确定点击时的状态
+  			compainer.innerHTML = "图片只能从第一张到最后一张顺序切换";
+		}
+
+		prev.onclick = function (){
+			n--; //n自减减1
+			if (n < 0){
+				 if (state) {
+				 	n = arr.length-1;//取值，跳转到最后一张	
+      			}else{
+       			 alert("没有图片了") ;
+       			 n = 0;
+     		}
+     	}
+     			img.src = arr[n];
+     			tips.innerHTML = n+1 + "/" + arr.length;
+      			tittle.innerHTML = title[n];
+   				
+   		}
+			
+		next.onclick = function (){
+			n++; //n自加加1
+			if (n > arr.length-1){
+			 	if (state) {                       
+       	 			n = 0;              
+    		}else { 
+         		n = arr.length-1;
+         		alert("没有图片了")           
+     	 	}
+     	 }
+      		img.src = arr[n];                             
+      		tips.innerHTML = n+1 + "/" + arr.length;
+      		tittle.innerHTML = title[n];
+   		
+   	}		
+	</script>
+</body>
+</html>

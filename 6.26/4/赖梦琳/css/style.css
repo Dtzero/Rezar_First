@@ -1,0 +1,65 @@
+.wrap{
+	width: 1228px;
+	height: 753px;
+	background: url(../images/bg1.png) no-repeat;
+	margin: 0 auto;	
+	padding-top: 168px;
+}
+.box{
+	width: 654px;
+	height: 347px;
+	background: url(../images/bg2.png) no-repeat center;
+	padding: 54px 128px 70px;
+	margin:0 auto;
+}
+.content{
+	background: #143a54;
+	border: 2px solid #43647e;
+	border-radius: 4px;
+	padding: 12px 65px 56px 54px;
+	margin-bottom: 22px;
+}
+.content p{
+	line-height: 36px;
+	color: #fff;
+}  
+.list{
+	padding-left: 7px;
+}
+.list li{
+	line-height: 36px;
+} 
+.list i{
+	display: inline-block;
+	width: 13px;
+	font-size: 12px;
+	color: #000;
+	text-align: center;
+	margin-right: 12px;
+	padding-left: 2px;	
+}
+.list span{
+	display: inline-block;
+	width: 80px;
+	line-height: 26px;
+	background: url(../images/tuoyuan.png) no-repeat;
+	color: #fff;
+	text-align: center;
+	margin-left: 20px;
+}
+.li1{
+	color: #ebed56;
+	background: url(../images/1.png) no-repeat 2px 11px;
+}
+.li2{
+	color: #56d9ed;
+	background: url(../images/2.png) no-repeat 2px 11px;
+}
+.li3{
+	color: #ed56a7;
+	background: url(../images/3.png) no-repeat 2px 11px;
+}
+.li4{
+	color: #ffab48;
+	background: url(../images/4.png) no-repeat 2px 11px;
+}

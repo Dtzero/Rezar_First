@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	div{
+        		width:200px;
+        		height:200px;
+        		border:1px solid red;
+        		display:none;
+        	}
+        	.yellow{
+        		background:yellow;
+        	}
+        </style>
+	</head>
+
+	<body>
+		<section id="box1">
+			<input type="button" value="按钮" class="yellow" />
+			<input type="button" value="按钮" />
+			<input type="button" value="按钮" />
+			<div style="display:block">1</div>
+			<div>2</div>
+			<div>3</div>
+		</section>
+		<section id="box2">
+			<input type="button" value="按钮" class="yellow" />
+			<input type="button" value="按钮" />
+			<input type="button" value="按钮" />
+			<div style="display:block">1</div>
+			<div>2</div>
+			<div>3</div>
+		</section>
+		<script>
+		 	var box1 = document.querySelector('#box1');
+		 	var box2 = document.querySelector('#box2'); 
+		
+			tab(box1,"onclick");
+		 	tab(box2,"onmouseover");
+		 	function tab(parent,evname){
+		 		var inputs = parent.querySelectorAll('input');
+		 		var divs = parent.querySelectorAll('div')
+		 		for( var i = 0; i < inputs.length; i++ ){
+		 			inputs[i].index = i;
+		 			inputs[i][evname] = function(){
+		 				for( var j = 0; j < inputs.length; j++ ){
+		 					inputs[j].className = '';
+		 					divs[j].style.display = 'none';
+		 				}
+		 				this.className = 'yellow';
+		 				divs[this.index].style.display = 'block'
+		 			}
+		 		}
+		 	}
+		</script>
+	</body>
+</html>

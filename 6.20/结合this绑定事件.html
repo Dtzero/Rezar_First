@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div>
+			<button>确定1</button>
+			<button>确定2</button>
+			<button>确定3</button>
+			<button>确定4</button>
+		</div>
+
+		<script>
+
+			var buttons = document.getElementsByTagName('button');
+
+			for( var i = 0; i < buttons.length; i++ ){
+				buttons[i].onclick = function (){
+					console.log( this );// 指向触发事件的元素
+					this.style.backgroundColor = 'red';	
+				};
+			}
+
+			/*buttons[0].onclick = function () {
+				console.log(this);
+			}
+
+			buttons[1].onclick = function () {
+				console.log(this);
+			}*/
+
+
+
+		</script>
+	</body>
+</html>

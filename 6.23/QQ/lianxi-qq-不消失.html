@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="top">
+					<i class="jiantou"></i>
+					<h3 class="title">我的好友</h3>
+					<ul>
+						<li>美丽俏佳人LOVE</li>
+						<li>从来就是这么任性</li>
+						<li>风雨无阻</li>
+						<li>LEO</li>
+					</ul>
+				</div>	
+				<div class="middle">
+					<i class="jiantou"></i>
+					<h3 class="title">企业好友</h3>
+					<ul>
+						<li>段宜恩</li>
+						<li>王嘉尔</li>
+						<li>林俊杰</li>
+					</ul>
+				</div>
+				<div class="bottom">
+					<i class="jiantou"></i>
+					<h3 class="title">黑名单</h3>
+					<ul>
+						<li>没有钱</li>
+						<li>变成胖子</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+			var titles = document.getElementsByTagName('h3');
+			var uls = document.getElementsByTagName('ul');
+			var lis = document.getElementsByTagName('li');
+			var jiantou = document.querySelectorAll('.jiantou');
+			var	prevIndex = 0;
+
+			for( var i = 0; i < titles.length; i++ ){
+				titles[i].index = i;
+				titles[i].isChecked = false;
+				titles[i].onclick = function(){
+					if(this.isChecked){
+						uls[this.index].style.display = 'none';
+						jiantou[this.index].style.backgroundImage = 'url(./images/jiantou.png)';
+						this.className = 'title';
+						this.isChecked = false;
+					}else{
+						uls[this.index].style.display = 'block';
+						jiantou[this.index].style.backgroundImage = 'url(./images/sanjiao.png)';
+						this.className = 'red';
+						this.isChecked = true;
+					}
+				}	
+			};
+			for( var j = 0; j < lis.length ; j++ ){
+				lis[j].index = j;
+				lis[j].onclick = function(){
+					lis[prevIndex].style.backgroundColor = '';
+					this.style.backgroundColor = '#dd5570';
+					prevIndex = this.index;
+				}
+			};
+		</script>
+	</body>
+</html>

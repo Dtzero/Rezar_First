@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#img{
+        		position:absolute;
+        		left:450px;
+				top: 50px;
+        	}
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="运动" />
+		<input type="button" id="pause" value="暂停" />
+		<img src="./4.png" id="img" />
+		<script src="./js/tween.js"></script>
+		<script>
+		// left=100 => top=500 => width=1000 => height=0;
+		//回调函数 callback
+			/*function fn(f){
+				f(); // f就是回调函数
+			}
+			fn(function (){
+				alert(1)	
+			})*/
+			btn.onclick = function (){
+				mTween(img,"left",50,1000,"linear",function (){
+					mTween(img,"left",200,1000,"backOut",function (){
+						mTween(img,"width",300,1000,"linear")
+					})
+				})
+			};
+			pause.onclick = function (){
+				clearInterval(img.timer);		
+			};
+			/*
+				参数：
+					element 要运动的元素    *
+					attr 运动的属性			*
+					target 目标位置			*
+					duration 持续时间 ms    *
+
+					fx 运动形式   默认值为"linear"  []
+					callBack  调函数
+			*/
+			//var timer = null; 不能使用同一个变量来存定时器的编号，把它当成元素的自定义属性
+
+			//getComputedStyle：获取元素的所有CSS样式
+			function mTween(element,attr,target,d,fx,callback){
+				var b = parseFloat(getComputedStyle(element)[attr]);  // 起始位置
+				var c = target - b; //总距离
+				var now = Date.now();  // 开始运动的时间
+				fx = fx || 'linear'; //运动形式
+				clearInterval(element.timer);
+				element.timer = setInterval(function (){
+					var t = Date.now() - now; //已过去时间
+					if( t > d ){
+						t = d;
+						clearInterval(element.timer);
+						typeof callback === 'function' && callback();
+					}
+					element.style[attr] = Tween[fx](t, b, c, d) + 'px';	
+				},4)
+			}
+		</script>
+	</body>
+</html>

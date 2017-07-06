@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				提升
+				预解析
+					当js代码执行之前，会有一个预解析的过程，程序会把当	前作用域下的变量名和函数的声明提前解析
+					js会把当前申明的变量名和函数提前当前作用域的最开始处理
+
+					函数表达式
+						只会把变量名提到当前作用域的最前面
+						所以不能再函数表达式赋值前调用
+			*/
+
+			var a = 10,b = 20,c = 10,e,f;
+			// 如果要声明多个变量，可以使用一个var，用逗号隔开。
+
+			function fn(){
+				//var c = d = 20; 
+				var c = 20,d = 20;
+			}
+
+			fn();
+
+			console.log( d );
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

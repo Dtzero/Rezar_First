@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<button>确定1</button>
+		<button>确定2</button>
+		<button>确定3</button>
+		<button>确定4</button>
+		<script>
+			var buttons = document.getElementsByTagName('button');
+
+			for( var i = 0; i <buttons.length ; i++ ){
+				buttons[i].onclick = function (){
+					console.log(this);
+					this.style.background = 'pink';
+				}
+			}
+		</script>
+	</body>
+</html>  

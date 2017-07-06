@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 1000px;
+				top: 50px;
+			}
+			#box2 {
+				top: 550px;
+			}
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="button" id="btn" value="运动" />
+		<input type="button" id="pause" value="暂停" />
+		<div id="box"></div>
+		<div id="box2"></div>
+		<script src="./js/tween.js"></script>
+		<script>
+			btn.onclick = function (){
+				mTween(box,"left",0,5000)
+				mTween(box2,"left",0,1000,"backIn")
+			};
+			pause.onclick = function (){
+				clearInterval(box.timer);	
+				clearInterval(box2.timer);	
+			};
+			/*
+				参数：
+					element 要运动的元素    *
+					attr 运动的属性			*
+					target 目标位置			*
+					duration 持续时间 ms    *
+
+					fx 运动形式   默认值为"linear"  []
+			*/
+			//var timer = null; // 不能使用同一个变量来存定时器的编号
+			function mTween(element,attr,target,d,fx){
+				var b = parseFloat(getComputedStyle(element)[attr]);  // 起始位置
+				var c = target - b; //总距离
+				var now = Date.now();  // 开始运动的时间
+				fx = fx || 'linear'; //运动形式
+				clearInterval(element.timer);
+				element.timer = setInterval(function (){
+					var t = Date.now() - now; //已过去时间
+					if( t > d ){
+						t = d;
+						clearInterval(element.timer);
+					}
+					element.style[attr] = Tween[fx](t, b, c, d) + 'px';
+				},4)
+			}
+
+		</script>
+	</body>
+</html>

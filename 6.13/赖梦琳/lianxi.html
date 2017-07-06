@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<style>
+			label {
+				font-size: 24px;
+				line-height: 40px;
+				font-weight: bold;
+			}
+			
+			#btn {
+				width: 100px;
+				background: #ff0000;
+				text-align: center;
+				line-height: 40px;
+				color: #fff;
+			}
+			
+			#wrap {
+				width: 100px;
+				height: 100px;
+				border: 4px #000 solid;
+				margin-top: 20px;
+			}
+			
+			#box {
+				width: 300px;
+				height: 200px;
+				border: 20px #999 solid;
+				padding: 20px 50px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				display: none;
+			}
+			
+			#box input {
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				border: 1px #999 solid;
+				background: #E2D5E2;
+				margin-right: 10px;
+			}
+			p{
+				margin-bottom: 10px;
+			}
+			i{
+				display: inline-block;
+				width: 120px;
+				line-height: 30px;
+				font-size: 14px;
+			}
+			#box #r1 {
+				background: red;
+			}
+			
+			#box #y1 {
+				background: yellow;
+			}
+			
+			#box #p1 {
+				background: pink;
+			}
+			.last{
+				padding-left: 50px;
+				padding-top: 20px;
+			}
+			#box #huifu,#box #queding{
+				width: 80px;
+				height: 40px;
+				font-size: 14px;
+				text-align: center;
+				background: #0000F0;
+			}
+			input:hover {
+				background: #66FFCC;
+			}
+		</style>
+	</head>
+
+	<body>
+		<label>请为下面的div设置样式：<input type="button" value="点击设置" id="btn" /></label>
+		<div id="wrap"></div>
+		<div id="box">
+			<form>
+				<p>
+					<i>请选择背景色:</i>
+					<input type="button" value="红" id="r1"/>
+					<input type="button" value="黄" id="y1"/>
+					<input type="button" value="粉" id="p1"/>
+				</p>
+				<p>
+					<i>请选择宽度(px):</i>
+					<input type="button" value="200" id="kuan1"/>
+					<input type="button" value="300" id="kuan2"/>
+					<input type="button" value="400" id="kuan3"/>
+				</p>
+				<p>
+					<i>请选择高度(px):</i>
+					<input type="button" value="200" id="gao1"/>
+					<input type="button" value="300" id="gao2"/>
+					<input type="button" value="400" id="gao3"/>
+				</p>
+				<p class="last">
+					<input type="button" value="恢复" id="huifu"/>
+					<input type="button" value="确定" id="queding"/>
+				</p>
+			</form>
+		</div>
+
+		<script>
+			var btn = document.getElementById('btn');
+			var wrap = document.getElementById('wrap');
+			var box = document.getElementById('box');
+			var yanse1 = document.getElementById('r1');
+			var yanse2 = document.getElementById('y1');
+			var yanse3 = document.getElementById('p1');
+			var kuan1 = document.getElementById('kuan1');
+			var kuan2 = document.getElementById('kuan2');
+			var kuan3 = document.getElementById('kuan3');
+			var gao1 = document.getElementById('gao1');
+			var gao2 = document.getElementById('gao2');
+			var gao3 = document.getElementById('gao3');
+			var huifu = document.getElementById('huifu');
+			var queding = document.getElementById('queding');
+
+			btn.onclick = function() {
+				box.style.display = 'block';
+			}
+			queding.onclick = function() {
+				box.style.display = 'none';
+			}
+			huifu.onclick = function() {
+				wrap.style.width = '100px';
+				wrap.style.height = '100px';
+				wrap.style.background = '#fff';
+			}
+			yanse1.onclick = function() {
+				wrap.style.background = 'red';
+			}
+			yanse2.onclick = function() {
+				wrap.style.background = 'yellow';
+			}
+			yanse3.onclick = function() {
+				wrap.style.background = 'pink';
+			}
+			kuan1.onclick = function() {
+				wrap.style.width = '200px';
+			}
+			kuan2.onclick = function() {
+				wrap.style.width = '300px';
+			}
+			kuan3.onclick = function() {
+				wrap.style.width = '400px';
+			}
+			gao1.onclick = function() {
+				wrap.style.height = '200px';
+			}
+			gao2.onclick = function() {
+				wrap.style.height = '300px';
+			}
+			gao3.onclick = function() {
+				wrap.style.height = '400px';
+			}
+		</script>
+	</body>
+
+</html>

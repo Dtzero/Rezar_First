@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	#img{
+        		position:absolute;
+        		top:50px;
+        		left:-530px;
+        	}
+        </style>
+	</head>
+
+	<body>
+		<input type="button" value="运动" id="btn" />
+		<img src="./4.png" id="img" />
+		<script src="./js/utils.js"></script>
+		<script>
+			var img = $('#img');
+			var btn = $('#btn');
+			var s1 = null;
+			btn.onclick = function (){
+				//clearInterval(s1);每次点击先清除定时器
+				if(s1){//如果能走到if中，说明已经开了定时器
+					return;
+				}
+				s1 = setInterval(function (){
+					var l = img.offsetLeft + 1;
+					img.style.left = l + 'px';
+					if( l >= 450 ){
+						l = 450;
+						clearInterval(s1);
+					};	
+				},10)
+			}
+			
+		</script>
+	</body>
+</html>

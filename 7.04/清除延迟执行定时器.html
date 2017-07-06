@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	#box{
+        		width:100px;
+        		height:100px;
+        		background:pink;
+        		position:absolute;
+        		top:0;
+        		left:0;
+        	}
+        </style>
+	</head>
+
+	<body>
+		<div id="box"></div>
+		<script src="./js/utis.js"></script>
+		<script>
+		//延迟执行定时器：
+		//setTimeout(函数,间隔时间,函数实参);第三个参数可有可无
+		//间隔时间单位为毫秒：ms;	
+				var s1 = setTimeout(function (){
+					alert(1);
+				},1000)	
+				clearTimeout(s1);
+		</script>
+	</body>
+</html>

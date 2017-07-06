@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="top">
+				<ul class="clearfix">
+					<li class="prev fl"></li>
+					<li class="num fl">0</li>
+					<li class="next fl"></li>
+					<li class="txt fl">单价：<em>12.5</em>元<i>小计：<b class="price">0</b>元</i></li>
+				</ul>
+				<ul class="clearfix">
+					<li class="prev fl"></li>
+					<li class="num fl">0</li>
+					<li class="next fl"></li>
+					<li class="txt fl">单价：<em>10.5</em>元<i>小计：<b class="price">0</b>元</i></li>
+				</ul>
+				<ul class="clearfix">
+					<li class="prev fl"></li>
+					<li class="num fl">0</li>
+					<li class="next fl"></li>
+					<li class="txt fl">单价：<em>8.5</em>元<i>小计：<b class="price">0</b>元</i></li>
+				</ul>
+				<ul class="clearfix">
+					<li class="prev fl"></li>
+					<li class="num fl">0</li>
+					<li class="next fl"></li>
+					<li class="txt fl">单价：<em>8</em>元<i>小计：<b class="price">0</b>元</i></li>
+				</ul>
+				<ul class="clearfix">
+					<li class="prev fl"></li>
+					<li class="num fl">0</li>
+					<li class="next fl"></li>
+					<li class="txt fl">单价：<em>14.5</em>元<i>小计：<b class="price">0</b>元</i></li>
+				</ul>
+			</div>
+			<div class="bottom">
+				<p><b>商品合计共：<i class="num">0</i>件</b><b>共花费了：<i class="num">0</i>元</b></p>
+				<p><b>其中最贵的商品单价是：<i class="num">0</i>元</b></p>
+			</div>
+		</div>	
+		<script>
+			var num = document.querySelectorAll('.num');
+			var price = document.querySelectorAll('.price');
+			var ems = document.getElementsByTagName('em');
+			var uls = document.getElementsByTagName('ul');
+			var next = document.querySelectorAll('.next');
+			var prev = document.querySelectorAll('.prev');
+			var arr = [];
+			var n = 0;
+
+			for( var i = 0; i < uls.length; i++ ){
+				next[i].index = i;
+				next[i].onclick = function(){
+					num[this.index].innerHTML = Number(num[this.index].innerHTML)+1; 
+					num[5].innerHTML = Number(num[5].innerHTML)+1;
+					price[this.index].innerHTML = Number(num[this.index].innerHTML)*parseFloat(ems[this.index].innerHTML);
+					num[6].innerHTML = Number(num[6].innerHTML)+parseFloat(ems[this.index].innerHTML);	
+					arr[this.index] = parseFloat(ems[this.index].innerHTML); 
+					n = arr[0];
+					for( var j = 0; j < arr.length; j++ ){
+						if( arr[j] > n ){
+							n = arr[j];
+						}
+					num[7].innerHTML = n;	
+					}
+				};
+				prev[i].index = i;
+				prev[i].onclick = function(){
+					if( Number(num[this.index].innerHTML) > 0){ 
+						num[this.index].innerHTML = Number(num[this.index].innerHTML)-1;
+						num[5].innerHTML = Number(num[5].innerHTML)-1;
+						price[this.index].innerHTML = Number(num[this.index].innerHTML)*parseFloat(ems[this.index].innerHTML);
+						num[6].innerHTML = Number(num[6].innerHTML)-parseFloat(ems[this.index].innerHTML);	
+					}
+					if(Number(num[this.index].innerHTML) == 0){		
+						arr[this.index] = 0; 
+					}
+					n = arr[0];
+					for( var j = 0; j < arr.length; j++ ){
+						if( arr[j] > n ){
+							n = arr[j];
+						}
+					num[7].innerHTML = n;	
+					}
+				};
+			};
+			
+		</script>
+	</body>
+</html>

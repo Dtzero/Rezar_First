@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Document</title>
+	<style>
+		#box div{
+			width:20px;
+			height:20px;
+			background:red;
+			border:1px solid #000;
+			text-align:center;
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div></div>
+	</div>
+	<script>
+	// a = a + b;等于 a += b;
+		//var box = document.getElementById('box');
+
+		for(var i = 0; i<100; i++){
+			//box.innerHTML +='<div></div>';//连续添加100个div
+			if (i >=5){
+				break;//当i大于等于5等时候，for循环停止	
+				console.log('不执行了');//break后的代码，均不执行；
+			 }
+				console.log('值为'+i);
+		
+		}
+	</script>
+</body>
+</html>

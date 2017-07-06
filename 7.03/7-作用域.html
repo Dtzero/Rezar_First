@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				标识符
+					变量名，函数名
+				作用域：
+					用来管理标识符可以在哪里被访问的一套规则，或者说是标识符可被访问的范围
+
+					全局作用域
+						 在代码中任何地方都能访问到拥有全局作用域
+						 1. 函数外定义的标识符拥有全局作用域
+						 2. 不使用var定义的变量拥有全局作用域
+						 		声明变量一定要用var
+						 3. 所有window对象上的属性拥有全局作用域
+					局部作用域
+						
+
+			*/
+
+			console.log( window );
+
+			window.abc = 200;
+
+			function func(){
+				console.log(abc);
+				window.miaov = 'ketang';
+			}
+
+			func()
+
+			console.log(abc);
+			console.log( miaov ); 
+
+
+
+			/*str = 10;
+			var b = 1000;
+			function fn(){
+				b = 20;
+			}
+
+			fn();*/
+
+			//console.log( b );
+
+
+			/*var a  = 0;
+
+			function func(){
+				var b = 0;	
+			}
+			console.log(b);*/
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

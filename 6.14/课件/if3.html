@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="切换图片显示隐藏" />
+	<br/>
+	<img src="images/1.jpeg" id="img" />
+	<script>
+		var btn = document.getElementById('btn')
+		var img = document.getElementById('img')
+		//var state = 'block' //记录图片当前的显示状态，公用一个变量
+
+		btn.onclick = function () {
+			var state = 'block' //每次点击重新生成一次变量
+
+			if(state == 'block'){
+				img.style.display = 'none';
+				state = 'none';
+			}
+			else{
+				img.style.display = 'block';
+				state = 'block';
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="切换图片显示隐藏" />
+	<br/>
+	<img src="images/1.jpeg" id="img" style="display: block;" />
+	<script>
+		var btn = document.getElementById('btn')
+		var img = document.getElementById('img')
+
+		btn.onclick = function () {
+			console.log(img.style.display);
+			if(img.style.display == 'block'){
+				img.style.display = 'none';
+			}
+			else{
+				img.style.display = 'block';
+			}
+		}
+	</script>
+</body>
+</html>

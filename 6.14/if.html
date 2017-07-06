@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" id="btn" value="按钮" style="background: red" />
+	<script>
+		var btn = document.getElementById('btn')
+		
+		if(btn.style.background == 'red'){
+			btn.style.width = '100px';
+			btn.style.height = '100px';
+		}
+		else{
+			btn.style.background = 'yellow';
+			btn.style.width = '200px';
+			btn.style.height = '200px';
+		}
+	</script>
+</body>
+</html>

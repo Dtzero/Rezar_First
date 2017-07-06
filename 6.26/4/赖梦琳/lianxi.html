@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="content">
+					<p class="txt">var arr = ['100px', 'abc' - 6, [], -98765, 34, -2, 0, '300', , function() {alert(1);}, null, document, [], true, '200px' - 30, '23.45元', 5, Number('abc'), function() {alert(3);}, 'xyz' - 90];</p>
+				</div>
+				<div class="bottom">
+					<ul class="list">
+						<li class="li1"><i>1</i>找到arr里所有的数字：<b></b><span>开始查找</span></li>
+						<li class="li2"><i>2</i>找到可以转成数字的：<b></b><span>开始查找</span></li>
+						<li class="li3"><i>3</i>把转成数字以后，最大值判断出来：<b></b><span>开始查找</span></li>
+						<li class="li4"><i>4</i>把NaN所在的位置找出来：<b></b><span>开始查找</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+			var spans = document.getElementsByTagName('span');
+			var lis = document.getElementsByTagName('li');
+			var bs = document.getElementsByTagName('b');
+			var arr = ['100px', 'abc' - 6, [], -98765, 34, -2, 0, '300', , function() {alert(1);}, null, document, [], true, '200px' - 30, '23.45元', 5, Number('abc'), function() {alert(3);}, 'xyz' - 90];
+			var arr2 = [100,-98765,34,-2,0,300,23.45,5];
+			var n = arr2[0];
+			var m;
+			spans[0].onclick = function(){
+				for( var i = 0; i < arr.length; i++ ){
+					if( !isNaN(arr[i]) && typeof arr[i] == 'number'){
+						bs.value = arr[i];
+						bs[0].innerHTML += bs.value+',';
+					}	
+				};
+			}
+			spans[1].onclick = function(){
+				for( var j = 0; j < arr.length; j++ ){
+					if( !isNaN(parseFloat(arr[j]))){
+						bs.value = arr[j];
+						bs[1].innerHTML += bs.value+',';
+					}
+				};
+			}
+			spans[2].onclick = function(){
+				for( var k = 1; k < arr2.length; k++ ){
+					if( arr2[k] > n ){
+						n = arr2[k];
+						bs.value = n;
+						bs[2].innerHTML += bs.value;
+					}
+				}
+			}
+			
+			spans[3].onclick = function(){
+				for( var x = 0; x < arr.length; x++ ){
+					if( typeof arr[x]== 'number' && isNaN(arr[x]) ){
+
+						bs.value = x;
+						bs[3].innerHTML += bs.value+',';
+					}
+				}
+			};
+
+		</script>
+	</body>
+</html>

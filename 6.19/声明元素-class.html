@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+	<!-- 
+		通过class名获取元素：document.getElementsByClassName('class名字');
+								元素.getElementsByClassName('class名字');
+
+		通过标签获取元素：document.getElementsByTagName('类型'); 
+							元素.getElementsByTagName('类型'); 
+
+		通过css获取元素：document.querySelector("css选择器，例：.active"); 							只能获取当前页面符合条件的第一个元素；
+							元素.querySelector("css选择器，例：.active");
+
+						document.querySelectorAll("css选择器，例：.active"); 只能获取当前页面符合条件的所有元素；
+								元素.querySelectorAll("css选择器，例：.active"); 
+
+		TagName、ClassName本身可以看成是一个类数组，即:使用TagName、ClassName方法处理的结果：是根据其找到多个元素，组成数组对象，通过一个数组返回，所以，用的时候，需要确定其在数组中的位置，因此加下标[n];
+	 -->
+	 	<div class="box">
+			<ul class="list">
+				<li class="active">123</li>
+				<li>123</li>
+				<li class="active">123</li>
+				<li>123</li>
+			</ul>
+			<div class="active"></div>
+		</div>
+		<script>
+			// var list = document.getElementsByClassName('list');
+			// var actives = list[0].getElementsByClassName('active');
+			// var box = document.getElementsByClassName('box')[0];
+			// var actives = box.getElementsByClassName('active');
+			 var ul = document.getElementsByTagName('ul')[0];
+			 var actives = ul.getElementsByClassName('active');
+			// var div = document.getElementsByTagName('div')[1];
+			// var actives = div.getElementsByClassName('active');
+			// var actives = document.querySelector(".active"); 
+			// var actives = document.querySelectorAll(".active"); 
+
+				console.log(actives);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div id="box">
+				<div id="content"></div>
+				<input type="button" value="生成" id="btn" />
+				<input type="button" value="变换" id="hid" />
+			</div>
+		</div>
+		<script>
+			var content = document.getElementById('content');
+			var btn = document.getElementById('btn');
+			var hid = document.getElementById('hid')
+
+			btn.onclick = function (){
+				hid.style.display = 'block';
+				btn.style.display = 'none';
+				for( var i = 0; i < 5; i++ ){
+					if( i >= 2 ){
+						content.innerHTML += '<div style="top:'+(100+( 2-i )*(50))+'px;left: '+i*50+'px;">'+(i+1)+'</div>';
+					}else{
+						content.innerHTML += '<div style="top:'+(100+(i-2)*(50))+'px;left: '+i*50+'px;">'+(i+1)+'</div>';
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

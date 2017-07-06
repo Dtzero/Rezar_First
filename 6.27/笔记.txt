@@ -1,0 +1,55 @@
+	1. 数据类型：两大类：基本（简单）数据类型：String、Number、Boolean、Null、Undefiend
+					     复合（引用）数据类型：Object
+
+	2. 每一个数据对应的值
+		基本（简单）数据类型
+			String => 字符串
+			Number => 数字
+			Boolean => 布尔值
+			Undefined => 未定义
+			Null  => 空
+		复合（引用）数据类型
+			Object => 对象
+
+	3. 检测类型 typeof 
+		string number boolean object undefined function
+
+	4. 数据类型转换
+		其他类型 => 数字类型
+			Number()：转换为数字
+			pareseInt()：转换为数字,第一个为字母，结果为NaN，否则，转换为整数，与字母停止；
+			parseFloat()：转换为数字,可以转换为小数，也可以转换为整数
+
+	5.转不成数字 NaN来表示
+			数字类型
+			其他的类型和自身都不行同
+			参与运算都为NaN
+			参与比较都是false
+
+	6.检测是不是NaN isNaN(值)
+			值是NaN，返回true
+			值不是NaN，返回false
+
+	7.转成字符串类型
+		String(要转的数据)
+			''+数据
+				当转成字符串类型的时候，内部会调用一个方法，toString()
+
+	8.转成布尔值
+		Boolean(要转的数据)
+			! 取反 
+				先把数据转成布尔值，取反
+			!! 转成布尔值
+			那些能转成false//true太多，记false
+				 '' 0 undefined null false
+
+	9.转换分两种情况：
+		1、显式类型转换
+				开发者自己手动调用方法进行转化：String Number parseInt Boolean 
+		2、隐式类型转换
+				解析器为了运算方便，会隐式把一种类型转成另一种类型
+	
+	10.查找字符串中指定下标的字符：字符串.charAt(下标)
+
+				
+					

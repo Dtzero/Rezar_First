@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	#img{
+        		position:absolute;
+        		left: 50px;
+				top: 50px;
+        	}
+        </style>
+	</head>
+
+	<body>
+		<input type="button" value="运动" id="btn" />
+		<input type="button" value="暂停" id="pause" />
+		<img src="./4.png" id="img" />
+		<script src="./js/utils.js"></script>
+		<script>
+			var target = 450;  // 目标位置
+			var duration = 1000; // 持续时间
+			// 开始运动时间
+			var timer = null;
+			btn.onclick = function (){
+				var begin = img.offsetLeft; // 起始位置
+				var count = target - begin;  // 总距离
+				var now = Date.now(); // 开始运动的时间
+				clearInterval(timer);
+				timer = setInterval(function (){
+					var time = Date.now() - now// 过去了多少时间 = 最新时间-最开始时间
+					// 已过去时间不能超过持续时间
+					if( time > duration ){
+						time = duration;
+						clearInterval(timer);
+					}
+					img.style.left = count/duration * time + begin + 'px';
+				},4)
+			};
+			pause.onclick = function (){
+				clearInterval(timer);
+			};
+			/*
+				时间戳 从1970年1月1号0时0分0秒到现在的毫秒数
+					时间函数 Date
+					setInterval(function (){
+						console.dir(Date.now())
+					},1000)
+			*/
+		</script>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	button{
+        		width:50px;
+        		height:50px;
+        		border-radius:25px;
+        		text-align:center;
+        		background:#fff;
+        	}
+        </style>
+	</head>
+
+	<body>
+	请选择：
+		<button>男</button>
+		<button>女</button>
+		<button>保密</button>
+		<script>
+			var buttons = document.getElementsByTagName('button');
+
+			for( var i = 0; i <buttons.length ; i++ ){
+				buttons[i].onclick = function (){
+					for( var j = 0; j <buttons.length ; j++ ){
+						buttons[j].style.background = '';
+						//清除所有元素的样式
+					}
+					console.log(this)
+					this.style.background = 'pink';
+					//点击的时候，给当前的元素添加样式
+				}
+			}
+		</script>
+	</body>
+</html>  

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	button{
+        		width:50px;
+        		height:50px;
+        		border-radius:25px;
+        		text-align:center;
+        		background:#fff;
+        	}
+        </style>
+	</head>
+
+	<body>
+	请选择：
+		<button>男</button>
+		<button>女</button>
+		<button>保密</button>
+		<script>
+			var buttons = document.getElementsByTagName('button');
+			
+
+			for( var i = 0; i <buttons.length ; i++ ){
+				buttons.isChecked = false;//添加一个自定义属性，来获取状态
+				buttons[i].onclick = function (){
+					if(!this.isChecked){
+						console.log(this)
+						this.style.background = 'pink';
+						this.isChecked = true;
+					//点击的时候，给当前的元素背景为粉色
+					}else{
+						this.style.background = '';
+						this.isChecked = false;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>  
+
+

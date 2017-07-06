@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<div class="box">
+			
+		</div>
+		<script>
+			var box = document.querySelector('.box');
+			var arr= [1,23,45,6]; 
+			var title = '这是标题';
+			var str = `<h2>${title}</h2>`;
+			var str2 = '<ul>';
+				for( var i = 0; i < arr.length; i++ ){
+					str += `<li>${arr[i]}</li>`;
+				}
+			str2 = "</ul>";
+			box.innerHTML = str + str2;
+		</script>
+	</body>
+</html>

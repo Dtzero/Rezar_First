@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	div{
+        		width:100px;
+        		height:100px;
+        		border:1px solid red;
+        		display:none;
+        	}
+        	.yellow{
+        		background:yellow;
+        	}
+        </style>
+	</head>
+
+	<body>
+		<button>1</button>
+		<button>2</button>
+		<button>3</button>
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<script>
+			var btns = document.getElementsByTagName('button');
+			var oDiv = document.getElementsByTagName('div');
+			var prev = 0;
+
+			for( var i = 0; i < btns.length; i++ ){
+				btns[i].isChecked = false;
+				btns[i].index = i;
+				btns[i].onclick = function(){
+					// for( var j = 0; j < btns.length; j++ ){
+					// 	btns[j].className = '';
+					// 	oDiv[j].style.display = 'none';
+					// 	btns[j].isChecked = false;
+					// }清空所有的
+					btns[prev].className = '';
+					oDiv[prev].style.display = 'none';
+					btns[prev].isChecked = false;//清空上一次
+					btns[this.index].className = 'yellow';
+					oDiv[this.index].style.display = 'block';
+					btns[this.index].isChecked = true;
+					prev = this.index;
+				}
+			}
+		</script>
+	</body>
+</html>

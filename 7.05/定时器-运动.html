@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	#img{
+        		position:absolute;
+        		top:-350px;
+        		left:450px;
+        	}
+        </style>
+	</head>
+
+	<body>
+		<img src="./4.png" id="img" />
+		<script src="./js/utils.js"></script>
+		<script>
+			var img = $('#img');
+			s1 = setInterval(function (){
+				var t = img.offsetTop + 1;
+				img.style.top = t + 'px';
+				if( t >= 0 ){
+					t = 0;
+					clearInterval(s1);
+					setTimeout(function (){
+						s2 = setInterval(function (){
+							var t = img.offsetTop - 1;
+							img.style.top = t + 'px';
+							if( t <= -350 ){
+								t = -350;
+								clearInterval(s2);
+							};	
+						},4)
+					},2000)
+				};
+			},4)
+		</script>
+	</body>
+</html>

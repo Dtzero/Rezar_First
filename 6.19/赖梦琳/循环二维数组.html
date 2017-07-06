@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<script>
+			//for循环嵌套for循环时，初始变量不能为同一个；
+			var arr2 = [[1,2,3,4],['a','b','c'],[5,6,7]]
+				// arr2[i]:当i=0，[1,2,3,4];当i=1，['a','b','c']
+				//取出数组中每一个数组，继续对arr2[i]这个数组进行循环
+			for (var i = 0; i < arr2.length; i++){
+
+				for (var j = 0; j < arr2[i].length; j++) {
+					console.log(arr2[i][j]);//取数组中的值
+				}			
+			}
+			//嵌套的for循环，当外层for循环取值时，被嵌套的for进行循环，被嵌套的for循环循环结束后，外层的for循环，继续进行循环；
+			for (var m = 0; m < 2; m++){
+
+				for (var k = 0; k < 2; k++) {
+					console.log(k);
+					// k的值：当m=0；k 取 0、1；当m=1，k=0、1；
+
+				}			
+			}
+		</script>
+	</body>
+</html>

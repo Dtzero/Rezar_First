@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				提升
+				预解析
+					当js代码执行之前，会有一个预解析的过程，程序会把当	前作用域下的变量名和函数的声明提前解析
+					js会把当前申明的变量名和函数提前当前作用域的最开始处理
+
+					函数表达式
+						只会把变量名提到当前作用域的最前面
+						所以不能再函数表达式赋值前调用
+			*/
+			//var str;var str2;
+
+			console.log(str);
+			console.log(str2);
+			console.log(fn);
+
+			var str = 'mioav';
+			var str2 = 1;
+			fn();
+			function fn(){
+				console.log(123);	
+			}
+
+			func();
+
+			var func  = function (){
+					
+			};
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

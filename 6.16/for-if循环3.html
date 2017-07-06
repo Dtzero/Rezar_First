@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		for(var i = 0; i<10; i++){
+			if (i ==5){
+				//break;//当i大于等于5时，for循环停止	
+				//console.log('不执行了');//break后的代码，for循环均不执行；
+				continue;//当i等于5时，跳过本次循环，且写在continue后的代码不执行，之后的for循环执行；
+				console.log(i);
+			}
+			console.log('值为'+i);
+		
+		}
+	</script>
+</body>
+</html>

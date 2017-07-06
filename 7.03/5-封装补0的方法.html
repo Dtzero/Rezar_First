@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				函数定义：
+					函数声明
+						function 函数名(){
+							
+						}
+					函数表达式
+						var 变量 = function [函数名](){
+							
+						}
+				函数调用：
+					函数声明可以先调用后声明
+					函数表达式调用时必须在赋值之后
+
+				函数传参：
+					形参
+						函数内部声明的变量，用来接收实参
+					实参
+						函数调用传入的实际参数
+
+					实参不确定 arguments 集合、类数组
+				函数返回值
+					函数都有返回值，默认是undefined
+						return 
+			*/
+
+
+
+		</script>
+	</head>
+
+	<body>
+		月：<input type="" /><br/>
+		日：<input type="" /><br/>
+		<input type="button" value="打印输入的日期" />
+		<span></span>
+		<script>
+		// 输入的数字小于10了，要补零
+			var inputs = document.getElementsByTagName('input');
+			var spans = document.getElementsByTagName('span');
+
+			// 封装一个通用的方法，在小于10的数字前补0
+
+			function addZero(n){
+				if(n < 10){
+					n = '0'+n
+				}
+
+				return n;
+			}
+
+			console.log(addZero(11));
+
+			var str = '100px';
+
+			console.log(parseInt(str));
+
+			inputs[2].onclick = function (){
+				var value1 = inputs[0].value;
+				var value2 = inputs[1].value;
+
+				spans.innerHTML = addZero(value1) +'月'+addZero(value2)+'日'
+			};
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>笔记</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/style.css" />
+
+</head>
+<body>
+<h1>js笔记</h1>
+<h2>1、javascript简介</h2>
+<p>javascript是负责页面动态部分的，</p>
+<ul>
+<li>用户与页面之间的动态交互</li>
+<li>服务器与页面的动态交互</li>
+<li>能够更改页面中得结构样式</li>
+</ul>
+<p>javascript通过script标签链接到html中，有以下三种方式</p>
+<ul>
+<li>内嵌链接</li>
+<li>行间链接</li>
+<li>外联链接</li>
+</ul>
+</ul>
+<p>script标签在html中的位置</p>
+<ul>
+<li>head结束前</li>
+<li>body结束前</li>
+</ul>
+
+<h2>2、变量</h2>
+<p>在javascript中，我们通过var声明变量，例如 <code>var 名字</code></p>
+<p>注意：变量的命名规则为，变量名只能由数字，字母，下划线，美元符组成，首字母只能为字母，下划线，美元符。数字不能作为变量名的起始字符，以便于javascript能区分标识符和数字；</p>
+
+<h2>3、事件</h2>
+<p>事件是可以被javascript监测到的行为，通俗来说就是各种交互时的行为，每个交互的一瞬间都可以产生一个事件，一般我们将事件和函数配合使用，当发生事件时执行函数；</p>
+
+<h2>4、函数</h2>
+<p>函数是由事件所引发或者当它被调用时能够执行的代码块，javascript中声明函数语法如下</p>
+<pre><code>function 函数名（参数）{
+    函数体或者叫代码块
+}
+</code></pre>
+
+<p>我们还可以利用函数表达式来创建一个函数</p>
+<pre><code>var 名字 = function 函数名（参数）{
+    函数体或者叫代码块
+}
+</code></pre>
+
+<p>若不加函数名则创建了一个匿名函数，匿名函数只能利用函数表达式来创建，如果利用声明函数来创建一个匿名函数会报错；</p>
+<p><strong>函数调用</strong>：目前所知函数调用方法为直接调用，即直接书写函数名；</p>
+<h2>5、属性调用</h2>
+<p>我们可以通过.和[]来进行属性的操作，例如<code>bg.style.width='200px';</code></p>
+<h2>6、元素属性</h2>
+<p>元素中的某些属性是可以进行读写的，目前已知一下几种</p>
+<ul>
+<li>id名</li>
+<li>class名</li>
+<li>value属性</li>
+<li>innerHTML结构</li>
+<li>src属性</li>
+<li>href属性</li>
+</ul>
+<h2>7、字符串拼接</h2>
+<p>我们可以通过+号来对两个字符串进行拼接,用于字符串则表示拼接前后两个字符串，例如</p>
+<pre><code>"miaov" +"ketang" = "miaovketang"
+"ketang"+"miaov"  = "ketangmiaov"
+字符的顺序参照加号的位置
+</code></pre>
+</body>
+</html>

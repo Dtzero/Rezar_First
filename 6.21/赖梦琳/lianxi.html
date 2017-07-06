@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="content">
+					<i class="prev"></i>
+					<img src="./images/1.png" style="opacity: 1;"/>
+					<img src="./images/2.png" />
+					<img src="./images/3.png" />
+					<img src="./images/4.png" />
+					<img src="./images/5.png" />
+					<i class="next"></i>
+				</div>
+				<div class="bottom">
+					<b><em></em></b>
+					<b><em></em></b>
+					<b><em></em></b>
+					<b><em></em></b>
+					<b><em></em></b>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+		<script>
+			var imgs = document.getElementsByTagName('img');
+			var spans = document.getElementsByTagName('span');
+			var bs = document.getElementsByTagName('b');
+			var ems = document.getElementsByTagName('em');
+			var next = document.querySelector('.next');
+			var prev = document.querySelector('.prev')
+			var arr = ['228px','266px','304px','344px','384px',];
+			var arr2 = ['./images/11.png','./images/21.png','./images/31.png','./images/41.png','./images/51.png',];
+
+			for( var i = 0; i < spans.length; i++ ){
+				spans.isChecked = false;
+				spans[i].index = i;
+				spans[i].onmouseover = function(){
+					for( var j = 0; j < spans.length; j++ ){
+						bs[j].style.display = 'none';
+						spans[j].className = '';
+					}
+					ems[this.index].style.background = arr2[this.index];
+					bs[this.index].style.left = arr[this.index];
+					bs[this.index].style.display = 'block';
+					this.className = 'blue';
+				};
+				spans[i].onmouseout = function(){
+					bs[this.index].style.display = 'none';
+				};
+				spans[i].onclick = function (){
+					for( var j = 0; j < imgs.length; j++ ){
+						spans[j].className = '';
+						imgs[j].style.opacity = '0';
+					}
+					spans[this.index].className = 'blue';
+					imgs[this.index].style.opacity = '1';
+				};
+				var n = 0;
+				next.onclick = function (){
+					if ( n < imgs.length-1 ){
+						n++;
+					}else{
+						n = 0;
+					}
+					for( var j = 0; j < imgs.length; j++ ){
+							spans[j].className = '';
+							imgs[j].style.opacity = '0';
+						}
+					spans[n].className = 'blue';
+					imgs[n].style.opacity = '1';
+				};
+				prev.onclick = function (){
+					
+					if ( n < 1){
+						n = 4;		
+					}else{
+						n--;
+					}
+					for( var j = 0; j < spans.length; j++ ){
+							spans[j].className = '';
+							imgs[j].style.opacity = '0';
+						}
+					spans[n].className = 'blue';
+					imgs[n].style.opacity = '1';
+				};
+			}
+		</script>
+	</body>
+</html>
