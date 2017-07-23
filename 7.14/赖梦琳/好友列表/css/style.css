@@ -1,0 +1,50 @@
+.wrap{
+	width: 1000px;
+	height: 800px;
+	background: url(../images/bg.png) no-repeat;
+	padding-top: 66px;
+	margin: 50px auto;	
+}
+.box{
+	width: 280px;
+	height: 613px;
+	background: url(../images/bg1.png) no-repeat;
+	padding: 66px 40px 0 36px;
+	margin: 0 auto;
+}
+.box div{
+	background: rgba(0,0,0,0.7);
+	border-radius: 2px;
+	margin-bottom: 10px;
+	position: relative;
+}
+.jiantou{
+	position: absolute;
+	top:0;
+	left:0;
+	width: 30px;
+	height: 46px;
+	background: url(../images/jiantou.png) no-repeat 13px 19px;
+}
+.title{
+	font-size:16px;
+	padding-left: 40px;
+	line-height: 46px;
+}
+ul{
+	background: #000;
+	display: none;
+}
+li{
+	line-height: 36px;
+	padding-left: 40px;
+}
+li:hover{
+	background: #999;
+}
+.box .red{
+	background: #c8526b;
+	font-size:16px;
+	padding-left: 40px;
+	line-height: 46px
+}

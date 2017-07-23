@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>win10日历</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .calendar {
+      width: 460px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.5);
+      padding-bottom: 20px;
+    }
+    .date-month {
+      width: 100%;
+      height: 66px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 32px;
+    }
+    .cur-month {
+      height: 100%;
+      color: #ccc;
+      font: 16px/66px Arial;
+    }
+    .set-month a, .cur-month {
+      cursor: default;
+      -webkit-user-select: none;
+    }
+    .set-month a:hover, .cur-month:hover {
+      color: #fff;
+    }
+    .set-month {
+      width: 88px;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .set-month a {
+      color: #ccc;
+      font-size: 24px;
+    }
+    .prev {
+      transform: rotate(90deg);
+    }
+    .next {
+      transform: rotate(-90deg);
+    }
+    .date-days, .date-nums{
+      width: 100%;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .date-nums {
+      height: auto;
+      flex-wrap: wrap;
+    }
+    .date-days span, .date-nums span{
+      width: 60px;
+      height: 55px;
+      border: 2px solid rgba(0,0,0,0);
+      text-align: center;
+      color: #fff;
+      line-height: 55px;
+      cursor: default;
+    }
+    .date-days span:hover, .date-nums span:hover {
+      border-color: #ccc;
+    }
+    .current-day {
+      background: rgb(141, 214, 237);
+    }
+    .date-nums span.other-month-date {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="calendar">
+    <div class="date-month">
+      <div class="cur-month">xxxx年x月</div>
+      <div class="set-month">
+        <a href="javascript:;" class="prev"><</a>
+        <a href="javascript:;" class="next"><</a>
+      </div>
+    </div>
+    <div class="date-dates">
+      <div class="date-days">
+        <span>日</span>
+        <span>一</span>
+        <span>二</span>
+        <span>三</span>
+        <span>四</span>
+        <span>五</span>
+        <span>六</span>
+      </div>
+      <div class="date-nums">
+      </div>
+    </div>
+  </div>
+  <script src="./js/utils.js"></script>
+  <script>
+      var n = 0;
+      fn();
+      function fn(){
+          var d = new Date();
+          var mouth = d.getMonth();
+          var d2 = new Date();
+          d2.setMonth(mouth+n);//设置为下个月
+          var year2 = d2.getFullYear();
+          var mouth2 = d2.getMonth();
+          var curMonth = $('.cur-month')[0];
+          curMonth.innerHTML = year2+'年'+(mouth2+1)+'月';
+          d2.setDate(1);
+          var fristDay = d2.getDay();//星期几
+          d2.setDate(0);
+          var days = d2.getDate();//天数
+          var html = '';
+          for( var i = 0; i < fristDay; i++ ){
+            html += `<span></span>`
+          }
+          for( var i = 1; i <= days; i++ ){
+            html += `<span>${i}</span>`
+          }
+          var dateNums = $('.date-nums')[0];
+          dateNums.innerHTML = html;  
+      }  
+      var prev = $('.prev')[0];
+      var next = $('.next')[0];
+      next.onclick = function (){
+          n++;
+          fn();
+      }
+      prev.onclick = function (){
+          n--;
+          fn();
+      }
+  </script>
+</body>
+</html>

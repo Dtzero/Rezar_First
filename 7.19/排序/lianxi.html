@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="top">
+				<span class="btn1">从小到大</span>
+				<span class="btn2" style="margin-left:60px; ">打乱顺序</span>
+			</div>
+			<ul class="list clearfix">
+				<li class="li1 box1">1-粉红</li>
+				<li class="li1 box2">2-粉黄</li>
+				<li class="li1 box3">3-黄绿</li>
+				<li class="li1 box4">4-嫩绿</li>
+				<li class="li1 box5">5-湖蓝</li>
+				<li class="li1 box6">6-蓝紫</li>
+				<li class="li1 box7">7-粉紫</li>
+				<li class="li1 box8">8-紫红</li>
+			</ul>
+		</div>
+		<script src="../utils.js"></script>
+		<script>
+			var btn1 = $('.btn1')[0];
+			var btn2 = $('.btn2')[0];
+			var list = $('.list')[0];
+			var arr = ['box1','box2','box3','box4','box5','box6','box7','box8'];
+			var arr2 = ['','粉红','粉黄','黄绿','嫩绿','湖蓝','蓝紫','粉紫','紫红']
+
+			btn2.onclick = function (){
+				btn2.className = 'btn1';
+				btn1.className = 'btn2';
+				arr.sort(function (a,b){
+					return Math.random() - 0.5;
+				})
+				list.innerHTML = '';
+				for( var i = 0; i < arr.length; i++ ){
+					var num = arr[i].charAt(3)
+					list.innerHTML += `<li class="li1 ${arr[i]}">${num}-${arr2[num]}</li>`;
+				}
+			}
+			btn1.onclick = function (){
+				btn1.className = 'btn1';
+				btn2.className = 'btn2';	
+				list.innerHTML = `
+						<li class="li1 box1">1-粉红</li>
+						<li class="li1 box2">2-粉黄</li>
+						<li class="li1 box3">3-黄绿</li>
+						<li class="li1 box4">4-嫩绿</li>
+						<li class="li1 box5">5-湖蓝</li>
+						<li class="li1 box6">6-蓝紫</li>
+						<li class="li1 box7">7-粉紫</li>
+						<li class="li1 box8">8-紫红</li>	
+					`
+			}
+		</script>
+	</body>
+</html>

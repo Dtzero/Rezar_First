@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+	<script>
+		var arr = []
+		for( var i = 0; i < 10; i++ ){
+			var fn = (function (i){
+				return function (){
+					alert(i);
+				}	
+			})(i);
+			arr.push(fn)
+		}	
+		arr[1]();
+	</script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			window.onload = function(){
+				var lis = document.getElementsByTagName("li");
+
+				/*for( var i = 0; i < lis.length; i++ ){
+					func(i)
+				}*/
+
+				func0(0)
+				func1(1)
+
+				function func0(n){
+					// n = 0
+					lis[0].onclick = function (){
+						console.log(n);		
+					};
+				}
+				function func1(n){
+					// n  =1
+					lis[1].onclick = function (){
+						console.log(n);		
+					};
+				}
+
+			};
+
+		</script>
+	</head>
+
+	<body>
+		<ul>
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+			<li>123</li>
+		</ul>
+	</body>
+</html>

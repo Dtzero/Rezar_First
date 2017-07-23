@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="./css/reset.css"/>
+        <link rel="stylesheet" href="./css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="top clearfix">
+				<div class="box1 fl">妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一途中全新的快乐学习方法！目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。
+				</div>
+				<div class="box2 fl">
+					<p class="zhankai p1">展开</p>
+					<p class="chazhao p2">查找</p>
+					<p class="tihuan last p3">替换</p>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="clearfix">
+					<input type="botton" value="查找" class="btn1 btn chazhao" /><input type="botton" value="替换" class="btn2 btn tihuan" />
+					<span class="fr">X</span>
+				</div>
+				<div class="k1">
+					<input type="text" value="输入要查找的内容" class="txt" /><input type="botton" value="查找" class="btn3 chazhao" />
+				</div>
+				<div class="k2">
+					<input type="text" value="输入要查找的内容" class="txt1" /><input type="text" value="输入要替换的内容" class="txt1 txt2" /><input type="botton" value="查找" class="btn3 chazhao btn4" />
+				</div>
+			</div>
+		</div>
+		<script src="./js/utils.js"></script>
+		<script>
+		 	var bs = $('b');
+			var p1 = $('.p1')[0];
+			var p2 = $('.p2')[0];
+			var p3 = $('.p3')[0];
+			var btn1 = $('.btn1')[0];
+			var btn2 = $('.btn2')[0];
+			var btn3 = $('.btn3')[0];
+			var btn4 = $('.btn4')[0];
+			var span = $('span')[0];
+			var k1 = $('.k1')[0];
+			var k2 = $('.k2')[0];
+			var bottom = $('.bottom')[0];
+
+			p1.onclick = function (){
+				p2.style.display = 'block';
+				p3.style.display = 'block';
+				bottom.style.display = 'block';
+			}
+			span.onclick = function (){
+				p2.style.display = 'none';
+				p3.style.display = 'none';
+				bottom.style.display = 'none';
+				k1.style.display = 'block';
+				k2.style.display = 'none';
+				box1.innerHTML = '妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一途中全新的快乐学习方法！目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。';
+				txt.value = "输入要查找的内容";
+				txt1.value = "输入要查找的内容";
+				txt2.value = "输入要替换的内容";
+			}
+			btn1.onclick = p2.onclick = function (){
+				k1.style.display = 'block';
+				k2.style.display = 'none';
+				txt.value = "输入要查找的内容";
+			}
+			btn2.onclick = p3.onclick = function (){
+				k1.style.display = 'none';
+				k2.style.display = 'block';
+				txt1.value = "输入要查找的内容";
+				txt2.value = "输入要替换的内容";
+			}
+			var txt = $('.txt')[0];
+			var box1 = $('.box1')[0];
+			var str = box1.innerHTML;
+			var txt1 = $('.txt1')[0];
+			var txt2 = $('.txt2')[0];
+			
+			txt.onclick = function (){
+				txt.value = '';
+			}
+			txt1.onclick = function (){
+				txt1.value = '';
+			}
+			txt2.onclick = function (){
+				txt2.value = '';
+			}
+			btn4.onclick = function (){
+				if(txt1.value == ''){
+					alert('请输入内容');
+					return;
+				}
+				var search = txt1.value;
+				var arr = str.split(search);
+				var search2 = txt2.value;
+				var c = `<b>${search2}</b>`;
+				var str2 = arr.join(c);
+				box1.innerHTML = str2;	
+				str = arr.join(search2);
+			}			
+			btn3.onclick = function (){
+				if(txt.value == ''){
+					alert('请输入内容');
+					return;
+				}
+				var search = txt.value;
+				var arr = str.split(search);
+				var c = `<b>${search}</b>`;
+				var str2 = arr.join(c);
+				box1.innerHTML = str2;	
+			}
+		</script>
+	</body>
+</html>

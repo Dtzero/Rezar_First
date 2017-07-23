@@ -54,9 +54,7 @@
 			var n = 0;
 			var m = -1;
 			function tab(){
-				n++;
 				m++;
-				var target = -380 * n;
 				navs[m].style.display = 'block';
 				mTween(navs[m],"top",219,400,"linear",function (){
 					setTimeout(function (){
@@ -67,16 +65,20 @@
 								m = 0;
 							}
 							navs[m].style.display = 'none';
-							mTween(list,"left",target,400,"linear",function (){
-								if(n == lis.length - 1){
+							setTimeout(function (){
+								n++;	
+								if(n > lis.length - 1){
 									list.style.left = '0px';
-									n = 0;
+									n = 1;
 								}
-							})	
+								var target = -380 * n;
+								mTween(list,"left",target,200,"linear");
+							},100)	
 						})		
 					},1200)
 				})	
 			};
+			tab();
 			setInterval(tab,2400);
 		</script>
 	</body>

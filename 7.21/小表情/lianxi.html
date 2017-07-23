@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="content">
+				<div class="photo"></div>
+				<div class='fenshu'>
+					<p class="p1">
+						<b>0分</b>
+						<em>得分</em>
+					</p>
+					<p class="p2">
+						<b>0分</b>
+						<em>失分</em>
+					</p>
+				</div>
+				<i>开始游戏</i>
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script>
+			var start = $('i')[0];
+			var photo = $('.photo')[0];
+			var fenshu = $('.fenshu')[0];
+			var content = $('.content')[0];
+			var p1 = $('.p1')[0];
+			var p2 = $('.p2')[0];
+			var imgs = $('img');
+			var arr = [1,2,3,4,5]
+			var n = 0;
+			var m = 0;
+			var a = 0;
+			start.onclick = function (){
+				start.style.display = 'none';
+				mTween(fenshu,{left:-86},300,'linear',function (){
+					var s1 = setInterval(function (){
+						if(n == 10){
+							alert('亲,你过关了！')
+							clearInterval(s1);
+							return ;
+						}
+						if(m == 10){
+							alert('亲,你输了！')
+							clearInterval(s1);
+							return ;
+						}
+						arr.sort(function (a,b){
+							return Math.random() - 0.5;
+						})
+							photo.innerHTML = `<img src="images/${arr[3]}.png" style="left:${120*arr[3]}px;"/>`
+						a++;
+						var target = 1500-40*a;
+						mTween(imgs[0],{top:350},target,'linear',function (){
+							shake(content,'top',10);
+						 	m = a-n;
+						 	p2.innerHTML = `<b>${m}分</b>
+							 				<em>失分</em>
+						 					`;	
+						})
+						imgs[0].onmousedown = function (){
+							imgs[0].src='images/'+6+'.png';
+							shake(imgs[0],'left',15);
+							mTween(imgs[0],{top:parseFloat(getComputedStyle(imgs[0]).top)},4,'linear',function (){
+								setTimeout(function (){
+									imgs[0].style.display = 'none';	
+								},400)	
+							})
+							n++;
+							p1.innerHTML = `<b>${n}分</b>
+											<em>得分</em>
+											`;
+						}
+					},1500)
+				})
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+             html {
+                width: 100%;
+                height: 100%;
+            }
+            
+            body {
+                margin: 0px;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .main {
+                width: 100%;
+                height: 100%;
+                background: url(./image/bg.png) no-repeat;
+                background-size: 100% 100%;
+                overflow: hidden;
+            }
+            
+            .logo {
+                display: block;
+                width: 200px;
+                height: 55px;
+                background: url(./image/logo.png) no-repeat;
+                margin: 20px auto;
+            }
+            
+            ul {
+                list-style: none;
+                font-size: 22px;
+                color: #8c949c;
+                font-weight: bold;
+            }
+            
+            ul li {
+                position: relative;
+                padding-left: 10px;
+            }
+            
+            ul li div {
+                height: 98%;
+                width: 1px;
+                border-left: 1px dotted #ccc;
+                position: absolute;
+                left: 14px;
+                top: 18px;
+            }
+            
+            ul ul {
+                display: none;
+            }
+            
+            ul li span {
+                display: block;
+                line-height: 32px;
+                padding-left: 15px;
+                background: url(./image/icon.png) no-repeat left 500px;
+            }
+            
+            ul li span.add {
+                background-position: 0px -32px;
+            }
+            
+            ul li span.line {
+                background-position: 0px 11px;
+            }
+            
+            .tree {
+                margin-left: 300px;
+            }
+        </style>   
+    </head>
+
+    <body>
+        <div class="main">
+            <a href="http://www.miaov.com" class="logo"></a>
+            <div class="tree"  id="box">    
+            </div>
+        </div> 
+        <script>
+        var arr = [{
+            title: "第一级菜单",
+                child: [{
+                    title: "第二集菜单"
+                }, {
+                    title: "第二集菜单",
+                    child: [{
+                        title: "第三集菜单"
+                    }, {
+                        title: "第三集菜单",
+                        child: [{
+                            title: "第四集菜单"
+                        }, {
+                            title: "第四集菜单"
+                        }, {
+                            title: "第四集菜单"
+                        }]
+                    }, {
+                        title: "第三集菜单"
+                    }]
+                }, {
+                    title: "第二集菜单",
+                    child: [{
+                        title: "第三集菜单"
+                    }, {
+                        title: "第三集菜单"
+                    }]
+                }]
+            }, {
+                title: "第一级菜单",
+                child: [{
+                    title: "第二集菜单"
+                }, {
+                    title: "第二集菜单",
+                    child: [{
+                        title: "第三集菜单"
+                    }, {
+                        title: "第三集菜单",
+                        child: [{
+                            title: "第四集菜单"
+                        }, {
+                            title: "第四集菜单"
+                        }, {
+                            title: "第四集菜单"
+                        }]
+                    }, {
+                        title: "第三集菜单"
+                    }]
+                }, {
+                    title: "第二集菜单",
+                    child: [{
+                        title: "第三集菜单"
+                    }, {
+                        title: "第三集菜单"
+                    }]
+                }]
+            }, {
+            title: "第一集菜单"
+        }];
+        function render(n){
+            var html = '<ul>';
+            n.forEach(function (item){
+                html += `<li><div></div><span>${item.title}</span>`;
+                if(item.child){
+                    html += render(item.child);
+                }
+                html+=`</li>`;
+            });
+            html += '</ul>';
+            return html;
+        }
+        var box = document.getElementById("box");
+        box.innerHTML = render(arr);
+
+        var lis = document.querySelectorAll('li');
+        for( var i = 0; i < lis.length; i++ ){
+            if(lis[i].childNodes.length == 3){
+                var spans = lis[i].children[1];
+                spans.className = 'add';
+            }
+        }  
+        var spans = document.querySelectorAll('.add');  
+        for( var i = 0; i < spans.length; i++ ){
+            spans[i].isClick = false;
+            spans[i].onclick = function (){
+                if(!this.isClick){
+                    if(this.parentNode.previousElementSibling != null){
+                        if(this.parentNode.previousElementSibling.children.length > 2){
+                            this.parentNode.previousElementSibling.children[2].style.display = 'none';
+                            this.parentNode.previousElementSibling.children[1].className = 'add';
+                            this.parentNode.previousElementSibling.children[1].isClick = false;
+                        }
+                    }
+                    if(this.parentNode.nextElementSibling != null){
+                        if(this.parentNode.nextElementSibling.children.length > 2){
+                            this.parentNode.nextElementSibling.children[2].style.display = 'none';
+                            this.parentNode.nextElementSibling.children[1].className = 'add';
+                            this.parentNode.nextElementSibling.children[1].isClick = false;
+                        }
+                    }
+                    this.className = 'line';
+                    this.nextElementSibling.style.display = 'block'; 
+                    this.isClick = true;
+                }else{
+                    if(this.parentNode.previousElementSibling != null){
+                        if(this.parentNode.previousElementSibling.children.length > 2){
+                            this.parentNode.previousElementSibling.children[2].style.display = 'none';
+                            this.parentNode.previousElementSibling.children[1].className = 'add';
+                            this.parentNode.previousElementSibling.children[1].isClick = false;
+                        }
+                    }
+                   if(this.parentNode.nextElementSibling != null){
+                        if(this.parentNode.nextElementSibling.children.length > 2){
+                            this.parentNode.nextElementSibling.children[2].style.display = 'none';
+                            this.nextElementSibling.style.display = 'none';
+                            this.parentNode.nextElementSibling.children[1].className = 'add';
+                            this.parentNode.nextElementSibling.children[1].isClick = false;
+                        }
+                    }
+                    this.className = 'add';
+                    this.nextElementSibling.style.display = 'none'; 
+                    this.isClick = false;
+                }
+                if(spans[0].isClick == false){
+                    spans[1].className = 'add';
+                    spans[1].nextElementSibling.style.display = 'none';
+                    spans[1].isClick = false;
+                    spans[2].className = 'add';
+                    spans[2].nextElementSibling.style.display = 'none';
+                    spans[2].isClick = false;
+                    spans[3].className = 'add';
+                    spans[3].nextElementSibling.style.display = 'none';
+                    spans[3].isClick = false;
+                }
+                if(spans[1].isClick == false){
+                    spans[2].className = 'add';
+                    spans[2].nextElementSibling.style.display = 'none';
+                    spans[2].isClick = false;
+                }
+                if(spans[4].isClick == false){
+                    spans[5].className = 'add';
+                    spans[5].nextElementSibling.style.display = 'none';
+                    spans[5].isClick = false;
+                    spans[6].className = 'add';
+                    spans[6].nextElementSibling.style.display = 'none';
+                    spans[6].isClick = false;
+                    spans[7].className = 'add';
+                    spans[7].nextElementSibling.style.display = 'none';
+                    spans[7].isClick = false;
+                }
+                if(spans[5].isClick == false){
+                    spans[6].className = 'add';
+                    spans[6].nextElementSibling.style.display = 'none';
+                    spans[6].isClick = false;
+                }
+             };  
+        }
+        </script>
+    </body>
+</html>

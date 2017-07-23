@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="top">
+					<i class="jiantou"></i>
+					<h3 class="title">我的好友</h3>
+					<ul>
+						<li>美丽俏佳人LOVE</li>
+						<li>从来就是这么任性</li>
+						<li>风雨无阻</li>
+						<li>LEO</li>
+					</ul>
+				</div>	
+				<div class="middle">
+					<i class="jiantou"></i>
+					<h3 class="title">企业好友</h3>
+					<ul>
+						<li>段宜恩</li>
+						<li>王嘉尔</li>
+						<li>林俊杰</li>
+					</ul>
+				</div>
+				<div class="bottom">
+					<i class="jiantou"></i>
+					<h3 class="title">黑名单</h3>
+					<ul>
+						<li>没有钱</li>
+						<li>变成胖子</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script>
+			var titles = $('h3');
+			var uls = $('ul');
+			var lis = $('li');
+			var jiantou = $('.jiantou');
+			var	prevIndex = 0;
+
+			for( var i = 0; i < titles.length; i++ ){
+				titles[i].index = i;
+				titles[i].isChecked = false;
+				titles[i].onclick = function (){
+					if(!this.isChecked){
+						titles[prevIndex].className = 'title';
+						uls[prevIndex].style.display = 'none';
+						titles[prevIndex].isChecked = false;
+						jiantou[prevIndex].style.backgroundImage = 'url(images/jiantou.png)';
+
+						titles[this.index].className = 'red';
+						uls[this.index].style.display = 'block';
+						titles[this.index].isChecked = true;
+						jiantou[this.index].style.backgroundImage = 'url(images/sanjiao.png)';
+					}else{
+						for( var j = 0; j < lis.length; j++ ){
+						lis[j].style.background = '';
+					}
+						this.className = 'title';
+						uls[this.index].style.display = 'none';
+						jiantou[this.index].style.backgroundImage = 'url(images/jiantou.png)';
+						this.isChecked = false;
+					}
+					prevIndex = this.index;
+				}
+			}
+			var prev2Index = 0;
+			for( var i = 0; i < lis.length; i++ ){
+				lis[i].index = i;
+				lis[i].isClick = false;
+				lis[i].onclick = function (){
+					if(prev2Index != this.index){
+						lis[prev2Index].style.background = '';
+						lis[prev2Index].isClick = false;
+					}
+					this.isClick = true;
+					this.style.background = '#dd5570';	
+					prev2Index = this.index;	
+				}	
+			}
+		</script>
+	</body>
+</html>

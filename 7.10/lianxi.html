@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="./css/reset.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div id="box">
+				<div class="content">	
+					<ul class="list">
+						<li>
+							<img src="./images/0.png" class="up"/>
+							<img src="./images/0.png" class="down"/>
+						</li>
+						<li>
+							<img src="./images/0.png" class="up"/>
+							<img src="./images/0.png" class="down"/>
+						</li>
+						<li><img src="./images/fuh.png" class="up"/></li>
+						<li>
+							<img src="./images/0.png" class="up"/>
+							<img src="./images/0.png" class="down"/>
+						</li>
+						<li>
+							<img src="./images/0.png" class="up"/>
+							<img src="./images/0.png" class="down"/>
+						</li>
+						<li><img src="./images/fuh.png"  class="up"/></li>
+						<li>
+							<img src="./images/0.png" class="up"/>
+							<img src="./images/0.png" class="down"/>
+						</li>
+						<li>
+							<img src="./images/0.png" class="up"/>
+							<img src="./images/0.png" class="down"/>
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</div>
+		<script src="./js/utils.js"></script>
+		<script>
+			function addZero(n){
+				return n < 10 ? '0'+n : n;
+			}
+			var lis = $('li');
+			var imgs = $('.up');
+			var oldTime = '';
+			funcDate();			
+			function funcDate(){
+				var d = new Date();
+				var time = addZero(d.getHours())+":"+addZero(d.getMinutes())+":"+addZero(d.getSeconds());
+				for( let i = 0; i < time.length; i++ ){
+					if(time[i] != ':'){
+						if(oldTime[i] != time[i]){
+				          	let down = lis[i].getElementsByClassName('down')[0];
+				          	if (oldTime){
+					            down.src = './images/'+time[i]+'.png';
+					            mTween(imgs[i],"top",-84,500);
+					            mTween(down,"top",0,500,"linear",function (){
+					               setTimeout(function (){
+					               		imgs[i].style.top = 0;
+					                	imgs[i].src = down.src;
+					                	down.style.top = "84px";
+					                	down.src = './images/'+time[i]+'.png';
+					               },450)  
+					           	});
+					        }else{
+					            imgs[i].src = './images/'+time[i]+'.png';
+					        }
+					    } 
+					}
+				}
+				oldTime = time;
+			}
+			setInterval(funcDate,1000);
+		</script>
+	</body>
+</html>

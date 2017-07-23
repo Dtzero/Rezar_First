@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<script>
+			var arr = [1,3,7,2,8,5,0];
+			for( var i = 0; i < arr.length-1; i++ ){//循环比较大小
+				for( var j = 0; j < arr.length-1-i; j++ ){
+					if(arr[j]>arr[j+1]){//如果当前的数大于后一个数
+						// var c = arr[j];//声明C等于大的数
+						// arr[j] = arr[j+1];//给后一个小的数赋上前一个大的数
+						// arr[j+1] = c;//给前一个大的数赋上后一个小的数
+						arr[j] = [arr[j+1],arr[j+1] = arr[j]][0];//数组的方式
+					}
+				}	
+			}
+			console.log(arr);
+		</script>
+	</body>
+</html>

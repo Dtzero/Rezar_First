@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style2.css" />
+	</head>
+
+	<body>
+		<div class="slide">
+			<div  class="tagClient">
+				<ul class="list">
+					<li><img src="./images/1.png" /></li> 
+					<li><img src="./images/2.png" /></li> 
+					<li><img src="./images/3.png" /></li> 
+					<li><img src="./images/4.png" /></li> 
+					<li><img src="./images/5.png" /></li>
+					<li><img src="./images/1.png" /></li> 
+				</ul>
+			</div>
+			<div id="bottom">
+				<div class="nav" >
+					<p>妙味课堂</p>
+					<b>妙味课堂 一个缔造“前端工程师”的地方</b>
+				</div>
+				<div class="nav" >
+					<p>VIP会员视频</p>
+					<b>VIP会员视频 国内海量前端开发视频汇总</b>
+				</div>
+				<div class="nav" >
+					<p>零基础WEB前端开发课程</p>
+					<b>PC端+移动端+响应式+bootstrap+less</b>
+				</div>
+				<div class="nav" >
+					<p>JavaScript资深全栈开发课程</p>
+					<b>作用域+闭包+原型链+核心算法+jQuery3+EC6</b>
+				</div>
+				<div class="nav" >
+					<p>关于我们</p>
+					<b>关于我们 妙味新闻+公司介绍+讲师团队+联系我们 </b>
+				</div>
+				<div class="nav" >
+					<p>妙味课堂</p>
+					<b>妙味课堂 一个缔造“前端工程师”的地方</b>
+				</div>
+			</div>
+		</div>
+		<script src="./js/utils.js"></script>
+		<script>
+			var list = $(".list")[0];
+			var lis = $("li",list);
+			var navs = $('div',$('#bottom'));
+			var n = 0;
+			var m = -1;
+			function tab(){
+				m++;
+				navs[m].style.visibility = 'visible';
+				mTween(navs[m],"height",43,400,"linear",function (){
+					setTimeout(function (){
+						mTween(navs[m],"height",0,400,"linear",function (){
+							if(m == navs.length - 1){
+								navs[m].style.height = '0px';
+								navs[m].style.visibility = 'hidden';
+								m = 0;
+							}
+							navs[m].style.visibility = 'hidden';
+							setTimeout(function (){
+								n++;	
+								if(n > lis.length - 1){
+									list.style.left = '0px';
+									n = 1;
+								}
+								var target = -380 * n;
+								mTween(list,"left",target,200,"linear");
+							},100)	
+						})		
+					},1200)
+				})		
+			};
+			tab();
+			setInterval(tab,2300);
+		</script>
+	</body>
+</html>

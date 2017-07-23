@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="./css/reset.css"/>
+        <link rel="stylesheet" href="./css/style2.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+	      	<div class="box">
+	        	<textarea class="text" name="name" rows="8" cols="80">妙味课堂是一支独具特色的IT培训团队，妙味反对传统IT教育枯燥乏味的教学模式，妙味提供一途中全新的快乐学习方法！目前主要针对的是javascript培训，同时还提供了css教程、javascript视频、js特效等，最新推出了外地学员们喜欢的javascript网络课程服务，同时还为处于javascript入门阶段的朋友录制了大量javascript视频，其中涉及了大量javascript基础知识，希望妙味课堂推出的javascript网络培训课程能带给大家更多惊喜。</textarea>
+	        	<div class="middle">
+	        		<div class="move"></div>
+	        		<p id="txt"></p>
+	        	</div>	
+	       		<textarea class="text" name="name" rows="8" cols="80"></textarea>
+	    	</div>
+	    </div>
+		<script src="./js/utils.js"></script>
+		<script>
+			var move = $('.move')[0];
+			var inputs = $('.text');
+			var txt = $('#txt');
+		    var str = "";
+		    var timer = null;
+		    txt.innerHTML = 0 +'/'+ inputs[0].value.length;
+		    move.onclick = function (){
+		    	if (timer){
+		        	return;
+		    	}
+		    	if(inputs[0].value == ''){
+		    		inputs[1].value != '';
+		    	}else{
+		    		inputs[1].value = '';
+		    	}
+		    	inputs[0].disabled = true;
+		    	timer =  setInterval(function (){
+		        	if(inputs[0].value == ""){
+		        		clearInterval(timer);
+		        		timer = null;
+		        		inputs[0].disabled = false;
+		        	}
+			        str = inputs[0].value;
+			        inputs[1].value += str.slice(0,1);
+			        inputs[0].value = str.slice(1);
+			        txt.innerHTML = inputs[1].value.length +'/'+ inputs[0].value.length;
+		      	},20)
+		    }
+		</script>
+	</body>
+</html>

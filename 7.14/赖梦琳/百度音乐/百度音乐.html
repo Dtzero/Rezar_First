@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/reset.css"/>
+        <link rel="stylesheet" href="css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="content">
+					<ul class="nav">
+						<li class="clearfix sing"><i></i>私奔<span class="fr">梁博</span></li>
+						<li class="clearfix sing"><i></i>北京北京<span class="fr">梁博 黄勇</span></li>
+						<li class="clearfix sing"><i></i>我爱你中国<span class="fr">梁博</span></li>
+						<li class="clearfix sing"><i></i>花火<span class="fr">梁博</span></li>
+						<li class="clearfix sing"><i></i>回来<span class="fr">梁博</span></li>
+						<li class="clearfix sing"><i></i>爱要有你才完美<span class="fr">梁博 那英</span></li>
+					</ul>
+				</div>
+				<div class="bottom">
+					<ul class="clearfix">
+						<li class="fl li1"><b class="bxk"></b>全选</li>
+						<li class="fl li2">收藏</li>
+						<li class="fl li3">添加</li>
+						<li class="fl li4">删除</li>
+					</ul>
+				</div>
+			</div>
+		</div>	
+		<script src="../utils.js"></script>
+		<script>
+			var nav = $('.nav');
+			var sing = $('.sing');
+			var li1 = $('.li1')[0];
+			var bxk = $('.bxk')[0];
+			var oi = $('i');
+			var n = 0;
+
+			for( var i = 0; i < sing.length; i++ ){
+				sing[i].index = i;
+				sing[i].isChecked = false;
+				sing[i].onclick = function (){
+					if(!this.isChecked){
+						this.style.background = '#e7788d'; 
+						this.style.color = '#fff'; 
+						oi[this.index].style.background = 'url(images/xz.png)';
+						this.isChecked = true;
+						n++;
+					}else{
+						this.style.background = ''; 
+						this.style.color = '#000'; 
+						oi[this.index].style.background = 'url(images/xk.png)';
+						this.isChecked = false;
+						n--;
+					}
+					li1.ischecked = false;
+					if(n % 6 ==0 && n != 0){
+						bxk.style.backgroundImage = 'url(./images/quz.png)';
+						li1.ischecked = true;
+					}else{
+						bxk.style.backgroundImage = 'url(./images/k.png)';
+						li1.ischecked = false;
+					}
+				}
+			}
+			li1.onclick = function (){
+				if(li1.ischecked){
+					for( var j = 0; j < sing.length; j++ ){
+							sing[j].style.background = '';
+							sing[j].style.color = '';
+							oi[j].style.backgroundImage = '';
+							sing[j].isChecked = false;
+						}
+						bxk.style.backgroundImage = '';
+						this.ischecked = false;
+						n=0;
+				}else{
+					for( var j = 0; j < sing.length; j++ ){
+							sing[j].style.backgroundColor = '#e7788d';
+							sing[j].style.color = '#fff';
+							oi[j].style.backgroundImage = 'url(./images/xz.png)';
+							sing[j].isChecked = true;
+						}
+					bxk.style.backgroundImage = 'url(./images/xz.png)';
+					this.ischecked = true;
+					n=6;
+				}
+			}
+		</script>
+	</body>
+</html>

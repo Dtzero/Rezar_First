@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>	
+		<link rel="stylesheet" type="text/css" href="./css/slide.css" />
+		<style type="text/css">
+			body{
+				background-color: #ffd800;
+			}
+			.nav .blue {
+				background-color: blue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="slide">
+			<div  class="tagClient">
+				<ul class="list">
+					<li><img src="./ads/1.png" /></li> 
+					<li><img src="./ads/2.png" /></li> 
+					<li><img src="./ads/3.png" /></li> 
+					<li><img src="./ads/4.png" /></li> 
+					<li><img src="./ads/5.png" /></li>
+					<li><img src="./ads/1.png" /></li>
+				</ul>
+				<div class="prev"></div>
+				<div class="next"></div>
+			</div>
+			<div class="nav">
+				<span class="active"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<script src="./js/utils.js"></script>
+		<script>
+			var next = $(".next")[0];
+			var prev = $(".prev")[0];
+			var list = $(".list")[0];
+			var lis = $("li",list);
+			var smallBtns = $(".nav span");
+			var tagClient = $(".tagClient"); // 图片的可视区域
+			var n = 0;
+			var prevBtnIndex = 0;  // 记录操作的按钮的小标
+			// 封装的向下一张图片切换的函数
+			function goNext(){
+				n++;
+				// 在运动之前判断是不是左右一张
+				if( n > lis.length-1 ){
+					list.style.left = 0;
+					n = 1;
+				}
+				smallBtns[prevBtnIndex].className = '';
+				// 超过了小按钮的最大下标，直接让第1个小按钮添加样式，同时用prevBtnIndex记录下标
+				if( n > smallBtns.length-1 ){
+					smallBtns[0].className = 'active';
+					prevBtnIndex = 0;
+				}else{
+					smallBtns[n].className = 'active';
+					prevBtnIndex = n;
+				}
+				mTween(list,"left",-530*n,200);	
+			}
+			// 自动轮播
+			var timer = null;
+			autoPlay();
+			function autoPlay(){
+				timer = setInterval(goNext,1000)
+			}
+			// 切换下一张  向左运动
+			next.onclick = goNext;
+			// 鼠标移入到图片可视区域停止定时器
+			tagClient[0].onmouseover = function (){
+				clearInterval(timer);	
+			};
+			tagClient[0].onmouseout = function (){
+				autoPlay();
+			};
+			// 切换上一张 向右运动
+			prev.onclick = function (){
+				n--;
+				if(n < 0){
+					// 拉回到最后一张
+					list.style.left = -530*(lis.length-1) + 'px';
+					n = lis.length-2;
+				}
+				smallBtns[prevBtnIndex].className = '';
+				smallBtns[n].className = 'active';
+				prevBtnIndex = n;
+				mTween(list,"left",-530*n,200);
+			};
+			// 切换小按钮
+			for( var i = 0; i < smallBtns.length; i++ ){
+				smallBtns[i].index = i;
+				smallBtns[i].onmouseover = function (){
+					clearInterval(timer);
+					n = this.index;
+					smallBtns[prevBtnIndex].className = '';
+					this.className = 'active';
+					mTween(list,"left",-530*n,200);
+					prevBtnIndex = n;
+				};
+				smallBtns[i].onmouseout = function (){
+					autoPlay();	
+				}
+			}	
+		</script>
+	</body>
+
+</html>

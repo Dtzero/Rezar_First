@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+ <meta charset="UTF-8">
+ <title></title>
+ <style>
+  body,button{
+   margin: 0;
+   padding: 0;
+  }
+  body {
+   background: #333;
+  }
+  #game {
+   width: 400px;
+   margin: 0 auto;
+  }
+  #start {
+   width: 80px;
+   height: 40px;
+  }
+  span {
+   margin: 20px;
+   color: white;
+  }
+  .letter {
+   position: absolute;
+   color: yellow;
+   font: bold 30px "Arial";
+  }
+ </style>
+ <script>
+  window.onload= function () {
+   var start = document.getElementById("start");
+   var scroll = document.getElementById("scroll");
+   var time = document.getElementById("time");
+   var g = 1 ;//Gravity
+   var timenum = 0 ;//时间的计数
+   var num = 0 ;//成绩的计数
+   var gameover = false ;
+   var timeandtime = null;
+   var letters = null ;
+   //字母放在一个字符串里面，随机选取
+   var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   //点击开始按钮，字母会自动生成，从顶部，以随机速度落下
+   //用户操作：按钮对应字母的按钮，然后字母就会消失
+   //用户没有点击到的按钮到达底部以后会回到顶上重新落下；
+   //用户清除所有字母后，弹出对话框，显示分数和文字。
+   //封装一个对象，里面包含获取事件对象，页面位置，清除冒泡，获取事件目标的兼容性方法
+   var eventUtil = {
+    getEvent: function (event) {
+     return event || window.event;
+    },
+    getPageX: function (event) {
+     return event.pageX || event.clientX + document.documentElement.scrollLeft;
+    },
+    getPageY: function (event) {
+     return event.pageY || event.clientY + document.documentElement.scrollTop;
+    },
+    stopPropagation: function (event) {
+     if (event.stopPropagation) {
+      event.stopPropagation();
+     } else {
+      event.cancelBubble = true;
+     }
+    },
+    getTarget: function (event) {
+     return event.target || event.srcElement;
+    }
+   };
+   start.onclick= function () {
+    for(var i = 0 ;i<26;i++){
+     new letter();
+    }
+    letters = document.body.children;//将页面中所有的div全部放入一个伪数组中，第一个除外，属于game，因此遍历从1开始
+    //在键盘上，按下对应的字母键，字母会立即消失，同时分数会增加，并且在上面重新生成；
+    document.onkeydown = function (event) {
+     var evt = eventUtil.getEvent(event);
+     var keychar = String.fromCharCode(evt.keyCode);//将按下的字母键盘码转换成直接的大写字母
+     for(var i = 1 ;i<letters.length;i++){
+      if(keychar===letters[i].innerHTML){
+       num++;
+       scroll.innerHTML = num;
+       document.body.removeChild(letters[i]);
+      }
+     }
+    }
+    timeandtime=setInterval(function () {
+     timenum = timenum + 1 ;
+     console.log(letters);
+     if(letters.length==1){//当伪数组的长度只有一个时，那么游戏就结束
+      gameover = true ;
+      clearInterval(timeandtime);
+      alert("用时"+timenum+"秒，再接再厉！突破10秒！");
+     } else {
+      time.innerHTML = timenum;
+     }
+    },1000)
+   }
+   //封装函数
+   function letter(){
+    this.x=Math.random()*900+100; //设置位置在100-1000之间
+    this.y=0;
+    this.speedY = Math.random()*4+1; //速度随机设置在1-5之间
+    this.value = str[parseInt(Math.random()*25)]; //在26个字母中随机生成一个字母
+    var letDiv = document.createElement("div");
+    letDiv.className = "letter";
+    letDiv.style.top = this.y+"px";
+    letDiv.style.left = this.x+ "px";
+    letDiv.innerHTML = this.value;
+    document.body.appendChild(letDiv);
+    //字母往下掉
+    var that = this ;
+    this.timer=setInterval(function () {
+     //leader = leader + step;
+     that.y = that.y + that.speedY;
+     if(that.y>=client().height-letDiv.offsetHeight){
+      that.y = 0;
+      that.x = Math.random()*900+100;
+     }
+     if(!gameover){
+      letDiv.style.left = that.x + "px";
+      letDiv.style.top = that.y + "px";
+     } else {
+      clearInterval(that.timer);
+     }
+    },15)
+   }
+   // 获取可视窗口的宽度和高度窗,兼容性问题
+   function client() {
+    return {
+     width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0,
+     height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0
+    };
+   }
+  }
+ </script>
+</head>
+<body>
+<div id="game">
+ <button id="start">开始</button>
+ <span>得分:<i id="scroll">0</i></span>
+ <span>计时:<i id="time">0</i></span>
+</div>
+</body>
+</html>

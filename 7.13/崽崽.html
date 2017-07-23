@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="./css/reset.css"/>
+        <link rel="stylesheet" href="./css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="top clearfix">
+			</div>
+			<div class="bottom">
+				<div class="bottom-top">
+					<span>商品名称</span>
+					<span>价钱</span>
+				</div>
+				<ul class="list">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+		<div id="holder" style="width: 100%;height: 786px;"></div>  
+		<script src="./js/utils.js"></script>
+		<script src="./js/Test.js"></script>
+		<script>
+
+		// ============ 测试数据 BEGIN ==========
+			var testXiaJiaShiJian = new Date().getTime();
+			var arr = [
+					{
+						//商品对象的标识
+						id:'g1',
+						//测试时间的五秒后下架
+						xiaJiaShiJian:testXiaJiaShiJian + 5000, 
+						//商品的名称
+						name:'Apple iPhone 7 Plus 64g',
+						//商品的价格
+						price:'¥5799',
+						//商品的图片
+						img:"./images/goods_1.png",
+						isXiaJia:false
+					},
+					{
+						id:'g2',
+						//测试时间的一小时后下架
+						xiaJiaShiJian:testXiaJiaShiJian + 60 * 60 * 1000,
+						name:'27 英寸配备 Retina 5K显示屏',
+						price:'¥15999',
+						img:"./images/goods_2.png",
+						isXiaJia:false
+					},
+					{
+						id:'g3',
+						//测试时间的两小时后下架
+						xiaJiaShiJian:testXiaJiaShiJian + 2 * 60 * 60 * 1000,
+						name:'iPad mini 4',
+						price:'¥1799',
+						img:"./images/goods_3.png",
+						isXiaJia:false
+					},
+					{
+						id:'g4',
+						//测试时间的两天后下架
+						xiaJiaShiJian:testXiaJiaShiJian +　2 * 24 * 60 * 60 * 1000,
+						name:'Apple iPhone 7 Plus 64g',
+						price:'¥5799',
+						img:"./images/goods_4.png",
+						isXiaJia:false
+					},
+				];
+
+			// ============ 测试数据 END ==========
+
+			var top1 = $('.top')[0];
+			var html =arr.map(function (item){
+						//每个商品位的html代码,填充上商品的信息
+				return  `
+							<div class="good fl">
+								<div class="time clearfix">
+									<b class="fl">剩余</b>
+									<p id='${item.id}' class="fl" ></p>
+								</div>
+								<dl>
+									<dt><img src='${item.img}'></dt>
+									<dd>
+										<p>${item.name}</p>
+										<p>抢购价：<i>${item.price}</i></p>
+									</dd>
+								</dl>	
+							</div>
+						`	
+			}).join('');		
+			//这两段代码要先执行进行内容生成,后面的操作才能对页面数据进行操作
+			top1.innerHTML = html;
+
+			/**
+				根据与某个时间的时间差计算倒计时展示的时/分/秒 数据,放在对象或者数组里返回
+				这里选择的是对象,对象暂时可以很简单的看做是由{}括起来的带有key:value键值对的格式的数据.
+			*/
+			function showHourInfo(xiaJiaShiJian){
+				var nowtime = new Date().getTime();
+				//计算下架时间和当前时间的时间差
+				var dValue = (xiaJiaShiJian - nowtime)/1000;
+				if(dValue <= 0){
+				 	dValue = 0;
+				}
+				//时间差除以一天的时间
+				var day = parseInt(dValue / 86400);//剩余的天数
+				//整除天剩下的时间是不足一天的时间,换算成小时数
+			 	var hours = parseInt(dValue % 86400 / 3600);//剩余的小时
+			 	//在前者整除之后再整除一小时得到的是不足一小时的时间,换算成分钟
+			 	var min = parseInt(dValue % 86400 % 3600 / 60) ;//剩余的分
+			 	//同理，不足一分钟的时间换算成秒数
+			 	var se = parseInt(dValue % 60);//剩余的秒	
+			 	var showTimeInfo = {};
+			 	//设置对象剩余天数属性
+			 	showTimeInfo["shengYuDays"]=day;
+			 	//设置对象剩余小时属性
+			 	showTimeInfo["shengYuHours"]=hours;
+			 	//设置对象剩余分钟属性
+			 	showTimeInfo["shengYuMins"]=min;
+			 	//设置对象剩余秒数属性
+			 	showTimeInfo["shengYuSeconds"]=se;
+			 	return showTimeInfo;
+
+			}
+
+			/**
+				对数字补零操作
+			*/
+			function addZero(n){
+				 		return n < 10 ? '0'+n : n;
+				}
+
+			/**
+				根据剩余的时分秒数据生成展示的HTML片段
+			*/
+			function getHMS(shengYuHours,shengYuMins,shengYuSeconds){
+			 		return  `
+				 			<span class="yanse">${addZero(shengYuHours)}</span><span>${':'}</span><span class="yanse">${addZero(shengYuMins)}</span><span>${':'}</span><span class="yanse">${addZero(shengYuSeconds)}</span>
+			 				`
+			 }
+
+			/**
+			获取到某个需要下架的商品,对该商品涉及的页面变化进行控制
+			备注:可以考虑将 商品id设置为每个新生成的div片段的id,后面控制某个商品样式好找到对应的
+			html元素.
+			*/
+			 function doXiaJia(goods){
+			 	//如果商品需要下架了,先将该商品标注为下架,isXiaJia = true;
+			 	//避免定时器里多次处理已下架的商品
+			 	goods["isXiaJia"] = true;
+			 	alert(decodeURI(importText));
+			 }
+
+			/**
+				每隔一秒钟判断下当前时间和某个商品的下架时间大小,
+				1.如果当前时间大于某个商品的下架时间,说明这个商品要进行下架操作
+				2.如果商品还没到下架时间,则需要修改页面上某个商品下架倒计时的显示文案(时:分:秒)
+			 */
+			func(); //先执行,setInterval会等待一秒再执行具体方法,所以先调用方法进行页面变化
+			var s1 = setInterval(func,1000);
+			function func(){
+				var nowtime = new Date().getTime();
+				for( var i = 0; i < arr.length; i++ ){
+					//取到某个商品
+					var goods = arr[i];
+					//判断某个商品是否到了下架时间(当前时间大于商品的下架时间)
+					if(nowtime >= goods.xiaJiaShiJian && !goods.isXiaJia){
+						doXiaJia(goods);
+					}else{
+						//根据商品的下架时间,计算出 当前时间和下架时间二者间的时间差
+						//根据时间差获取到需要展示的倒计时 时:分:秒
+						//返回的是一个对象(showTimeInfoObj):
+						//有剩余天数:lastDays ;
+						//剩余分钟:lastMins ;
+						//剩余秒数:lastSes;
+						var showTimeInfoObj = showHourInfo(goods.xiaJiaShiJian);
+						//根据剩余的时分秒信息填充HTML片段;
+						var timeHtml = getHMS(showTimeInfoObj.shengYuDays,showTimeInfoObj.shengYuMins,showTimeInfoObj.shengYuSeconds);
+						//获取到某个需要展示剩余时分秒的元素,id在前面动态设置过
+						var timeP =document.getElementById(goods.id);
+						//设置HTML片段
+						timeP.innerHTML = timeHtml;
+					}
+				}
+			}	
+
+
+			//重要的全局变量,勿删
+			var importText = "%E5%AA%B3%E5%A6%87,%E5%B4%BD%E5%B4%BD%E5%9D%8F,%E5%A4%A9%E5%A4%A9%E6%83%B9%E4%BD%A0%E7%94%9F%E6%B0%94,%E6%81%A9,%E5%B4%BD%E5%B4%BD%E5%BE%88%E7%88%B1%E4%BD%A0,%E5%8F%AA%E6%98%AF%E4%B8%8D%E4%BC%9A%E8%AE%B2%E4%B8%9C%E8%A5%BF,%E5%98%B4%E7%AC%A8,%E8%80%81%E8%AE%B2%E4%B8%8D%E6%B8%85%E6%A5%9A%E8%AF%9D,%E5%AE%83%E5%B0%B1%E6%8A%8A%E8%AF%9D%E9%83%BD%E5%86%99%E4%B8%8B%E6%9D%A5%E4%BA%86,%E4%BB%A3%E7%A0%81%E9%83%BD%E5%8A%A0%E4%B8%8A%E4%BA%86%E5%A4%87%E6%B3%A8,%E6%81%A9,%E5%A4%87%E6%B3%A8%E5%BE%88%E7%88%B1%E4%BD%A0!!!";
+			
+		</script>
+	</body>
+</html>

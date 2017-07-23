@@ -1,0 +1,43 @@
+.wrap{
+	width: 844px;
+	height: 451px;
+	background: url(../images/bg.png) no-repeat;
+	padding: 250px 0 0 180px;
+	margin: 0 auto;
+}
+#box{
+	width: 530px;
+	height: 100px;
+	background: url(../images/sec1.png) no-repeat 24px 28px,
+				url(../images/clockBg.png) no-repeat;
+	padding: 16px 0 0 95px;
+	overflow: hidden;
+}
+.content{
+	height: 84px;
+	overflow: hidden;
+	position: relative;
+}
+ .content img{
+    width: 60px;
+    height: 84px;
+    float: left;
+}
+li{
+   width: 60px;
+   height: 84px;
+   float: left;
+   position: relative;
+   -overflow: hidden;
+    margin-right: 5px;
+}
+.down{
+   position: absolute;
+   top:84px;
+   left: 0;
+}
+.up{
+   position: absolute;
+   top: 0;
+   left: 0;
+}

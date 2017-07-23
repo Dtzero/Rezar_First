@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>	
+		<link rel="stylesheet" type="text/css" href="./css/slide.css" />
+	</head>
+
+	<body>
+		<div class="slide">
+			<div  class="tagClient">
+				<ul class="list">
+					<li><img src="./images/1.png" /></li> 
+					<li><img src="./images/2.png" /></li> 
+					<li><img src="./images/3.png" /></li> 
+					<li><img src="./images/4.png" /></li> 
+					<li><img src="./images/5.png" /></li>
+					<li><img src="./images/1.png" /></li>
+				</ul>
+				<div class="prev"></div>
+				<div class="next"></div>
+			</div>
+			<div class="nav">
+				<span class="active"></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script>
+			var next = $(".next")[0];
+			var prev = $(".prev")[0];
+			var list = $(".list")[0];
+			var lis = $("li",list);
+			var smallBtns = $(".nav span");
+			var tagClient = $(".tagClient"); 
+			var n = 0;
+			var prevBtnIndex = 0;  
+			function goNext(){
+				n++;
+				if( n > lis.length-1 ){
+					list.style.left = 0;
+					n = 1;
+				}
+				smallBtns[prevBtnIndex].className = '';
+				if( n > smallBtns.length-1 ){
+					smallBtns[0].className = 'active';
+					prevBtnIndex = 0;
+				}else{
+					smallBtns[n].className = 'active';
+					prevBtnIndex = n;
+				}
+				mTween(list,"left",-530*n,200);	
+			}
+			var timer = null;
+			autoPlay();
+			function autoPlay(){
+				timer = setInterval(goNext,1000)
+			}
+			next.onclick = goNext;
+			tagClient[0].onmouseover = function (){
+				clearInterval(timer);	
+			};
+			tagClient[0].onmouseout = function (){
+				autoPlay();
+			};
+			prev.onclick = function (){
+				n--;
+				if(n < 0){
+					list.style.left = -530*(lis.length-1) + 'px';
+					n = lis.length-2;
+				}
+				smallBtns[prevBtnIndex].className = '';
+				smallBtns[n].className = 'active';
+				prevBtnIndex = n;
+				mTween(list,"left",-530*n,200);
+			};
+			for( var i = 0; i < smallBtns.length; i++ ){
+				smallBtns[i].index = i;
+				smallBtns[i].onmouseover = function (){
+					clearInterval(timer);
+					n = this.index;
+					smallBtns[prevBtnIndex].className = '';
+					this.className = 'active';
+					mTween(list,"left",-530*n,200);
+					prevBtnIndex = n;
+				};
+				smallBtns[i].onmouseout = function (){
+					autoPlay();	
+				}
+			}	
+		</script>
+	</body>
+
+</html>

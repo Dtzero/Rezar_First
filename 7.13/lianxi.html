@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="./css/reset.css"/>
+        <link rel="stylesheet" href="./css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="top"></div>
+			<div class="bottom">
+				<div class="bottom-top">
+					<span>商品名称</span>
+					<span>价钱</span>
+				</div>
+				<ul class="list"></ul>
+			</div>
+		</div>
+		<script src="./js/utils.js"></script>
+		<script>
+			var testXiaJiaShiJian = new Date().getTime();
+			var arr = [
+					{
+						id:'g1',
+						className:'goods1',
+						xiaJiaShiJian:testXiaJiaShiJian + 3000, 
+						name:'Apple iPhone 7 Plus 64g',
+						price:'¥5799',
+						img:"./images/goods_1.png",
+						isXiaJia:false
+					},
+					{
+						id:'g2',
+						className:'goods2',
+						xiaJiaShiJian:testXiaJiaShiJian + 4000,
+						name:'27 英寸配备 Retina 5K显示屏',
+						price:'¥15999',
+						img:"./images/goods_2.png",
+						isXiaJia:false
+					},
+					{
+						id:'g3',
+						className:'goods3',
+						xiaJiaShiJian:testXiaJiaShiJian + 2000,
+						name:'iPad mini 4',
+						price:'¥1799',
+						img:"./images/goods_3.png",
+						isXiaJia:false
+					},
+					{
+						id:'g4',
+						className:'goods4',
+						xiaJiaShiJian:testXiaJiaShiJian +5000,
+						name:'Apple iPhone 7 Plus 64g',
+						price:'¥5799',
+						img:"./images/goods_4.png",
+						isXiaJia:false
+					},
+				];
+			var top1 = $('.top')[0];
+			var html = arr.map(function (item){
+				return  `	
+							<div class="goods ${item.className}">
+								<div class="zhezhao"></div>
+								<img src="images/sold-out.png" class="tu">
+								<div class="riqi">July 14 2017</div>
+								<div class="time clearfix">
+									<b class="fl">剩余</b>
+									<p id='${item.id}' class="fl" ></p>
+								</div>
+								<dl>
+									<dt><img src='${item.img}'></dt>
+									<dd>
+										<p>${item.name}</p>
+										<p>抢购价：<i>${item.price}</i></p>
+									</dd>
+								</dl>	
+							</div>
+						`	
+			}).join('');		
+			top1.innerHTML = html;
+			function addZero(n){
+				 return n < 10 ? '0'+n : n;
+			}
+			function getHMS(shengYuHours,shengYuMins,shengYuSeconds){
+		 		return  `
+			 			<span class="yanse">${addZero(shengYuHours)}</span><span>${':'}</span><span class="yanse">${addZero(shengYuMins)}</span><span>${':'}</span><span class="yanse">${addZero(shengYuSeconds)}</span>
+		 				`
+			 }
+			func(); 
+			var s1 = setInterval(func,1000);
+			function func(){
+				var n = 0;
+				var nowtime = new Date().getTime();
+				for( var i = 0; i < arr.length; i++ ){
+					var goods = arr[i];
+					if(goods.isXiaJia){
+						continue ;
+					}
+					if(nowtime >= goods.xiaJiaShiJian ){
+						goods["isXiaJia"] = true;
+						var good = $('.'+goods['className'])[0];
+			 			var zhezhao = $('.zhezhao')[i];
+			 			var tu = $('.tu')[i];
+			 			mTween1(zhezhao,'opacity',0.8,40,'linear',function (){
+			 				mTween1(tu,'opacity',1,40,'linear',function (){
+			 					mTween(tu,'height',132,40,'linear')
+			 					setTimeout(function (){
+			 						shake(good,'left',10);	
+								},100);	
+			 				})
+			 			})
+			 			var list = $('.list')[0];
+			 			var liHtmlStr = liHtml(arr[i]);
+						list.innerHTML += liHtmlStr;
+					}else{
+						n++;
+						var showTimeInfoObj = showHourInfo(goods.xiaJiaShiJian);
+						var timeHtml = getHMS(showTimeInfoObj.shengYuHours,showTimeInfoObj.shengYuMins,showTimeInfoObj.shengYuSeconds);
+						var timeP =document.getElementById(goods.id);
+						timeP.innerHTML = timeHtml;
+					}
+				}	
+				if(n == 0){
+					clearInterval(s1);
+				}
+			}	
+			function liHtml(item2){
+				return  `
+						<li>
+							<i>${item2.name}</i>
+							<b>${item2.price}</b>
+							<img src='${item2.img}'>
+						</li>
+						`	
+			}
+		</script>
+	</body>
+</html>

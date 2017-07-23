@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			var arr = [4,2,6,3,2,3,9,6,4,1];
+			var newArr = [];
+			var obj = {};
+			//去重复项
+			for( var i = 0; i < arr.length; i++ ){
+				if(!obj[arr[i]]){//arr[i]不是obj的key值
+					newArr.push(arr[i]);//newArr推入这一项
+					obj[arr[i]] = true;//设置这一项为key,value为true;
+				}
+			}
+			console.log(newArr);
+			//排序
+			newArr.sort(function (a,b){
+				return a-b;
+			})
+			console.log(obj);
+			console.log(newArr);
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

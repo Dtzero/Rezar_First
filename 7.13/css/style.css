@@ -1,0 +1,151 @@
+.wrap{
+	width: 1095px;
+	height: 825px;
+	background: url(../images/logo.png) 480px 58px no-repeat,url(../images/bg.png) no-repeat;
+	padding: 175px 0 0 105px;
+}
+.top{
+	height: 399px;
+	position: relative;
+}
+.riqi{
+	background: #000;
+	font-size: 16px;
+	line-height: 40px;
+	color: #e15671;
+}
+.goods{
+	width:240px;
+	height: 399px;
+	background: #fff;
+	text-align: center;
+}
+.goods1{
+	position: absolute;
+	top:0;
+	left:0;
+}
+.goods2{
+	position: absolute;
+	top:0;
+	left:250px;
+}
+.goods3{
+	position: absolute;
+	top:0;
+	left:500px;
+}
+.goods4{
+	position: absolute;
+	top:0;
+	left:750px;
+}
+.time{
+	padding: 30px 0 14px 28px;
+	color: #fff;
+	word-spacing: 0;
+}
+.time span{
+	display: inline-block;
+	width: 4px;
+	line-height: 28px;
+	color: #e15671;
+	padding:0 2px;
+}
+.time .yanse{
+	width: 19px;
+	background: #e15671;
+	color: #fff;
+	letter-spacing: 3px;
+}
+.time b{
+	margin-right:14px;
+	line-height: 28px;
+	color:#8f8f8f; 
+}
+dt{
+	height: 180px;
+}
+.dt1{
+	height: 160px;
+	padding-top: 20px;
+}
+.dt2{
+	height: 163px;
+	padding-top: 17px;
+}
+.dt3{
+	height: 165px;
+	padding-top: 15px;
+}
+dd{
+	paddin-top: 11px;
+	text-align: center;
+}
+dd p{
+	font-size: 16px;
+	line-height: 32px;
+}
+dd p i{
+	color: #e15671;
+	font-size: 18px;
+}
+dd p:nth-child(2n){
+	font-size: 14px;
+	color: #8f8f8f;
+}
+.last{
+	margin-right: 0;
+}
+.bottom{
+	width:990px;
+	margin-top: 10px;
+}
+.bottom-top{
+	background: #191919;
+	padding-left: 20px;
+}
+.bottom-top span{
+	display:inline-block;
+	width: 460px;
+	line-height: 38px;
+	color: #fff;
+}
+li{
+	height: 80px;
+	line-height: 80px;
+	background: #fff;
+	padding-left: 20px;
+}
+.list li:nth-child(2n){
+	background-color: #f6f5f6;
+}
+li i{
+	display: inline-block;
+	width:455px;
+}
+li b{
+	display: inline-block;
+	width:435px;
+	color: #e15671;
+}
+li img{
+	width: 60px;
+	height: 60px;
+	margin-top: 10px;
+	text-align: center;
+}
+.zhezhao{
+	width:240px;
+	height: 399px;
+	background: #000;
+	opacity: 0;
+	position: absolute;
+}
+.tu{
+	position: absolute;
+	top:135px;
+	left:55px;
+	opacity: 0;
+	height: 180px;
+}

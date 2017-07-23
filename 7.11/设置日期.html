@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				星期
+				var day = d.getDay();  // 0-6  0->周日 1-> 周一
+			*/
+			var d = new Date()
+			d.setFullYear(2019)
+			d.setMonth(12)//从0开始，0-11，如果设置12，则为下一年的一月
+			d.setDate(15)
+			d.setHours(14)
+			d.setMinutes(29)
+			d.setSeconds(53)
+			console.log(d);
+			console.log(d.getDate());//获取所设置的天数，没有为默认
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="content clearfix">
+			</div>
+			<div class="bottom">
+				<p>新建文件夹</p>
+				<i>删除文件夹</i>
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script>
+			var bottom = $('.bottom')[0] 
+			var p = $('p',bottom)[0];
+			var oI = $('i',bottom)[0]
+			var content = $('.content')[0];
+			var n = -1;
+
+			var folderes = [];
+			p.onclick = function (){
+				n++;
+				var id = "folder_"+n;
+				if(n > 2){
+					alert('亲，不能再新建了!');
+					n = 2;
+					return;
+				}else{
+					var newNode = document.createElement("div");
+					newNode.id = id;
+					newNode.className = "beijing fl";
+					newNode.innerHTML = `<span class="xk"></span><p class="new">新建文件夹</p>`;
+					content.appendChild(newNode);
+				}
+				folderes[n] = {"id":id,"isClick":false,"index":n,"hasRemove":false};
+				var foldObj = $('#'+id);
+				console.log(folderes);
+				console.log(foldObj);
+				var xk = foldObj.children[0];
+				xk.belongId = id;
+				xk.index = n;
+				xk.onclick = function (){
+					console.log(this.belongId);
+					var foldObj = $('#'+this.belongId);
+					console.log(foldObj);	
+					if(!foldObj.isClick){
+						foldObj.style.backgroundImage = 'url(./images/k2.png)';
+						folderes[this.index].isClick = true;	
+					}else{
+						foldObj.style.backgroundImage = '';
+						folderes[this.index].isClick = false;
+					}
+				};
+			}
+
+			oI.onclick = function (){
+					var needDels = [];
+					for(var index = 0 ;index < folderes.length ;index ++){
+						var folderObj = folderes[index];
+						if(!folderObj.hasRemove && folderObj.isClick){
+							content.removeChild($('#'+folderObj.id));
+							needDels.push(index);
+							folderObj.hasRemove = true;
+							n --;
+						}
+					}
+					trimFolders(needDels);
+				};
+				console.log(folderes);
+
+		function trimFolders(needDels){
+
+		};
+			
+		</script>
+		}
+	</body>
+</html>

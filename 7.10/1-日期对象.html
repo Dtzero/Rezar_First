@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				日期对象
+					用于处理日期和时间
+				得到（创建）日期对象
+					Date 构造函数
+					new 一元运算符
+
+					new 函数()  用来创建对象
+
+
+				直接（字面）量
+					1
+					"abc"
+					[]
+					{}
+				构造函数的方式
+					new Array()
+
+				每一个对象不是凭空就出现的，而是通过new运算符调用内部或自定义的构造函数来创建对象
+			*/
+
+			//console.log( Date );
+
+			//console.dir( new Date );  // 字符串  隐式转成字符串
+
+
+			//var arr = []; 
+
+			var arr = new Array(1,2,3,4,5)
+
+			console.log(arr);
+
+			var obj = {}
+
+			var obj2 = new Object();
+
+			obj2.abc = 'miaov';
+
+			console.log(obj2);
+
+
+		</script>
+	</head>
+
+	<body>
+		<div id="box"></div>
+		<span id="test"></span>
+		<ul id="list"></ul>
+		<script>
+
+		// 获取一个元素，根据标签创建不同的元素对象，通过操作这个对象就操作了标签
+			
+			var box  = document.getElementById("box");
+			var test  = document.getElementById("test");
+			var list = document.getElementById("list");
+
+			box.style.height = "10px"
+
+			console.log( box.toString() );
+			console.log( test.toString() );
+			console.log( list.toString() );
+
+			console.log(HTMLDivElement);
+
+		</script>
+	</body>
+</html>

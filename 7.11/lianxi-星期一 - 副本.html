@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>win10日历</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+    .calendar {
+      width: 460px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.5);
+      padding-bottom: 20px;
+    }
+    .time{
+      border-bottom:2px solid #47595d;
+      padding-left:32px;
+      padding-bottom:10px;
+    }
+    .time p{
+      color:#fff;
+      line-height: 60px;
+      font-size:40px;
+      margin:0;
+    }
+    .time i{
+      font-style:normal;
+      color: rgb(141, 214, 237);
+    }
+    .date-month {
+      width: 100%;
+      height: 66px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 32px;
+    }
+    .cur-month {
+      height: 100%;
+      color: #ccc;
+      font: 16px/66px Arial;
+    }
+    .set-month a, .cur-month {
+      cursor: default;
+      -webkit-user-select: none;
+    }
+    .set-month a:hover, .cur-month:hover {
+      color: #fff;
+    }
+    .set-month {
+      width: 88px;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .set-month a {
+      color: #ccc;
+      font-size: 24px;
+    }
+    .prev {
+      transform: rotate(90deg);
+    }
+    .next {
+      transform: rotate(-90deg);
+    }
+    .date-days, .date-nums{
+      width: 100%;
+      height: 55px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .date-nums {
+      height: auto;
+      flex-wrap: wrap;
+      height:354px;
+      overflow: hidden;
+    }
+    .date-days span, .date-nums span{
+      width: 60px;
+      height: 55px;
+      border: 2px solid rgba(0,0,0,0);
+      text-align: center;
+      color: #fff;
+      line-height: 55px;
+      cursor: default;
+    }
+    .date-days span:hover, .date-nums span:hover {
+      border-color: #ccc;
+    }
+    .current-day {
+      background: rgb(141, 214, 237);
+    }
+    .date-nums span.other-month-date,.date-nums .span1,.date-nums .span3{
+      color: #ccc;
+    }
+    .date-dates{
+      height:409px;
+    }
+    .newMorth{
+      display:inline-block;
+      width:115px;
+      line-height:102px;
+      text-align: center;
+      color:#fff;
+      background:ragb(0,0,0,0.5)
+    }
+  </style>
+</head>
+    <body>
+      <div class="calendar">
+        <div class="time">
+          <p></p>
+          <i></i>
+        </div>
+        <div class="date-month">
+          <div class="cur-month">xxxx年x月</div>
+          <div class="set-month">
+            <a href="javascript:;" class="prev"><</a>
+            <a href="javascript:;" class="next"><</a>
+          </div>
+        </div>
+        <div class="date-dates">
+          <div class="date-days">
+            <span>一</span>
+            <span>二</span>
+            <span>三</span>
+            <span>四</span>
+            <span>五</span>
+            <span>六</span>
+            <span>日</span>
+          </div>
+          <div class="date-nums">
+          </div>
+        </div>
+      </div>
+      <script src="./js/utils.js"></script>
+      <script>
+          function addZero(n){
+            return n < 10 ? '0'+n : n;
+          }
+          var time = $('.time')[0];
+          var p = $('p')[0];
+          var i = $('i')[0];
+          var d1 = new Date();
+          var year = d1.getFullYear();
+          var month = d1.getMonth();
+          var date = d1.getDate();
+          var day = d1.getDay();
+          i.innerHTML = `${year+"年"+addZero(month+1)+'月'+addZero(date)+"日 " + ","+ "星期"+getWeek(day)}`;
+          nonwTime();
+          setInterval(nonwTime,1000)
+          function nonwTime(){
+              var d1 = new Date();
+              var hours = d1.getHours();
+              var minute = d1.getMinutes();
+              var second = d1.getSeconds();
+              p.innerHTML =  `${addZero(hours)+":"+addZero(minute)+":"+addZero(second)}</p>
+              `;  
+          }
+          function getWeek(w){
+            return ["日","一","二","三","四","五","六"][w]
+          }
+
+          var curMonth = $('.cur-month')[0];
+          var dateNums = $('.date-nums')[0];
+          var n = 0;
+          fn();
+          function fn(){
+              var d = new Date();
+              var month = d.getMonth();
+              var currentDay = d.getDate();
+              
+              var d2 = new Date();
+              d2.setMonth(month+n);
+              var year2 = d2.getFullYear();
+              var month2 = d2.getMonth();
+              d2.setDate(1);
+              var fristDay = d2.getDay();//星期几
+              curMonth.innerHTML = year2+'年'+(month2+1)+'月';
+
+              d2.setMonth(d2.getMonth()+1); //设置为下个月
+              d2.setDate(0);
+              var days = d2.getDate();//天数
+
+              d2.setMonth(d2.getMonth()-1); //设置为上个月
+              d2.setDate(0);
+              var day1 = d2.getDate();//天数
+
+              var html = '';
+              if(fristDay-1 == -1){//星期天
+                  for( var i = 0; i < 6; i++ ){
+                    html += `<span class="span1">${day1-(5-i)}</span>`
+                  }
+              }
+              if(fristDay-1 == 0){//星期一
+                  for( var i = 0; i < 7; i++ ){
+                    html += `<span class="span1">${day1-(6-i)}</span>`
+                  }
+              }
+              for( var i = 0; i < fristDay-1; i++ ){//上个月
+                html += `<span class="span1">${day1-fristDay+i+2}</span>`
+              }
+              for( var i = 1; i <= days; i++ ){
+                if(i == currentDay && month2 == month){
+                   html += `<span class="current-day">${i}</span>`
+                }else{
+                   html += `<span>${i}</span>`
+                }
+              }
+              if((fristDay-1+days) % 7 !== 0){
+                  for( var i = 0; i < 7-(fristDay-1+days) % 7; i++ ){
+                    html += `<span class="span3">${i+1}</span>`
+                  }
+              }else{
+                  for( var i = 0; i < 7; i++ ){
+                    html += `<span class="span3">${i+1}</span>`
+                  }
+              }
+              if((fristDay-1+days+7-(fristDay-1+days) % 7)% 6 !== 0){
+                  for( var i = 0; i < 7; i++ ){
+                    html += `<span class="span3">${7-(fristDay-1+days) % 7+i+1}</span>`
+                  }
+              }
+              dateNums.innerHTML = html;
+
+              var span1s = $('.span1');
+              var span3s = $('.span3');
+              for( var i = 0; i < span1s.length; i++ ){
+                  span1s[i].onclick = function (){
+                      n--;
+                      fn();
+                  }
+              }
+              for( var i = 0; i < span3s.length; i++ ){
+                  span3s[i].onclick = function (){
+                    n++;
+                    fn();
+                  }
+              }     
+
+              var oi = $(('i'),time)[0];
+              oi.onclick = function (){
+                  n = 0;
+                  fn();
+              }
+              
+              var dateDates = $('.date-dates')[0];
+              curMonth.onclick = function (){
+                  curMonth.innerHTML = year2;
+                    dateDates.innerHTML = '';
+                  for( var i = 0; i < 12; i++ ){
+                    dateDates.innerHTML += `<span class="newMorth">${i+1}月</span>` ;
+                  }
+                  var newMorth = $('.newMorth');
+                  for( var i = 0; i < 12; i++ ){
+                      newMorth[i].index = i;
+                      newMorth[i].onclick = function (){
+                          month = this.index;
+                          fn();
+                      }
+                  }
+              } 
+          }  
+          var prev = $('.prev')[0];
+          var next = $('.next')[0];
+          next.onclick = function (){
+              n++;
+              fn();
+          }
+          prev.onclick = function (){
+              n--;
+              fn();
+          }
+        </script>
+    </body>
+</html>

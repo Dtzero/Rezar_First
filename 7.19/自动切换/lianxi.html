@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<ul class="top">
+					<li class="btn btn1">专题</li>
+					<li class="btn btn2">视频</li>
+					<li class="btn btn3">图片</li>
+				</ul>
+				<div class="content content1 clearfix" style="display: block;">
+					<div class="left">
+						<img src="images/1.png"/>
+					</div>
+					<div class="right">
+						<div class="title">
+							<p>奇虎360纽交所上市1</p>
+							<i>2016-10-12</i>
+						</div>
+						<div class="title">
+							<p>2011年IT领袖峰会</p>
+							<i>2016-10-12</i>
+						</div>
+						<div class="title">
+							<p>CCBN召开 助三网融合</p>
+							<i>2016-10-12</i>
+						</div>
+					</div>
+				</div>
+				<div class="content content2 clearfix">
+					<div class="left">
+						<img src="images/1.png"/>
+					</div>
+					<div class="right">
+						<div class="title">
+							<p>奇虎360纽交所上市2</p>
+							<i>2016-10-12</i>
+						</div>
+						<div class="title">
+							<p>2011年IT领袖峰会</p>
+							<i>2016-10-12</i>
+						</div>
+						<div class="title">
+							<p>CCBN召开 助三网融合</p>
+							<i>2016-10-12</i>
+						</div>
+					</div>
+				</div>
+				<div class="content content3 clearfix">
+					<div class="left">
+						<img src="images/1.png"/>
+					</div>
+					<div class="right">
+						<div class="title">
+							<p>奇虎360纽交所上市3</p>
+							<i>2016-10-12</i>
+						</div>
+						<div class="title">
+							<p>2011年IT领袖峰会</p>
+							<i>2016-10-12</i>
+						</div>
+						<div class="title">
+							<p>CCBN召开 助三网融合</p>
+							<i>2016-10-12</i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script>
+			var content1 = $('.content1')[0];
+			var content2 = $('.content2')[0];
+			var content3 = $('.content3')[0];
+
+			getValue(content1)
+			getValue(content2)
+			getValue(content3)
+
+			function getValue(parent){
+				var divs = parent.querySelectorAll('.title'); 
+				var left = parent.querySelectorAll('.left')[0];
+				var i = -1;
+				var m = 0;
+				var prev = 0;
+				function fn(){
+					if(m > 2){
+						content1.style.display = 'none';
+						content2.style.display = 'block';
+						content3.style.display = 'none';
+					}
+					if(m > 5){
+						content1.style.display = 'none';
+						content2.style.display = 'none';
+						content3.style.display = 'block';
+					}
+					if(m > 8){
+						content1.style.display = 'block';
+						content2.style.display = 'none';
+						content3.style.display = 'none';
+						m = 0;
+					}
+				 	if(i > 1){
+				 		i = -1;
+				 	}
+				 	divs[prev].style.background = '#ff9536';
+				 	divs[prev].style.color = '#fff';
+				 	left.innerHTML = `<img src='images/${(prev+1)}.png'>`
+				 	i++;
+				 	divs[i].style.background = '#fff';
+					divs[i].style.color = '#000';
+					left.innerHTML =  `<img src='images/${(i+1)}.png'>`
+					prev = i;
+					m++;
+				};
+			fn();
+			setInterval(fn,500);
+			}
+			var btns = $('.btn');	
+			var n = -1;
+			var prev2 = 0;
+			function func(){
+				if(n > 1){
+					n = -1;
+				}
+				btns[prev2].style.background = '#fff7e2';
+				btns[prev2].style.color = '#ffb746';
+				n++;
+				btns[n].style.background = '#ff9536';
+				btns[n].style.color = '#fff';
+				prev2 = n;	
+			}
+			func();		
+			setInterval(func,1500)
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<div id="box" a=10><!--这是测试-->hello<span><!--这是测试2-->world</span><i><!--这是测试3-->!</i></div> 
+		<script>
+			var box = document.getElementById('box');
+			console.log(box.nodeType);//1 元素节点
+			console.log(document.nodeType);// 9 文档节点 
+
+			//获取元素的属性节点 ： attributes 元素上的属性集合
+			console.log(box.attributes);//{0: id, 1: a, length: 2}
+			console.log(box.attributes[1].nodeType);//2 属性节点
+
+			//获取一个元素下的所有的子节点 childNodes
+			console.log(box.childNodes);//[text, span, i] 所有节点 包括空白文本节点、元素节点、注释节点
+			console.log(box.childNodes[0].nodeType);//8 文本节点 
+			console.log(box.childNodes[1].nodeType);//3 注释节点
+			console.log(box.childNodes[2].nodeType);//1 元素节点
+			console.log(box.childNodes[3].nodeType);//1 元素节点
+
+			//获取标签
+			console.log(box.childNodes[0].nodeName);//#comment
+			console.log(box.childNodes[1].nodeName);//#text
+			console.log(box.childNodes[2].nodeName);//span
+			console.log(box.childNodes[3].nodeName);//i
+			console.log(document.nodeName);//#document
+			console.log(box.nodeName);//div
+			console.log(box.attributes[0].nodeName);//id
+			console.log(box.attributes[1].nodeName);//a
+		</script>
+	</body>
+</html>

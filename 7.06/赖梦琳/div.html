@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+        	.box{
+        		position:relative;
+        	}
+	        .box div{
+				width:50px;
+				height:50px;
+				background:red;
+				border:4px solid #fff;
+				position:absolute;
+				top:0;
+				left:0;
+			}
+        </style>
+	</head>
+		<div class="box"></div>
+	<body>
+		<script src="./js/utils.js"></script>
+		<script>
+			var box = $('.box')[0];
+			var n = -1;
+			for (var i = 0; i < 27; i++){
+				if(i % 27 == 0){
+					n++;
+				}
+				box.innerHTML += '<div style="left: '+(i%27*50)+'px;">'+'</div>';
+			}
+			function going(){
+				var divs = $('div',box);
+				for( var i = 0; i < divs.length; i++ ){
+					fn(i);
+				}
+				function fn(i){
+					setTimeout(function (){
+						mTween(divs[i],'top',600,700,"linear");
+					},i*70);	
+				}
+				setTimeout(function (){
+					for( var j = 0; j < divs.length; j++ ){
+						fn(j);
+					}
+					function fn(j){
+						setTimeout(function (){
+							mTween(divs[j],'top',0,700,"linear");
+						},j*70);	
+					}
+				},2500)	
+			}
+			going();
+			setInterval(going,4500);		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+.wrap{
+	width: 1200px;
+	height: 665px;
+	background: url(../images/bg.png);
+	margin: 0 auto;
+	border: 1px solid #fff;
+}
+.box{
+	width: 450px;
+	height: 260px;
+	background: #fff;
+	border-radius:10px;
+	margin: 256px auto;
+}
+.top{
+	width: 450px;
+	height: 40px;
+}
+.btn{
+	width: 149px;
+	float: left;
+	background: #fff7e2;
+	text-align: center;
+	font: 16px/40px "宋体";
+	color: #ffb746;
+}
+.btn1{
+	background :#ff9536;
+	border-right: 1px solid #ffe8bc;
+	border-radius:10px 0 0 0;
+	color:#fff;
+}
+.btn2{
+	border-right: 1px solid #ffe8bc;
+}
+.btn3{
+	width: 150px;
+	border-radius:0 10px 0 0;
+}
+.content{
+	padding: 20px 0 0 20px;
+	background: #ff9536;
+	display: none;
+}
+.left{
+	width: 180px;
+	height: 180px;
+	float: left;
+	margin-right: 10px;
+}
+.right{
+	width: 220px;
+	height: 180px;
+	float: left;
+}
+.title{
+	width: 220px;
+	height: 55px;
+	color: #fff;
+	padding:5px 0 0 10px;
+}
+.title p{
+	line-height: 34px;
+}
+.title i{
+	font-size: 12px;
+}

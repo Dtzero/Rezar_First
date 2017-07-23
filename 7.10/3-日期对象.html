@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			/*
+				日期对象
+					用于处理日期和时间
+				得到（创建）日期对象
+					Date 构造函数
+					new 一元运算符
+
+					new 函数()  用来创建对象
+
+
+				直接（字面）量
+					1
+					"abc"
+					[]
+					{}
+				构造函数的方式
+					new Array()
+
+				每一个对象不是凭空就出现的，而是通过new运算符调用内部或自定义的构造函数来创建对象
+
+				new Date()
+					参数：
+						1. 不传参，创建的日期对象为执行到这句代码的本机当前时间
+								默认是本机当前时间来创建时间对象
+						2. 字符串
+							new Date("年 月 日 时:分:秒")
+							new Date("June 10,2013 12:12:12")
+						4. 设置时间戳
+								从1970年1月1日,00:时00分00秒 到获取日期对象的毫秒数
+
+					日期对象不具有动态特性，获取最新时间，必须实时创建
+			*/
+
+			var d = new Date();
+
+			console.log(d);
+
+			setInterval(function (){
+				var d = new Date();
+				console.log(d);	
+			},1000)
+
+
+		</script>
+	</head>
+
+	<body>
+		<div id="box"></div>
+		<span id="test"></span>
+		<ul id="list"></ul>
+		<script>
+		</script>
+	</body>
+</html>

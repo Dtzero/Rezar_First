@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+	</head>
+
+	<body>
+		<script>
+			var a = 10;
+			var b = 30;
+			var c = a;
+			a = b,b = c;
+			//a = [b,b=a][0];
+			console.log(a,b);
+
+			// function fn(n){
+			// 	if(n <=1 ) return n;
+			// 	return fn(n-1)+n;//fn(2)+3 ==>fn(1)+2+3 ==>1+2+3
+			// }
+			function fn(n){
+				if(n <=1 ){
+					return n;	
+				}else{
+					var f = fn(n-1)+n;
+				}
+				return f;
+				console.log(f);
+			}
+			console.log(fn(3));
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<script>
+			var arr = [6,3,7,2,8,5,10];
+			// function querySort(data){	
+			// 	if (data.length <= 1) {
+			// 		return data;
+			// 	}
+			// 	var pivot = data.shift();
+			// 	var left = [];
+			// 	var right = [];
+			// 	for( var i = 0; i < data.length; i++ ){	
+			// 		if(data[i] < pivot){从小到大 ; > 从大到小
+			// 			left.push(data[i])
+			// 		}else{
+			// 			right.push(data[i])
+			// 		}
+			// 	}	
+			// 	return querySort(left).concat(pivot,querySort(right));
+			// }
+			// console.log(querySort(arr));
+			arr.sort(function (a,b){
+				//return b-a;	//从大到小
+				//正数不换位置；负数换位置；
+				return a-b;//从小到大
+				//正数换位置；负数不换位置；
+			});
+			console.log(arr);
+		</script>
+	</body>
+</html>

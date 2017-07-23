@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			<img src="./img/1.png">
+			<img src="./img/1.png">
+			<img src="./img/fuh.png">
+			<img src="./img/1.png">
+			<img src="./img/1.png">
+			<img src="./img/fuh.png">
+			<img src="./img/1.png">
+			<img src="./img/1.png">
+		</div>
+	
+		<script>
+			function addZero(n){
+				return n < 10 ? '0'+n : n;
+			}
+
+			var html = '';
+			for( var i = 0; i < 8; i++ ){
+				html += '<img src="./img/0.png">';
+			}
+
+			box.innerHTML = html;
+
+			var imgs = box.getElementsByTagName("img");
+			
+			// 12:11:00
+			funcDate();
+			function funcDate(){
+				var d = new Date();
+				var time = addZero(d.getHours())+":"+addZero(d.getMinutes())+":"+addZero(d.getSeconds());
+
+				for( var i = 0; i < time.length; i++ ){
+					if(time.charAt(i) === ':'){
+						imgs[i].src = './img/nfh.png';
+						// 匿名函数自执行
+						(function(n){
+							setTimeout(function (){
+								imgs[n].src = './img/fuh.png'	
+							},500)
+						})(i)
+					}else{
+						imgs[i].src = './img/'+time.charAt(i)+'.png'
+					}
+				}
+
+				function fn(i){
+					setTimeout(function (){
+						imgs[i].src = './img/fuh.png'	
+					},500);
+				}
+				
+			}
+
+			setInterval(funcDate,1000)
+
+		</script>
+
+	</body>
+</html>
