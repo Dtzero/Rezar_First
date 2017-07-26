@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<section class="wrap">
+			<div class="wrap-left">
+				<ul class="list">
+					<li>
+						<span>jQuery</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+					<li>
+						<span>AJAX</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+					<li>
+						<span>JS基础-2</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+					<li>
+						<span>移动端实战</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+					<li>
+						<span>canvas游戏</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!--<div class="wrap-right">
+				<ul class="list" id="liList" >
+					<li>
+						<span>jQuery</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+					<li>
+						<span>小程序</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+					<li>
+						<span>jQuery</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+					<li>
+						<span>面向对象-上</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+					<li>
+						<span>面向对象-下</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+				</ul>
+			</div>-->
+		</section>
+		<script src="./js/utils.js"></script>
+		<script>
+			var list = $('.list')[0];
+			var lis = $('li');
+			var up = $('.up');
+			var down = $('.down');
+			for( var j = 0; j < lis.length; j++ ){
+			 	lis[j].style.position = 'absolute';
+			 	lis[j].style.top = 62*j + 'px';
+			}
+
+			for( var i = 0; i < up.length; i++ ){
+				up[i].index = i;
+				up[i].onclick = function (){
+					var currentLi = this.parentNode.parentNode;
+					var replaceLi = currentLi.previousElementSibling;
+					if(currentLi == list.firstElementChild){
+						replaceLi = list.lastElementChild;
+					}
+					changePos(currentLi,replaceLi);
+				}
+			}
+
+			for( var i = 0; i < down.length; i++ ){
+				down[i].onclick = function (){
+					var currentLi = this.parentNode.parentNode;
+					var replaceLi = currentLi.nextElementSibling;
+					if(currentLi == list.lastElementChild){
+						replaceLi = list.firstElementChild;
+					}					
+					changePos(currentLi,replaceLi);				
+				}
+			}
+
+			function changePos(currentLi,replaceLi){
+				mTween(currentLi,{top:replaceLi.offsetTop},260);
+				mTween(replaceLi,{top:currentLi.offsetTop},260);
+				var $temobj1 = document.createElement("div");
+				var $temobj2 = document.createElement("div");
+				list.insertBefore($temobj1,currentLi);
+				list.insertBefore($temobj2,replaceLi);
+				insertAfter(currentLi,$temobj2);
+				insertAfter(replaceLi,$temobj1);
+				$temobj1.remove();
+				$temobj2.remove();
+			}
+
+			function insertAfter(newEl, existsEle){
+				var parentEl = existsEle.parentNode;
+ 				if(parentEl.lastChild == existsEle){
+   				    parentEl.appendChild(newEl);
+ 				 }else{
+     			  	parentEl.insertBefore(newEl,existsEle.nextSibling);
+  			 	}            
+			}
+		</script>
+	</body>
+</html>

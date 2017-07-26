@@ -258,6 +258,7 @@ function shake(element,attr,fudu){
 		if( n >= arr.length-1 ){
 			clearInterval(element.shakeTimer);
 			element.shakeTimer = null;
+			typeof callback === 'function' && callback();
 		}
 	},80)	
 }

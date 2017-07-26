@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<section class="wrap">
+			<div class="wrap-left">
+				<ul class="list">
+					<li>
+						<span>jQuery</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+					<li>
+						<span>AJAX</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+					<li>
+						<span>JS基础-2</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+					<li>
+						<span>移动端实战</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+					<li>
+						<span>canvas游戏</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up">上移</a>
+							<a href="javascript:;" class="down">下移</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!--<div class="wrap-right">
+				<ul class="list" id="liList" >
+					<li>
+						<span>jQuery</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+					<li>
+						<span>小程序</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+					<li>
+						<span>jQuery</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+					<li>
+						<span>面向对象-上</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+					<li>
+						<span>面向对象-下</span>
+						<div class="btn">
+							<a href="javascript:;"  class="up"></a>
+							<a href="javascript:;" class="down"></a>
+						</div>
+					</li>
+				</ul>
+			</div>-->
+		</section>
+		<script src="./js/utils.js"></script>
+		<script>
+			var list = $('.list')[0];
+			var lis = $('li');
+			var up = $('.up');
+			var down = $('.down');
+			for( var j = 0; j < lis.length; j++ ){
+			 	lis[j].style.position = 'absolute';
+			 	lis[j].style.top = 62*j + 'px';
+			}
+			
+			for( var i = 0; i < up.length; i++ ){
+				up[i].index = i;
+				up[i].onclick = function (){
+					var parents = this.parentNode.parentNode
+					if(parents.offsetTop > 0){
+						mTween(parents,{top:parents.previousElementSibling.offsetTop},260);
+						mTween(parents.previousElementSibling,{top:parents.offsetTop},260);
+						list.insertBefore(parents,parents.previousElementSibling)
+					}else{
+						mTween(parents,{top:list.lastElementChild.offsetTop},260);
+						mTween(list.lastElementChild,{top:parents.offsetTop},260);
+						list.insertBefore(parents,list.lastElementChild);
+						list.insertBefore(list.lastElementChild,list.firstElementChild);
+					}
+				}
+			}
+
+			for( var i = 0; i < down.length; i++ ){
+				down[i].index = i;
+				down[i].onclick = function (){
+					 var parents = this.parentNode.parentNode
+					 if(parents.offsetTop < 248){
+					 	mTween(parents,{top:parents.nextElementSibling.offsetTop},260);
+					 	mTween(parents.nextElementSibling,{top:parents.offsetTop},260);
+					 	list.insertBefore(parents.nextElementSibling,parents);
+					 }else{
+					 	mTween(parents,{top:list.firstElementChild.offsetTop},260);
+					 	mTween(list.firstElementChild,{top:parents.offsetTop},260);
+					 	insertAfter(list.firstElementChild,list.lastElementChild);
+						list.insertBefore(parents,list.firstElementChild)
+					 }
+				}
+			}
+
+			function insertAfter(newEl, existsEle){
+				var parentEl = existsEle.parentNode;
+ 				if(parentEl.lastChild == existsEle){
+   				    parentEl.appendChild(newEl);
+ 				 }else{
+     			  	parentEl.insertBefore(newEl,existsEle.nextSibling);
+  			 	}            
+			}
+		</script>
+	</body>
+</html>

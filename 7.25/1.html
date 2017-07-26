@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			// for( var i = 0; i < 2; i++ ){
+			// 	setTimeout(function (){
+			// 		console.log(i);	
+			// 	},0)
+			// }
+			// var a = {}
+			// var b;
+			// a.value = 1;
+			// b = a;
+			// b.value = 2;
+			// alert(a.value)
+			// var z = 10;
+			// function fn(){
+			// 	console.log(z);	
+			// }
+			// (function (func){
+			// 	var z = 'miaov';
+			// 	func();				
+			// })(fn)
+			// var a = 100;
+			// function fn1(){
+			// 	alert(a);
+			// 	var a = 10;
+			// }
+			// alert(fn1());
+			// (function (){
+			// 	var a=b=5;
+			// })()
+			// console.log(b);
+			// var arr = [3,25,7,8,4,0]
+			// arr.length = 2;
+			// console.log(arr,arr.length);
+			function fn1(){
+				var a = 0;
+				function fn2(){
+					++a;
+					alert(a);	
+				};
+				return fn2;	
+			};
+			fn1()();
+			var newFn = fn1();
+			newFn();
+			newFn();
+			// var arr = []; 
+			// var obj = {};
+			// for( var i = 0; i < 100; i++ ){
+			// 		var n= Math.round(Math.random()*100);
+			//		if(!obj[n]){
+			//			arr.push(n);
+			//			obj[n] = true;
+			//		}else{
+			//			i--;
+			//		}
+			// }
+
+			// var arr = []; 
+			// var obj = {};
+			// for( var i = 0; arr.length < 100; i++ ){
+			// 		var n= Math.round(Math.random()*100);
+			//		if(!obj[n]){
+			//			arr.push(n);
+			//			obj[n] = true;
+			//		}
+			// }
+
+			// var arr = [];
+			// for( var i = 0; i < 100; i++ ){
+			// 	arr.push(i);
+			// }
+			// arr.sort(function (){
+			// 	return Math.random() - 0.5;
+			// })
+			// console.log(arr);
+		</script>
+	</head>
+
+	<body>
+		
+	// </body>
+</html>

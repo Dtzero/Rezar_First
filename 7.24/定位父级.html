@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			body {
+				margin: 0;
+			}
+			div {
+				width: 500px;
+				height: 500px;
+				background: red;
+				font-size: 20px;
+				color: #fff;
+			}
+			.div1 {
+				position: absolute;
+				left: 100px;
+			}
+			.div2 {
+				width: 300px;
+				height: 300px;
+				background: green;
+				position: absolute;
+				left: 30px;
+				top: 0;
+			}
+			.div3 {
+				width: 200px;
+				height: 200px;
+				background: blue;
+			}
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div class="div1">
+			div1
+			<div class="div2">
+				div2
+				<div class="div3">
+					div3	
+				</div>
+			</div>
+		</div>
+		<script>
+			/*
+				定位父级
+					element.offsetParent
+
+					可获取到最近的定位父级，如果没有定位元素，定位父级默认为body
+
+				偏移量
+					offsetLeft 相对于定位父级左边的偏移量	
+					offsetTop 相对于定位父级上边的偏移量
+
+				最好是把父级和自己都加上定位
+
+			*/
+
+			var div2 = document.querySelector(".div2");
+			var div1 = document.querySelector(".div1");
+			var div3 = document.querySelector(".div3");
+
+			console.log( div1.offsetLeft );
+			console.log( div2.offsetLeft );
+			console.log( div3.offsetLeft );
+
+		</script>
+	</body>
+</html>

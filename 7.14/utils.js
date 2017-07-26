@@ -204,40 +204,28 @@ var Tween = {
 		fx 运动形式   默认值为"linear"  []
 		callBack  调函数
 */
-function mTween(element,attrObj,duration,fx,callback){
-	// 要算出来每一个样式的起始位置和总距离
-	// 循环对象attrObj，算出每一个用时的起始位置和总距离
-	var beginObj = {}; // 每一个样式的起始位置
-	var countObj = {}; // 每一个样式的总距离
-	for(var attr in attrObj){
-		beginObj[attr] = parseFloat(getComputedStyle(element)[attr]);
-		// 每一个样式要运动的的总距离
-		countObj[attr] = attrObj[attr] - beginObj[attr];
-	}
-	// 开始运动的时间
-	var startTime = Date.now();
-	fx = fx || 'linear';
+function mTween(element,attr,target,d,fx,callback){
+	var b = parseFloat(getComputedStyle(element)[attr]);  // 起始位置
+	var c = target - b; //总距离
+	var now = Date.now();  // 开始运动的时间
+
+	fx = fx || 'linear'; //运动形式
+
 	clearInterval(element.timer);
 	element.timer = setInterval(function (){
-		// 已过去时间
-		var t = Date.now() - startTime;
-		if(t >= duration){
-			t = duration;
+		var t = Date.now() - now; //已过去时间
+
+		if( t > d ){
+			t = d;
 			clearInterval(element.timer);
+			element.timer = null;
 		}
-		// 循环传过来的对象,要运动的是对象的key值这个样式
-		for(var prop in attrObj){
-			//判断属性是不是改变透明读的样式名
-			if(prop === 'opacity'){
-				element.style[prop] = Tween[fx](t,beginObj[prop],countObj[prop],duration);
-			}else{
-				element.style[prop] = Tween[fx](t,beginObj[prop],countObj[prop],duration) + 'px';
-			}			
-		}
-		if(t === duration){
-			typeof callback === 'function' && callback();
-		}
+		element.style[attr] = Tween[fx](t, b, c, d) + 'px';
+			if(t == d){
+				typeof callback === 'function' && callback();		
+			}
 	},4)
+
 }
 
 function shake(element,attr,fudu){

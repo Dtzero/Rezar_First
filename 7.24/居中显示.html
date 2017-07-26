@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			/* div {
+				width: 400px;
+				height: 200px;
+				background: red;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin: -100px 0 0 -100px;
+			} */
+
+			div {
+				width: 100px;
+				height: 100px;
+				background: red;
+				padding: 10px;
+				border: 2px solid #000;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body style="height: 3000px;width: 2000px;">
+		<div id="box"></div>
+		<script>
+			/*
+				居中的元素宽高不固定
+				
+				元素的left值和top值
+
+				元素的left值 = (可视区的宽 - 元素所占的宽）/2
+
+				1. 可视区的宽/高
+					document.documentElement 就是html元素
+					document.documentElement.clientWidth
+					document.documentElement.clientHeight
+				2. 元素所占的宽/高
+					element.clientWidth/clientHeight  不包含border
+					element.offsetWidth/offsetHeight  包含border
+
+				浏览器改变尺寸触发一个事件
+					window.onresize = function(){}
+
+				出现滚动条，滚动条向下拉，依然让box出在中心，需要加上页面被卷去的高度
+				
+				浏览器滚动条滚动的时候触发的事件
+					window.onscroll = function(){}
+
+				页面滚动的距离
+					y轴的：
+						document.document.scrollTop  ie和ff放在html
+						document.body.scrollTop      chrome放在body
+					x轴的：
+						document.document.scrollLeft
+						document.body.scrollLeft
+			*/
+
+			var box = document.getElementById("box");
+
+			box.style.left = (document.documentElement.clientWidth - box.offsetWidth)/2  + 'px';
+			box.style.top = (document.documentElement.clientHeight - box.offsetHeight)/2  + 'px';
+
+			window.onresize = function (){
+				//document.title = "调整了大小";
+
+				/*document.title = document.documentElement.clientWidth + '|' + document.documentElement.clientHeight;*/
+				box.style.left = (document.documentElement.clientWidth - box.offsetWidth)/2  + 'px';
+				box.style.top = (document.documentElement.clientHeight - box.offsetHeight)/2  + 'px';	
+			};
+
+			window.onscroll = function (){
+				//console.log("滚动了");
+				// 页面被卷曲的高度
+				//console.log(document.documentElement.scrollTop); 
+				//console.log(document.body.scrollTop);
+
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+				var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+				box.style.top = (document.documentElement.clientHeight - box.offsetHeight)/2 + scrollTop + 'px';
+				box.style.left = (document.documentElement.clientWidth - box.offsetWidth)/2  + scrollLeft + 'px';
+			};
+
+
+		</script>
+	</body>
+</html>

@@ -46,7 +46,7 @@
 	color: #fff;
 	line-height: 35px;
 	text-align: center;
-	padding-bottom: 21px;
+	margin-bottom: 11px;
 }
 .bottom i{
 	display: inline-block;
@@ -54,4 +54,5 @@
 	background: url(../images/2.png) no-repeat;
 	line-height: 35px;
 	text-align: center;
+	margin-top: 10px;
 }

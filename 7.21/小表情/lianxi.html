@@ -53,24 +53,23 @@
 						arr.sort(function (a,b){
 							return Math.random() - 0.5;
 						})
-							photo.innerHTML = `<img src="images/${arr[3]}.png" style="left:${120*arr[3]}px;"/>`
+						photo.innerHTML = `<img src="images/${arr[3]}.png" style="left:${120*arr[3]}px;"/>`
 						a++;
 						var target = 1500-40*a;
 						mTween(imgs[0],{top:350},target,'linear',function (){
+							imgs[0].style.display = 'none';	
 							shake(content,'top',10);
-						 	m = a-n;
+						 	m++;
 						 	p2.innerHTML = `<b>${m}分</b>
 							 				<em>失分</em>
 						 					`;	
 						})
 						imgs[0].onmousedown = function (){
 							imgs[0].src='images/'+6+'.png';
-							shake(imgs[0],'left',15);
-							mTween(imgs[0],{top:parseFloat(getComputedStyle(imgs[0]).top)},4,'linear',function (){
-								setTimeout(function (){
-									imgs[0].style.display = 'none';	
-								},400)	
-							})
+							clearInterval(imgs[0].timer)
+							shake(imgs[0],'left',15,function (){
+								imgs[0].style.display = 'none';	
+							});
 							n++;
 							p1.innerHTML = `<b>${n}分</b>
 											<em>得分</em>
