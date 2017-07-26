@@ -166,7 +166,6 @@
 		var tabNum = 0;
 		var lis = divs[tabNum].getElementsByTagName("li");
 		var imgs = divs[tabNum].getElementsByTagName("img");
-
 		auto(0);
 		function auto(tabNum){
 			var lis = divs[tabNum].getElementsByTagName("li");
@@ -203,54 +202,43 @@
 			}
 
 			for( var j = 0; j < lis.length; j++ ){
-			lis[j].index = j;
-			lis[j].onmouseover = function (){
-				clearInterval(timer);
-				for( var i = 0; i < lis.length; i++ ){
-					lis[i].className = '';
-					imgs[i].className = '';
+				lis[j].index = j;
+				lis[j].onmouseover = function (){
+					clearInterval(timer);
+					for( var i = 0; i < lis.length; i++ ){
+						lis[i].className = '';
+						imgs[i].className = '';
+					}
+					this.className = 'active';
+					imgs[this.index].className = 'active';
+					n = this.index;
 				}
-				this.className = 'active';
-				imgs[this.index].className = 'active';
-				n = this.index;
+				lis[j].onmouseout = function (){
+					n = this.index;
+					autoPlay();
+				}	
+			}	
+
+			for( var j = 0; j < navA.length; j++ ){
+				navA[j].index = j;
+			  	navA[j].onmouseover = function (){
+			  		clearInterval(timer);
+			  		for( var i = 0; i < navA.length; i++ ){
+			 			divs[i].style.display = 'none';
+			 			navA[i].className = '';
+			 			lis[i].className = '';
+						imgs[i].className = '';	
+					}
+			  		divs[this.index].style.display = 'block';
+			 		this.className = 'active';	
+			 		divs[this.index].children[0].className = 'active';
+			 		divs[this.index].children[3].children[0].className='active';
+			 		tabNum = this.index;
+			  	}
+				navA[j].onmouseout = function (){
+			  		auto(this.index);
+				}	
 			}
-			lis[j].onmouseout = function (){
-				n = this.index;
-				 autoPlay();
-			}	
-		}	
-
-		for( var j = 0; j < navA.length; j++ ){
-			navA[j].index = j;
-		  	navA[j].onmouseover = function (){
-		  		clearInterval(timer);
-		  		for( var i = 0; i < navA.length; i++ ){
-		 			divs[i].style.display = 'none';
-		 			navA[i].className = '';
-		 			divs[0].children[i].className = '';
-		 			divs[1].children[i].className = '';
-		 			divs[2].children[i].className = '';
-		 			divs[0].children[3].children[i].className = '';
-		 			divs[1].children[3].children[i].className = '';
-		 			divs[2].children[3].children[i].className = '';
-				}
-		  		divs[this.index].style.display = 'block';
-		 		this.className = 'active';	
-		 		divs[this.index].children[0].className = 'active';
-		 		divs[this.index].children[3].children[0].className='active';
-		 		tabNum = this.index;
-		  	}
-			navA[j].onmouseout = function (){
-				for( var i = 0; i < navA.length; i++ ){
-		 			divs[i].style.display = 'none';
-		 			navA[i].className = '';
-				}
-				divs[this.index].style.display = 'block';
-		 		this.className = 'active';	
-		  		auto(this.index);
-			}	
-		}
-
 		}
 	</script>
 	</body>
