@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<script>
+			var xmlHttp = xmlHttpCreate();//创建对象 
+xmlHttp.onreadystatechange = function(){//响应处理 
+  if(xmlHttp.readyState == 4){ 
+    console.info("response finish"); 
+    if(xmlHttp.status == 200){ 
+       console.info("reponse success"); 
+      console.info(xmlHttp.responseText); 
+    } 
+  } 
+} 
+xmlHttp.open("get","http://192.168.199.159:10000",true);//打开链接 
+ 
+xmlHttp.send("haha");//发送请求 
+ 
+function xmlHttpCreate() { 
+  var xmlHttp; 
+  try { 
+    xmlHttp = new XMLHttpRequest;// ff opera 
+  } catch (e) { 
+    try { 
+      xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");// ie 
+    } catch (e) { 
+      try { 
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP"); 
+      } catch (e) { 
+ 
+      } 
+    } 
+  } 
+  return xmlHttp; 
+} 
+ 
+console.info(xmlHttpCreate());
+		</script>
+	</body>
+</html>

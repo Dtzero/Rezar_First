@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+
+	</head>
+
+	<body>
+		<input type='button' value="绑定事件" id="btn">
+		<input type='button' value="改变状态" id="changState">
+		<ul>
+			<li>123</li>
+		</ul>
+		<script>
+			var lis = document.getElementsByTagName("li")[0]; 
+			var state = true;
+			btn.onclick = function (){
+				changState.onclick = function (){
+					console.log('我把状态改变了');
+					state = false;
+				};
+				if(lis.isOn){
+					return;
+				}
+				lis.isOn = true;
+
+				lis.addEventListener('click',function (){
+					console.log(state);
+				})
+			}	
+		</script>
+	</body>
+</html>

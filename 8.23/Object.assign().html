@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			
+
+
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			
+		</div>
+		<script>
+
+			/*
+				Object.assign(target,[source1,source2....]);
+				把多个对象的属性合并到第一个对象上
+
+				返回值是目标对象
+			*/
+
+			let defaults = {
+				a:1,
+				b:2
+			}
+			let obj1 = {
+				a:10000,
+				c:3
+			}
+			let obj2 = {
+				d:10
+			}
+
+			let a = Object.assign(defaults,obj1,obj2);
+			console.log(a === defaults);
+
+			//复制（克隆）一个对象
+
+
+		</script>
+	</body>
+</html>

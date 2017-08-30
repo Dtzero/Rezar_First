@@ -1,0 +1,1601 @@
+6.13
+	笔记：
+		1、js出现的位置
+			1. js写在标签行间中
+			2. 内嵌在页面中 写在一对script便签中
+				只能在当前的页面中使用
+			3. 外链的方式 
+				创建一个js文件，通过script标签的src链接进来
+
+		2、script标签的位置
+			body的结束之前 建议放在body中
+			head标签中
+
+		3、通过js操作页面中的元素
+			获取元素
+				通过id获取元素 固定的方法
+					document  js提供了一个操作文档的对象
+					document.getElementById('id名字')
+					id名字一定要加上双引号或者单引号
+
+				调试代码
+					alert() 提醒框 把要提醒的内容放在()中
+
+		4、变量 
+			1.存放一些数据的
+				要使用变量之前，先要声明变量
+				关键字 var
+					var 变量名; 声明了变量未赋值，默认的值为undefined
+					var 变量名 = 数据/值;  声明了变量并且赋值
+			2.命名规则：
+				组成：字母、数字_、$组合而成
+					  变量名不能已数字开头
+
+				不能是关键字和保留字
+					关键字：js正在使用的单词
+						var function for if break continue class ...
+					保留字:js即将使用的单词
+						
+				命名风格：驼峰命名法
+					大驼峰 多个单词组合的时候，从第一单词开始首字母大写
+					小驼峰 多个单词组合的时候，从第二单词开始首字母大写
+
+					起名字要有语义化
+
+		5、事件
+			1.交互的一瞬间产生一个事件
+			2.在元素上会产生事件
+
+		6、知识点：
+			; 一条语句结束了
+			= 赋值的意思 把等号右边的值赋给左边
+			调试代码：
+				chrome 调试工具 
+					打开调试工具 f12 
+					右击->检查
+
+		7、函数：把多行代码放在函数中，形成代码块
+			1.函数定义
+				关键字 function
+				语法： 
+					function [函数名](){
+						//函数体/代码块
+					}
+					函数名遵循变量名的命名规则
+				函数声明：
+					function 函数名(){
+						
+					}
+				函数表达式
+					var func = function (){
+
+					}
+				匿名函数
+					function (){
+
+					}
+					直接定义匿名函数会报错
+					定义匿名函数之后立马使用，不报错
+						赋给一个变量
+						赋值给一个事件
+			2.函数调用
+				只定义了函数，未执行（调用），代码块不执行
+				函数只有调用一下才能使用
+				调用：函数名()
+			知识点：
+				[] 某些情况下代表可选的意思，可以有可以没有
+
+		8、属性：事物所具有的不可缺少的性质
+
+			操作属性：增删改查
+
+			对属性的读写操作
+				赋值(写)：元素.属性 = 值
+				取值(读)：元素.属性
+
+				. 的 .后面跟的属性是元素原有的
+				[] 的 []后面跟的属性是元素没有的
+
+			属性名要符合变量名的命名规则
+
+6.14
+	笔记：
+		1、window 浏览器窗口对象
+			当页面加载完成之后，触发这个事件
+			window.onload = function(){
+
+			}
+
+		2、流程控制语句
+			if 语句
+				语法：
+					if(条件){
+						// 代码  
+						// 如果条件成立，就执行这里面的代码
+					}
+				需求：
+					给元素添加一些样式
+					如果元素没有背景颜色为红色，添加背景颜色为红色
+					如果有背景颜色了，不添加
+			知识点： 
+				> 
+				< 
+				== 比较两边的值是否是相同的，如果相同，就成立；如果不相同，不成立。
+
+			if中的条件经过内部的转换会转成true/false
+				true 代表是真
+				false 代表是假
+				布尔值:true/false
+				true和"true" 是不一样的 一个是布尔值一个是字符串
+6.15
+	笔记：
+		1、数组 类似于有顺序的仓库
+			定义数组，直接量定义数组
+					var arr = []
+			存值：
+				存的值以逗号隔开，最后一个省略逗号
+			取值：
+				下标/索引值  是一个数字
+				下标是从0开始的，依次数数
+				数组[下标]
+			数组的长度：（数组中存了多少个值）
+				数组.length  
+				数组的第一个值 arr[0]
+				数组的最后一个值 arr[arr.length-1]
+
+		2、++ 自增加一 
+			n++ n自己给自己+1
+			类似于 n = n+1
+
+		3、-- 自减减1
+			n-- n自己给自己-1
+			类似于 n = n-1
+
+6.16
+	笔记：
+		1、if嵌套：满足if条件进入if，再次满足if条件输出if，不满足进入else输出else；不满足第一个if条件，则进入else输出else；
+			if(条件){
+				if(条件){
+
+				}else{
+
+				}
+			}else{
+
+			}
+
+		2、if嵌套：满足第一个if条件输出if，不满足进入第二个if，满足条件输出if，不满足则输出else；
+			if(条件1){
+					// 条件1成立，执行这里的代码
+				}else if(条件2){
+					// 条件2成立，执行这里的代码
+				}else{
+					// 以上都不成立，走else
+				}
+
+		3、流程控制语句：
+			1.for循环  重复做一些事情	
+				语法：
+					for(1初始值;2条件;3自增){
+						// 4循环体  把重复的代码放在这里
+					}
+
+					for(;;){
+	
+					}
+
+			2.for循环的执行过程：
+				1. 先执行初始值
+				2. 条件是否成立
+				3. 如果条件成立，执行循环体的代码
+				4. 代码执行完成之后，自增
+				5. 自增完成之后，
+					重复步骤：2 3 4 2 3 4 2 3 4
+				以上步骤中如果条件不成立，终止执行
+
+			3.break;for循环停止	
+				满足条件后，for循环停止，break后的代码，for循环均不执行；
+
+			  continue;本次for循环停止
+				满足条件后，跳过本次循环，且写在continue后的代码不执行，之后的for循环执行；
+
+6.19
+	笔记：
+		1、声明元素的方式：
+			1.通过class名获取元素：document.getElementsByClassName('class名字');
+									元素.getElementsByClassName('class名字');
+
+			2.通过标签获取元素：document.getElementsByTagName('类型'); 
+								元素.getElementsByTagName('类型'); 
+
+			3.通过css获取元素：document.querySelector("css选择器，例：.active"); 							只能获取当前页面符合条件的第一个元素；
+								元素.querySelector("css选择器，例：.active");
+							document.querySelectorAll("css选择器，例：.active"); 只能获取当前页面符合条件的所有元素；
+									元素.querySelectorAll("css选择器，例：.active"); 
+
+			4.TagName、ClassName本身可以看成是一个类数组，
+				即:使用TagName、ClassName方法处理的结果：是根据其找到多个元素，组成数组对象，通过一个数组返回，所以，用的时候，需要确定其在数组中的位置，因此加下标[n];
+
+		2、% 取模/取余 取%前后两个数相除的余数 
+			判断个数是偶数还是奇数：i % 2 == 0 ：余数为零，是偶数
+6.20
+	笔记：
+		1、this 已经定义好的变量，this的值是不固定，根据执行的环境（上下文）决定this的值
+			1. 在一对script标签中，this的值为window
+				在浏览器中运行，执行的环境就是浏览器，浏览器中顶级对象为window
+				window 是窗口对象/顶级对象
+			2. this出现在函数中
+				this的值取决于函数的调用,谁调用函数this就指向谁
+				a. 直接调用 this => window
+				b. 事件调用 this => 触发事件的元素
+			知识点：
+				在一对script标签中定义的变量和函数，都会作为window的属性或方法
+
+		2、自定义属性：元素.自定义的属性名 = 值
+			系统已经定义好的属性：style className innerHTML id src href value
+				只要是系统给我们提供的对象，都可以自定属性
+					window 获取元素对象
+			获取一个元素身上没有定义的属性，返回一个值undefined
+			给元素自定义属性  获取一个元素都是一个对象、元素对象		
+			对象是由多个名/值对组成的集合
+				{
+					key:value
+				}
+				key:属性名
+				value: 属性值
+6.21
+	笔记：
+		选项卡：
+			 1、声明所需的变量；
+			 2、建立一个for循环（当选项个数大于1的时候）；
+			 3、在for循环里给元素自定义属性；用于获取当前下标；
+			 4、给元素绑定需求事件，建立函数；
+			 5、给当前元素赋上所需的样式；
+
+6.22
+	笔记：
+		清除上一次操作
+			1、声明一个变量，用来记录之前元素的下标
+			2、根据相应的需求，给之前的元素清除样式
+			3、根据相应的需求，给当前的元素赋上样式
+			4、给声明的变量赋值，值等于当前操作的下标
+
+6.27
+	笔记：
+		1. 数据类型：两大类：基本（简单）数据类型：String、Number、Boolean、Null、Undefiend
+						     复合（引用）数据类型：Object
+
+		2. 每一个数据对应的值
+			基本（简单）数据类型
+				String => 字符串
+				Number => 数字
+				Boolean => 布尔值
+				Undefined => 未定义
+				Null  => 空
+			复合（引用）数据类型	
+				Object => 对象
+
+		3. 检测类型 typeof 
+			string number boolean object undefined function
+
+		4. 数据类型转换
+			其他类型 => 数字类型
+				Number()：转换为数字
+				pareseInt()：转换为数字,第一个为字母，结果为NaN，否则，转换为整数，与字母停止；
+				parseFloat()：转换为数字,可以转换为小数，也可以转换为整数
+
+		5.转不成数字 NaN来表示
+				数字类型
+				其他的类型和自身都不行同
+				参与运算都为NaN
+				参与比较都是false
+
+		6.检测是不是NaN isNaN(值)
+				值是NaN，返回true
+				值不是NaN，返回false
+
+		7.转成字符串类型
+			String(要转的数据)
+				''+数据
+					当转成字符串类型的时候，内部会调用一个方法，toString()
+
+		8.转成布尔值
+			Boolean(要转的数据)
+				! 取反 
+					先把数据转成布尔值，取反
+				!! 转成布尔值
+				那些能转成false//true太多，记false
+					 '' 0 undefined null false
+
+		9.转换分两种情况：
+			1、显式类型转换
+					开发者自己手动调用方法进行转化：String Number parseInt Boolean 
+			2、隐式类型转换
+					解析器为了运算方便，会隐式把一种类型转成另一种类型
+
+		10.查找字符串中指定下标的字符：字符串.charAt(下标)
+								
+6.28
+	笔记：
+		一、字符串
+			es6提供的
+				1、`` 反引号 模板字符串（超级字符串）			
+					要渲染提供的数据，
+						${数据}
+				2、\ 转义符
+					html结构有时候也称之为模板
+				备注：
+					字符串一旦定义，不能更改
+
+		二、运算符
+			算术运算符
+				+ 加、- 减、* 乘、/ 除、% 取模（求余数）、++、--
+
+			赋值运算符
+				=、+=、-=、*=、/=、%=
+
+			关系运算符
+				<、>、<=、>=、==、!=、===、!==
+				比较后都会返回布尔值
+					== 
+						1.会把等号两边的值隐式转换，转成同一种类型的
+						2.数字和字符串比较时候，字符串转成数字，转成相同类型后，比较值是否相同
+					===
+						1.先比较类型，不相同返回false
+						2.类型相同，比较值
+					!= 不等于
+					!== 不全等于
+
+			逻辑运算符	
+				&& 与、并且
+					左右两边的条件要同时满足才可以
+				|| 或、
+					左右两边的条件只需要满足其一就可以
+				! 否 、
+
+			三目运算符
+				判断条件 ? 条件为true执行这里代码 : 条件为false执行这里代码
+				条件为true，返回?后面的值
+				条件为false，返回:后面值
+				不要嵌套太多三目
+
+			结合性：
+				相同等级的运算符同时出现，有一个结合性来决定是从左向右元素还是从右向左运算
+
+6.29
+	笔记：
+		1、函数：
+			可存放多行代码，形成代码块
+			是一个对象，可执行的对象
+			可以作为值使用
+			使用关键字 function
+
+		2、语法：
+			function [函数名](){
+			
+			}
+
+		3、完整写法：
+			function [函数名]([参数1,参数2,。。。。]){
+				// 函数体 代码块
+				[return 值]
+			}
+			
+		4、函数定义：
+			1.函数声明
+				function 函数名(){
+
+				}
+				注意：函数声明必须带上函数名
+			2.函数表达式：
+				把函数作为值使用，赋值为变量
+				var fn = function (){
+
+				}
+			3.函数调用：
+					函数定义后，不会执行函数中的代码，只能调用才能执行
+					函数名()
+			4.调用位置：
+					函数声明调用：
+						可以在函数声明之前和之后都可以调用
+					函数表达式调用：
+						必须在赋值之后调用
+			5.函数参数：
+					在函数共用的时候，在调用函数的时候要执行不同的值，通过传参的形式解决
+
+					形参
+						函数定义的时候，写在小括号中
+							function func([形参1,形参2]){
+	
+							}
+						形参的命名规则，要符合变量的命名规则
+						形参就是在函数的内部声明的变量,默认值为undefined
+						形参只能在函数中使用
+					实参
+						在调用函数时，写在小括号中
+						会把这个实参赋值给形参
+
+					形参和实参是一一对应的，以逗号隔开
+			6.实参的个数不固定，不确定的时候
+				使用函数内部内置的变量：
+					arguments 是函数实参的集合 类数组（类人猿）
+
+					和数组有一些相同的特性，不具备数组的全部的特性
+					相同特性：
+						结构 []
+						length
+						下标
+					不相同：
+						类数组没有数组的方法
+
+			7.函数的返回值
+				每一个函数被调用后都有一个返回值
+				1. 默认为unefined
+				2.使用关键字return
+					a. 只能在函数中使用
+					b. 函数调用后返回return后面的值
+						如果return后没有值，函数返回值为undefined
+					c. return之后的代码停止执行
+						
+		5、选中文本值：select；
+				用法：元素.select();
+
+		6、表单中
+			获取焦点 onfocus
+				点击获取焦点
+				tab一下获取焦点
+				调用方法获取焦点
+					foucs()
+			失去焦点 onblur
+7.30
+	笔记：
+		1、标识符
+			变量名，函数名
+			作用域：
+				用来管理标识符可以在哪里被访问的一套规则，或者说是标识符可被访问的范围
+
+				全局作用域
+					 在代码中任何地方都能访问到拥有全局作用域
+					 1. 函数外定义的标识符拥有全局作用域
+					 2. 不使用var定义的变量拥有全局作用域
+					 		声明变量一定要用var
+					 3. 所有window对象上的属性拥有全局作用域
+				局部作用域
+			作用域链
+					作用域嵌套的时候，查找标识符的规则
+
+					作用域嵌套的时候是遵循一套严格的标识符查找规则的，内部作用域可以访问其父作用域以及父作用域的父作用域直到全局作用域的整个范围。说白了，就是函数内部作用域可以访问其自身和外部作用域的标识符，而外部作用域却不允许访问函数内部的标识符。
+		2、提升
+			预解析
+				当js代码执行之前，会有一个预解析的过程，程序会把当	前作用域下的变量名和函数的声明提前解析
+				js会把当前申明的变量名和函数提前当前作用域的最开始处理
+
+				函数表达式
+					只会把变量名提到当前作用域的最前面
+					所以不能再函数表达式赋值前调用		
+
+7.04
+	笔记
+		1、定时器是什么
+					javaScript中系统提供的函数
+
+				定时器的作用
+					每隔一段时间或者延迟一段时间执行一段指定的代码
+
+				重复执行定时器
+					每隔一段时间就会执行第一参数传入的函数
+					setInterval(要执行的函数,间歇时间);
+					setInterval(function(){},1000,[给函数传递的参数])
+						间歇时间 毫秒
+							1s = 1000ms		
+				 开了定时器，即便是写了0ms中，也不是立马执行的，而是等到主程序执行完了之后才开始执行定时器的函数。	
+
+				 延迟执行定时器
+					延迟一段时间执行一个函数，仅且仅执行一次
+
+					setTimeout(要执行的函数,延迟时间，[给函数传递的参数])
+
+				什么时候使用定时器
+					当需要隔一段时间重复执行一段代码时用 setInterval()
+					当需要延迟一段时间执行一段代码时用 setTimeout()
+
+				清除定时器
+					关闭/停止定时器 clearInterval(定时器的编号)
+						clearTimeout(定时器的编号)
+
+		2、字符串.slice()  
+				作用: 用来截取字符串
+				参数：
+					不传参 会返回整个字符串
+					传参：
+						参数是指定截取的下标
+						指定一个参数
+							从指定的下标截取到字符串的最后
+						指定两个参数：
+							截取的开始下标到结束下标 不包含结束下标
+
+			字符串一旦创建是不能更改
+				
+		3、字符串.trim()
+			去除字符串前后空格 
+					
+		4、字符串.indexOf(字符串1)
+			作用：搜索参数字符串1在字符串中首次出现的位置  
+
+			返回值：
+				搜索到指定的字符串1,返回下标
+				没搜索到，返回-1		
+
+7.05
+	笔记
+		1、	时间戳 从1970年1月1日0时0分0秒到现在的毫秒数
+					时间函数 Date
+
+				Date.now();  获取的是ms
+
+7.06
+	笔记
+		1、数组.forEach()
+			作用：循环数组的
+
+		循环数组要做的事情：
+			1. 拿下标
+			2. 拿下标对应的							
+
+7.07
+	笔记
+		1、日期对象
+					用于处理日期和时间
+				得到（创建）日期对象
+					Date 构造函数
+					new 一元运算符
+
+					new 函数()  用来创建对象
+
+				直接（字面）量
+					1
+					"abc"
+					[]
+					{}
+				构造函数的方式
+					new Array()
+
+				每一个对象不是凭空就出现的，而是通过new运算符调用内部或自定义的构造函数来创建对象
+
+				new Date()
+					参数：
+						1. 不传参，创建的日期对象为执行到这句代码的本机当前时间
+								默认是本机当前时间来创建时间对象
+						2. 字符串
+							new Date("年 月 日 时:分:秒")
+							new Date("June 10,2013 12:12:12")
+						4. 设置时间戳
+								从1970年1月1日,00:时00分00秒 到获取日期对象的毫秒数
+
+7.11
+	笔记
+		1、setFullYear() 	    设置年
+			setMonth()    	    设置月  (月份从0开始计算)
+			setDate()     	    设置日 
+			setHours()   	    设置小时
+			setMinutes()  	    设置分钟
+			setSeconds()  	    设置秒钟
+			setMilliseconds() 设置毫秒
+			setTime()      	获取1970-01-01 00:00:00到目前日期对象的时间差（单位:毫秒）			
+
+			另外，set换成get为获取		
+
+7.13
+	笔记
+		push()
+			作用
+				添加一个或多个元素到数组的末尾
+			语法
+				number arr.push(element1, ..., elementN)
+			参数
+				elementN	一个或多个元素
+			返回值
+				数组的length
+
+		unshift()
+			作用
+				添加一个或多个元素到数组的头部
+			语法
+				number arr.unshift(element1, ..., elementN)
+			参数
+				elementN	一个或多个元素
+			返回值
+				新数组的length
+
+		pop()
+			作用
+				删除数组最后一个元素
+			语法
+				arr.pop()
+			参数
+				返回值
+				被删除的那一个元素
+		shift()
+			作用
+				删除数组第一个元素
+			语法
+				arr.shift()
+			参数
+				无
+			返回值
+				被删除的那一个元素
+		map()
+			作用
+				每个元素都调用一个提供的函数后返回的结果，放在新数组中
+			语法
+				array array.map(callback[, thisArg])
+			参数
+				callback	在数组每一项上执行的函数，接收三个	
+					callback参数：
+		    				currentValue	当前项的值。
+		   				index	当前项的索引（或下标）。
+		  				array	数组本身。
+
+				thisArg	可选参数		
+					用来当作callback 函数内this的值。 
+			返回值
+				新数组，新数组每一项是回调函数返回值
+		filter()
+			作用
+				根据回调函数的返回值过滤数组中的项，放在新数组中
+			语法
+				array array.filter(callback[, thisArg])
+			参数
+				callback	在数组每一项上执行的函数，接收三个	
+					callback参数：
+		    				currentValue	当前项的值。
+		   				index	当前项的索引（或下标）。
+		  				array	数组本身。
+				thisArg	可选参数		
+					用来当作callback 函数内this的值。 
+			返回值
+				返回过滤后的新数组
+					如果返回值为true，则放入新数组中；
+					如果返回值为false，则忽略
+		forEach()
+			作用：循环数组的
+
+		方法forEach和for循环
+			
+			相对for循环来说：
+				forEach不能选择从哪个位置开始循环
+				forEach不能停止和跳过循环	
+
+7.17
+	笔记
+		concat()
+			作用
+				将传入的数组或非数组值与原数组合并,返回合并后的新数组
+			语法
+				array array.concat(value1, value2, ..., valueN)
+			参数
+				valueN		需要与原数组合并的数组或非数组值.
+			返回值
+				合并后的新数组
+		reverse()
+			作用
+				颠倒数组中元素的位置
+			语法
+				array arr.reverse()
+			参数
+				无
+			返回值
+				颠倒顺序后的数组
+
+		改变原来数组
+		join()
+			作用
+				将数组中的所有元素连接成一个字符串
+			语法
+				string  arr.join([separator = ','])	
+			参数
+				separator
+		    		可选，用于指定连接每个数组元素的分隔符。分隔符会被转成字符串类型；如果省略的话，默认为一个逗号。如果 seprator 是一个空字符串，那么数组中的所有元素将被直接连接。 
+			返回值
+				拼接后的字符串
+		slice()
+			作用
+				截取数组中一部分，并返回这个新的数组。
+			语法
+				array	arr.slice([begin[，end]])	
+			参数
+				begin		起始位置
+		    		end 		结束位置
+			返回值
+				截取后的新的数组
+
+		不影响原数组
+		splice()
+			作用
+				用新元素替换旧元素，以此修改数组的内容	
+			语法
+				array	array.splice(start, deleteCount[, item1[, item2[, ...]]])	
+			参数
+				start		起始位置
+		    	deleteCount	删除长度
+				item		添加的内容
+			返回值
+				由被删除的元素组成的一个数组
+		sort()
+			作用
+				对数组的元素进行排序
+		语法
+				array arr.sort([compareFunction])
+			参数
+				compareFunction
+		    		可选。用来指定按某种顺序进行排列的函数。
+				如果省略，元素按照转换为的字符串的诸个字符的ASCII编码进行排序。 
+		返回值
+				排序后的数组
+		Array.from()
+			作用
+				把类数组转成一个新的数组
+			语法
+				array Array.from(arrayLike[, mapFn[, thisArg]])
+			参数
+				arrayLike
+					想要转换成真实数组的类数组
+				mapFn
+					生成的数组会经过该函数的加工处理后再返回
+				thisArg	可选参数		
+					用来当作callback 函数内this的值。 
+			返回值
+				新的数组		
+		Array.isArray()
+			作用
+				检测值是否是一个数组
+			语法
+				boolean Array.isArray(obj)
+			参数
+				obj
+					需要检测的值。 
+			返回值
+				布尔值
+				true，是一个数组
+				false，不是一个数组
+		for in  循环
+			语法：
+				for(变量 in 对象){
+					// 循环体
+				}
+				
+				每一次循环的时候，都会把对象的key值赋值给变量
+
+				break
+				continue
+
+			循环数组 for
+			循环对象 for in
+
+			对象中的key类型是字符串
+
+7.18
+	笔记
+		1、快速排序
+			方法：
+				1、var arr = [5,4,1,9,0,3,2,20,10];
+					var pivot = arr.shift();
+					var left = []; // 小于基准值的放在这个数组中
+					var right = []; // 大于基准值的放在这个数组中
+
+					for( var i = 0; i < arr.length; i++ ){
+						if(arr[i] < pivot){
+							left.push(arr[i])
+						}else{
+							right.push(arr[i])
+						}
+					}
+				2、for( var i = 0; i < arr.length-1; i++ ){
+						if(arr[i] > arr[i+1]){
+							var c = arr[i];
+							arr[i] = arr[i+1];
+							arr[i+1] = c;
+						}
+					}	
+				3、for( var j = 0; j < arr.length-1; j++ ){
+							if(arr[i] > arr[i+1]){
+								arr[i] = [arr[i+1],arr[i+1]=arr[i]][0];
+							}
+						}
+					}
+				4、function quickSort(data){
+						if( data.length <= 1 ){
+							return data;
+						}
+						var pivot = data.shift();
+						var left = []; // 小于基准值的放在这个数组中
+						var right = []; // 大于基准值的放在这个数组中
+						for( var i = 0; i < data.length; i++ ){
+							if(data[i] < pivot){
+								left.push(data[i])
+							}else{
+								right.push(data[i])
+							}
+						}
+						return querySort(left).concat(pivot,querySort(right));
+					}
+				5.arr.sort(function (item1,item2){
+					return item2 - item1;
+				})	
+
+7.19
+	笔记
+		1、	数组去重
+			方法 
+				var arr = [4,4,5,1,2,4,5,5,1,2];
+				var newArr = [arr[0]]; // 放不重复的项
+				var num = "no repeat";
+				for( var i = 0; i < arr.length; i++ ){
+					num = "no repeat";
+					for( var j = 0; j < newArr.length; j++ ){
+						if(arr[i] === newArr[j]){  // 已经存在新数组中了
+							num = 'repeat'
+							break;
+						}
+					}
+					if(num === "no repeat"){ 
+						newArr.push(arr[i]);
+					}
+				}
+		2、 Math 全局对象 处理数字
+			Math.floor() 向下取整
+			Math.ceil() 向上取整
+			Math.round() 四舍五入
+			Math.random() 随机数  0 - 1之间的数  不包含1		
+				
+7.20
+	笔记	
+		1、获取子节点
+			element.childNodes 获取所有的子节点
+			element.children   获取所有的子元素节点
+
+		2、获取节点的父级
+			element.parentNode
+
+		3、获取兄弟节点
+			上一个兄弟
+				element.previousElementSibling
+			下一个兄弟
+				element.nextElementSibling
+
+		4、获取元素的第一个子节点
+			element.firstElementChild
+		5、获取到元素的最后一个子节点
+			element.lastElementChild
+		6、node.parentNode 			--- 获取父节点
+			node.children 			--- 获取所有子元素节点
+			node.childNodes			--- 获取所有子节点
+			node.previousElementSibling	--- 获取上一个兄弟节点
+			node.nextElementSibling 		--- 获取下一个兄弟节点
+			node.firstElementChild 		--- 获取元素中第一个子节点
+			node.lastElementChild 		--- 获取元素中最后一个子节点
+
+7.21
+	笔记
+		1、在元素行间中添加一个自定义属性
+			在行间中已data-开头的自定义属性，获取一个元素之后，会放在dataset这个独对象上
+			1. 设置行间属性
+				element.setAttribute(key,value)
+			2. 获取行间属性
+				element.getAttribute(key)
+			3. 删除行间属性
+				element.removeAttribute(key)
+		2、对DOM节点操作
+					获取
+					创建
+					删除
+					修改
+					替换
+
+			innerHTML 赋给innerHTML的值是一个字符串结构
+
+			1. 创建一个元素
+				documnet.createElement("标签名")
+			2. 向一个元素追加一个子节点
+				element.appendChild(元素);
+					返回值是追加的元素
+			3. 往一个节点的指定子节点前边插入一个节点
+				element.insertBefore(newElement,childNode2)
+					newElement 要插入的元素
+					childNode2 被插入的目标元素
+
+					参数：
+						newElement必须要存在，并且是一个节点（node）
+
+						childNode2可以不存在，insertBefore功能就类似于appendChild
+
+					把newElement插入到childNode2前边		
+			4. 替换指定的子节点
+					element.replaceChild(node,childNode)
+						node用来替换的节点，childNode被替换的子节点
+      					两个参数都必须写。
+      		5. 删除指定的子节点
+      				element.removeChild(childNodes)
+
+      				childNode.remove()   把自己从父节点删除
+			6、复制一个节点
+				element.cloneNode();
+					克隆一个节点
+							true：克隆元素和元素包含的子孙节点
+							flase：克隆元素但不包含元素的子孙节点
+
+					默认是false
+					不能克隆事件
+
+7.24
+	笔记
+		1、可视区的宽/高
+			document.documentElement 就是html元素
+			document.documentElement.clientWidth
+			document.documentElement.clientHeight		
+		2、 元素所占的宽/高
+			element.clientWidth/clientHeight  不包含border
+			element.offsetWidth/offsetHeight  包含border	
+			element.scrollWidth/scrollHeight  包含的内容宽高	
+		3、浏览器改变尺寸触发一个事件
+			window.onresize = function(){}			
+		4、浏览器滚动条滚动的时候触发的事件
+			window.onscroll = function(){}
+			页面滚动的距离
+				y轴的：
+					document.document.scrollTop  ie和ff放在html
+					document.body.scrollTop      chrome放在body
+				x轴的：
+					document.document.scrollLeft
+					document.body.scrollLeft	
+		5、定位父级
+			element.offsetParent
+			可获取到最近的定位父级，如果没有定位元素，定位父级默认为body
+
+		偏移量
+			offsetLeft 相对于定位父级左边的偏移量	
+			offsetTop 相对于定位父级上边的偏移量	
+			
+		最好是把父级和自己都加上定位	
+		6、元素相对于浏览器左边和上边的距离
+			element.getBoundingClientRect()
+			返回对象：
+				width  元素占的width，包含border和padding
+				height 元素占的heihgt，包含border和padding
+				left   元素的最左边到浏览器左边的距离
+				top    元素的最上边到浏览器上边的距离
+				right  元素的最右边到浏览器左边的距离
+				bottom 元素的最下边到浏览器上边的距离 
+		7、定位父级
+			element.offsetParent
+
+			可获取到最近的定位父级，如果没有定位元素，定位父级默认为body
+
+		偏移量
+			offsetLeft 相对于定位父级左边的偏移量	
+			offsetTop 相对于定位父级上边的偏移量
+
+		最好是把父级和自己都加上定位	
+
+		8、获取节点计算后的样式
+		getComputedStyle(node) 
+
+7.27
+	笔记
+		1、 1.document.forms 页面中表达的集合
+			2.使用name找表单空间
+			3.onchange  value变化时会触发这个事件
+			4.onchange使用在input为text要注意
+				在获取焦点改变value值不会触发的
+				失去焦点value发生变化才会触发
+			5.oninput 在输入的过程中发生变化，就会触发
+			6.提交表表单的方法
+				form.submit();
+			重置表单的方法
+		2、用户代理信息：window.navigator.userAgent
+					chrome
+						Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36
+					ff
+						Mozilla/5.0 (Windows NT 6.3; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0
+					ie
+						11
+							Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729; MANMJS; rv:11.0) like Gecko
+						8
+							Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729; MANMJS)	
+		3、url的组成	
+			https/http:// 			===>	protocol 	传输协议
+			miaov.com 			===>	host name 	主机名
+			80  				===>	port		端口   
+			home/index.html 		===>	path 		路径
+			?miaov=ketang&video=study ===>	search 		查询数据
+			#vip=123&videoId=456 	===>    hash 		锚点				
+		4、 
+			1.window.location：地址栏中的信息
+			2.window.location.href：获取完整地址
+			3.改变地址栏的地址
+			4.window.location.href = 'http://www.miaov.com'
+			5.window.location.search：查询的数据 ?到#之间的数据，包含问号
+			6.window.location.hash：哈希 锚点	
+
+7.31
+	笔记
+		1、绑定事件处理函数
+				element.addEventListener(
+					事件名（不加on）,
+					事件处理函数|侦听器,
+					[是否捕获]
+				)
+			解绑事件处理函数
+				element.removeEventListener(
+					事件名（不加on）,
+					事件处理函数|侦听器,
+					[是否捕获]
+				)
+
+			元素对应的事件的事件处理函数，在绑定的时候使用的是匿名函数，解绑的时候，要给匿名函数起一个名字			
+
+8.01
+	笔记
+		1、事件流描述的是从页面中接收事件的顺序。
+				事件发生时会在元素节点与根节点之间按照特定的顺序传播，路径所经过的所有节点都会收到该事件，这个传播过程即DOM事件流。
+
+				事件流的三个阶段：
+					1. 捕获阶段  从window开始，到事件触发的具体元素，沿途经过的元素都会触发对应的事件
+					2. 目标阶段  事件触发的具体元素上
+					3. 冒泡阶段  从事件触发的具体元素开始，到window结束，沿途经过的元素都会触发对应的事件
+
+				以on开头的这种事件只能检测到冒泡阶段
+
+				看一下捕获阶段
+					element.addEventListener(
+						事件名,
+						事件处理函数，
+						[是否捕获]
+					)
+
+				第三个参数：
+					true  捕获阶段
+					false 冒泡阶段  默认
+		2、在给父级绑定事件后，当操作一个子级的时候，由于冒泡机制，不得不触发父级的事件，给子级绑定对应的事件阻止冒泡
+			ev.stopPropagation();
+		3、oncontextmenu右击时候，菜单出现的那一刻才触发的事件，这个事件不是右击事件，右击事件是onclick	
+
+8.02
+	笔记
+		1、当鼠标中键滚动触发一个事件
+			DOMMouseScroll 滚动触发的事件
+
+			ie下怎么绑定多个事件处理函数？兼容性再说！
+			事件对象 ie低版本下，事件对象不是事件处理函数的第一参数
+
+			ie9以上 chrome和ff，作为事件处理函数的第一个参数
+			ie6,7,8 作为全局的变量，event
+				当事件触发的时候event就保存的时候事件触发的事件对象
+		2、当一个元素触发了某个事件，会有一个冒泡的机制，沿途经过的这些元素都会触发对应的事件，要找事件源（从哪个元素开始触发的事件），ev.target
+		3、ondblclick  鼠标双击
+		4、mouseenter(鼠标进入)和mouseleave(鼠标离开)不冒泡，移入和移出到后代元素不触发	
+
+8.03
+	笔记
+		1、取绝对值
+				Math.abs(值)
+			取最大值
+				Math.max(值1,值2,值3....)
+			取最小值
+				Math.min(值1,值2,值3....)
+		2、函数也是个对象，有方法和属性
+				
+			函数.call()
+				1. 直接会执行这个函数
+				2. 概念这个函数this的指向
+				3. 要给执行的函数传参数
+
+			函数.call()的参数说明：
+					第一个参数：函数this的值
+					从第二个开始，就是给函数传的参数
+
+			call()
+				函数.call():可改变函数的this指向
+					1. 函数下的一个方法
+					2. 函数调用call这个方法的时候，就直接调用了这个函数
+				参数：
+					第1个参数 
+						改变this指向的那个值
+						如果设置了null或者undefined，
+						函数中的this仍然指向window
+					
+					从第二个参数开始，依次传入的参数，
+					就是给用call来调用的那个函数传入的实参
+
+			函数.apply()
+				作用和call一模一样
+
+				唯一不同的是给函数传参的形式不同
+					apply 第二个参数是数组或类数组
+					call 从第二个参数开始是给函数传的参数
+
+			apply()
+				函数.apply():可改变函数的this指向
+					1. 函数下的一个方法
+					2. 函数调用call这个方法的时候，就直接调用了这个函数
+				参数：
+					第1个参数 
+						改变this指向的那个值
+						如果设置了null或者undefined，
+						函数中的this仍然指向window
+					
+					第二参数是一个数组或类数组
+					数组中依次的每一项就是传入的实参
+					数组里面的每一项对应调用函数的形参
+
+
+			this的值是一个对象，如果改成是简单值，内部会调用值对应类型的函数转成对象
+		3、出一个错误
+			throw new Error()
+		4、焦点事件会在页面元素获取和失去焦点触发
+			获取焦点：
+				1. 点击获取
+				2. tab键获取焦点
+				3. 方法获取焦点
+					元素.focus();
+
+			onfocus
+				获取焦点时触发的事件 
+
+			onblur
+				失去焦点时触发的事件 
+		5、使用键盘会触发键盘事件
+			onkeydown
+				按下键盘任意键触发 
+				按下不松开，会一直触发		
+			onkeyup
+				释放键盘上键时触发
+			ev.keyCode
+				键盘上键对应的的编码	
+			altKey、ctrlKey、shiftKey  按着相对应的键，对应的值就为true，否则为fasle
+
+8.04
+	笔记	
+		1、添加删除class名字
+			function addClass(element,newClass){
+				var classNames = element.className.split(" ");
+				// 如果新增的class在元素class中已经存在，没必要再添加
+				if(classNames.indexOf(newClass) !== -1){
+					return;
+				}	
+				element.className += ' ' + newClass;	
+			}
+
+			function removeClass(element,removeClass){
+				var classNames = element.className.split(" ");
+				for( var i = 0; i < classNames.length; i++ ){
+					// i 0 1
+					if(classNames[i] === removeClass){
+						classNames.splice(i,1);
+						i--;
+					}
+				}
+				element.className = classNames.join(" ");
+			}
+			// 有class去掉。没class加上 toggle
+			function toggleClass(element,newClass){
+				var classNames = element.className.split(" ");
+				if(classNames.indexOf(newClass) !== -1){
+					removeClass(element,newClass);
+					return false;
+				}else{
+					addClass(element,newClass)
+					return true;
+				}
+			}
+			// 判断一个元素是否包含一个class
+			function containsClass(element,isClass){
+				var classNames = element.className.split(" ");	
+				if(classNames.indexOf(isClass) !== -1){
+					return true;
+				}
+				return false;
+			}
+
+8.22
+ 	笔记
+ 		1、严格模式
+			"use strict"
+
+			全局变量显式声明
+
+			直接调用函数this指向undefined
+			delete删除全局变量会报错
+			对象不能有重名的属性
+			函数不能有重名的参数
+			对arguments做了限制
+				不允许对arguments赋值
+				arguments不再追踪参数的变化
+			函数必须声明在顶层
+			新增了保留字
+				implements, interface, let, package, private, protected, public, static, yield
+
+			/*
+			       *
+			       * 严格模式 "strict mode"
+			       *
+			       * 使用严格模式可以消除js语法上不合理，不严谨，减少怪异的行为
+			       *
+			       * 开启严格模式：
+			       * 1. 在一对script标签的开始使用字符串 "use strict"
+			       * 2. 在函数中使用字符串 'use strict'
+			       *
+			       * 在严格模式下，使用以下的注意点：
+			       *
+			       * 1. 直接调用函数，函数中的this就不指向window了，而是undefined
+			       * 2. 使用call第一参数改变this指向，在es5中指向是window，在严格模式下执行传入的第一个参数
+			       * 3. 形参不能重复声明，重复声明会报错
+			       * 4. arguments不能追踪变化
+			       * 5. 不允许对arguments赋值
+			       * 5. 声明变量必须显式的使用var来声明变量，不是用var回报错
+			       * 6. 试图用delete删除变量会报错
+			       * 7. 函数声明必须在顶层或函数作用域中，在非函数的代码块中会报错
+			       *
+			       * 参考：http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html
+			       * https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+			* */			
+		2、箭头函数
+			函数形式：
+				let 变量 = (形参,形参) => {return 形参-形参};
+				let 变量 = (形参,形参) => 形参*形参;
+				let 变量 = 形参 => 形参;
+				即：大括号可有可无，小括号有两个以上形参时，需加上。
+			1. 函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+			2. 不可以使用arguments对象，该对象在函数体内不存在
+
+			rest参数
+				...变量名
+				
+				用于获取函数的多余参数，这样就不需要使用arguments对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
+
+		3、变量解构赋值
+			let obj = {
+				a:1,
+				b:2,
+				c:3,
+				miaov:"ketang"
+			}
+			let {miaov=1} = obj; 
+			console.log(miaov);//结果为ketang
+
+			// 数组的结构赋值
+			let arr =[1,2,3,4];
+			// 设置默认值
+			let [a,b,c,d,e='miaov']  = arr;
+			console.log(e);//结果为miaov
+
+			即：如果变量原来就有值，不能改变其值；若没有，则给变量设置默认值
+
+		4、...数组
+		 		展开运算符
+			let arr1 = [1,2,3];
+			let arr2 = [4,5,6];
+			let arr3 = [...arr1,...arr2];
+			console.log(arr3);
+			//求数组的最大值
+			var arr = [3,6,40,0,2,8,23,1];
+			console.log(Math.max(...arr));
+
+		5、Object.defineProperty():会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象
+		Object.defineProperty(obj, prop, descriptor)
+		
+		var obj = {
+			a:1
+		};
+		Object.defineProperty(obj,'ketang',{
+			value:'123',    // 属性对应的值 默认为undefined
+			writable:true,	// 是否可被改写，true，可以，false不可以，默认为false
+			enumerable: true // 是否可被枚举 true，可以，false不可以，默认为false	
+			configurable:true  // 是否可被删除，true可以，false不可以，默认为false
+		});
+
+8.23 
+    笔记
+        1、暂时性死区
+            在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+
+            不声明变量n，直接打印，会报错，解决：
+            window.n;//不会报错
+            type of n
+
+            判断变量有没有定义：加window/type of
+            if(type of n!='undefined'){}
+            console.log(type of m)
+            let m=10;
+            //报错，一定要在声明之后打印，let会锁死区域，先使用type of变量就出错，加window不会；
+
+        2、绑定this：
+            改变函数this指向
+                函数.call()
+                函数.apply（）
+                    立马执行
+
+            不执行函数改this：
+
+            函数.bind()
+            返回新的函数，源码？？？polyfill？？？
+
+                function bind(fn,othis){
+                    function tab(){
+                        fn.apply(othis)
+                    }
+                    return tab
+                }
+                function fn(){}
+                var f=bind(fn,[12,2])
+                f()
+        3、catch语句：
+            try {
+        		代码块
+        	}catch(error){
+        		console.log(error)
+        	}
+
+         有一段代码，报错了，不影响后续代码执行
+
+        4、字符串扩展：
+            repeat（） 返回新的字符串,表示将原字符串重复n次，不能为负的参数
+
+            miaov = miaov.repeat(3) -1-0-1特殊，不能为负的参数
+
+            includes（）**返回布尔值，表示是否找到了参数字符串
+
+        5、数值扩展
+            Number.parseInt(), Number.parseFloat()
+
+            ES6 将全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变。这样做的目的，是逐步减少全局性方法，使得语言逐步**模块化**。
+            parseInt(0.1)
+            模块化
+
+        6、console.dir()可以显示一个对象所有的属性和方法。
+            Number.parseInt()
+
+        7、for of 循环 遍历器接口 
+            不要用for of 循环对象，直接循环出value值，
+            for in循环的是key值
+
+        8、数组.includes() 能够找到NAN
+            方法返回一个布尔值，表示某个数组是否包含给定的值
+            indexOf方法，它内部使用严格相等运算符（===）进行判断，这会导致对NaN的误判。
+        
+        9、对象的扩展：
+            简洁表示方法：
+                ES6 允许直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁
+                    obj{
+                        a:1,
+                        miaov,
+                        fn(){
+                        console.log(123)
+                        }
+                    }
+                key值动态计算：
+                     obj{
+                        [username]:username
+                    }//key值为字符串
+                    
+            object.is() 判断两个值是不是相同的
+                Object.is(1,1)
+                Object.is(NAN,NAN)//相同
+                Object.is(0,-0)//不相同
+                console.log(0==-0)
+                console.log(0===-0)
+
+            ES5 比较两个值是否相等，只有两个运算符：相等运算符（==）和严格相等运算符（===）。它们都有缺点，前者会自动转换数据类型，后者的NaN不等于自身，以及+0等于-0。JavaScript 缺乏一种运算，在所有环境中，只要两个值是一样的，它们就应该相等。
+
+            ES6 提出“Same-value equality”（同值相等）算法，用来解决这个问题。Object.is就是部署这个算法的新方法。它用来比较两个值是否严格相等，与严格比较运算符（===）的行为基本一致。
+
+            object.assign()方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
+
+            多个参数中，只设置其中一个时，
+            当一个方法，参数可填写，有多个参数是可选的，并且没有顺序，通常是传一个对象进去，
+            合并对象功能：把多个对象属性合并到第一个对象上，返回值目标对象
+            如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+
+                var target = { a: 1 };
+                var source1 = { b: 2 };
+                var source2 = { c: 3 };
+                
+                Object.assign(target, source1, source2);
+                target // {a:1, b:2, c:3}
+                
+                typeof Object.assign(2) // "object"如果该参数不是对象，则会先转成对象，然后返回。
+                Object.assign(undefined) // 报错
+                Object.assign(null) // 报错。由于undefined和null无法转成对象，所以如果它们作为参数，就会报错。
+            //复制一个对象
+
+        10、浅克隆
+            如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。这个对象的任何变化，都会反映到目标对象上面。
+            
+            var obj1 = {
+                a: {b: 1}，
+                c:[1,2,3,4]
+                };
+            var obj2 = Object.assign({}, obj1);
+            
+            obj1.a.b = 2;
+            obj1.a.c.push(100000);
+            obj2.a.b // 2
+            
+8.24
+	笔记
+		\d 代表一个数字 所有的数字 \d/g  \d+/g + 限定符 至少出现一次
+		\D 代表非数字
+		\w 代表字母、数字
+		\s 代表空格
+		\n 代表换行符
+		\' 代表一个单引号
+		\" 代表一个双引号
+		\t 制表符，代表一个tab
+		+ 限定符 至少出现一次
+		* 限定符 至少出现0次
+		? 限定符 至少出现0~1次
+		{n} 限定符 重复出现n次
+		{n,} 限定符 至少出现n次,不限制最高次数
+		{n,m} 限定符 至少出现n次,至多出现m次
+		i 修饰符,忽略大小写  ignore
+		g 修饰符,全局匹配 global
+			
+		str.match(str|re)
+			作用
+				检索指定字符串或正则表达式匹配到的字符串
+			语法
+				Array|Null string.match(string|regexObj)
+			参数
+				string|regexObj
+				字符串或正则表达式
+			返回值
+				返回数组---把匹配到的字符串放在数组中
+				没有检索到返回null
+
+		参数为regexObj时
+			带有g，全局匹配，返回的是匹配到的字符串组成的数组
+			不带g，匹配一个字符串，并且数组会有index和input属性
+
+			index 是匹配到的字符的位置
+			input 就是要检索的字符串
+		
+		re.test(str)
+			作用
+				用来检测指定的字符串是否符合正则的规则
+			语法
+				boolean regexObj.test(string)
+			参数
+				字符串
+
+			返回值
+				符合规则返回true，不符合返回false
+				
+		str.replace(string|re)
+			作用
+				用来替换字符串中的某些符合规则的字符
+			语法
+				String string.replace(string|regexObj,string|function)
+			参数
+				第一个参数：字符串或正则表达式
+				第二个参数：字符串或函数
+			返回值
+				替换后新字符串
+
+		str.search(string|re)
+			作用
+				检索指定字符串或正则表达式匹配到的字符串首次出现的位置
+			语法
+				number string.search(string|regexObj)
+			参数
+				string|regexObj
+				字符串或正则表达式
+
+			返回值
+				匹配到的字符串首次出现的位置
+				没有检索到返回-1
+
+		indexOf只能接收字符串作为参数
+
+		| 或
+
+		[] 范围
+			[字符]
+			匹配到中括号中任意一个字符，有或的意思
+		[1-9]
+		[5-9]
+		[a-zA-Z]
+		[1-40] 的意思是匹配到1或2或3或4或0 任意一个字符
+
+		^ 写在中括号开始，排除任意一个字符
+		^ 写在/^/中,代表字符串的开始
+		$ 代表字符串的结尾		
+
+8.28
+	笔记
+		1、面向对象编程 oop,Object Oriented Programming，OOP，面向对象程序设计
+
+			方法：构造函数也就是一个普通的函数，作为构造函数，约定：
+					作为构造函数，首字母大写
+
+				构造函数：通过这个函数创建对象
+
+				对象 普通对象 {}
+
+				new 操作符
+					调用函数，创建对象
+
+					步骤：
+						1. 会在构造函数的内部创建一个空对象
+						2. 函数内部的this指向这个空对象（this就代表了这个对象）
+						3. 执行函数，添加属性
+						4. 返回这个对象
+
+					显式的使用return
+						return后后面的值是一个简单类型的值，还return的是内部创建的对象
+						return后后面的值是一个对象类型的值，返回的是return后面的这个对象
+				
+				构造函数的首字母大写是以约定，自己写的或看到别人写，使用new来调用；希望把一个函数作为构造函数，尽可能的首字母大写	
+
+		2、把一类对象共享的属性和方法，放在原型上
+				
+			prototype  原型
+				每一个函数都拥有一个属性叫prototype，就是原型
+				通过这个函数创建出来的一类对象拥有的共享的属性和方法，都放在放在这个函数的原型上
+
+				原型对应的值是一个对象（默认是通过Object创建出来的）
+
+				通过一个构造函数创建的对象和构造的原型有关系呢？？？
+
+				__proto__
+					每一个对象上都有办一个__proto__属性，值指向的是创建这个对象的构造函数的原型
+
+				原型链
+					一个对象查找一个属性的一套规则
+
+					当查找一个属性，先从自身查找，继续找构造函数的原型，
+					直到找到Object.prototype为止，没找到返回undefined
+					
+		3、constructor
+
+			函数的原型是一个对象，对象初始的时候有一个属性为constructor
+
+				constructor的值指向的是拥有这个原型的函数						
+				
+8.29
+	笔记
+		1、instanceOf
+			二元运算符
+				对象  instanceOf 函数
+
+				描述有问题：
+						简单理解：运算一下这个函数是不是对象的构造函数
+					是 结果为true
+					不是 结果为false
+				正确描述（待定）：
+					运算一下函数的原型是不是在这这个对象的原型链上
+
+		2、对象.hasOwnProperty(属性名)
+			判断属性名是不是对象自身的属性
+
+			并不会找原型链上的
+
+		3、对象.hasOwnProperty(属性名)
+			判断属性名是不是对象自身的属性
+
+			并不会找原型链上的
+
+
+			for in 遍历一个对象上的属性
+				去找原型链上允许被遍历的属性
+
+			当只遍历自身属性加上 hasOwnProperty		
+
+		4、判断类型
+			typeof 
+				数组和对象不能分辨出来
+			constructor
+				容易被改写
+			instanceof
+				找原型链上的函数	
+			Object.prototype.toString
+				几乎完美		

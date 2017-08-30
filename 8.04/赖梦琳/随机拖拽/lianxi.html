@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="./css/reset.css"/>
+        <link rel="stylesheet" href="./css/style.css"/>
+		
+	</head>
+
+	<body>
+		<div class="wrap clearfix">
+			<div class="btn fl">随机</div>
+			<div class="content fl">
+			</div>
+		</div>
+		<script src="../utils.js"></script>
+		<script>
+			var content = document.getElementsByClassName('content')[0];
+			var divs = content.getElementsByTagName('div');
+			var n = -1;
+			var obj = [
+				{
+					className:'box1',
+					tops:0,
+					left:0,
+					img: 'url(images/1.png)'
+				},
+				{
+					className:'box2',
+					tops:0,
+					left:120,
+					img: 'url(images/2.png)'
+				},
+				{
+					className:'box3',
+					tops:0,
+					left:240,
+					img: 'url(images/3.png)'
+				},
+				{
+					className:'box4',
+					tops:0,
+					left:360,
+					img: 'url(images/4.png)'
+				},
+				{
+					className:'box5',
+					tops:120,
+					left:0,
+					img: 'url(images/5.png)'
+				},
+				{
+					className:'box6',
+					tops:120,
+					left:120,
+					img: 'url(images/6.png)'
+				},
+				{
+					className:'box7',
+					tops:120,
+					left:240,
+					img: 'url(images/7.png)'
+				},
+				{
+					className:'box8',
+					tops:120,
+					left:360,
+					img: 'url(images/8.png)'
+				},
+				{
+					className:'box9',
+					tops:240,
+					left:0,
+					img: 'url(images/9.png)'
+				},
+				{
+					className:'box10',
+					tops:240,
+					left:120,
+					img: 'url(images/10.png)'
+				},
+				{
+					className:'box11',
+					tops:240,
+					left:240,
+					img: 'url(images/11.png)'
+				},
+				{
+					className:'box12',
+					tops:240,
+					left:360,
+					img: 'url(images/12.png)'
+				}
+			];
+			var html = obj.map(function (item){
+			return `
+					<div style="top:${item.tops}px;left: ${item.left}px;background: ${item.img}"></div>
+				`
+			}).join('');
+			content.innerHTML += html;
+			divsMove();
+			var btn = document.getElementsByClassName('btn')[0];
+			var arr=Array.from(divs);
+			btn.onclick = function (){
+				arr = arr.sort(function (a,b){
+					return Math.random()-0.5;
+				})
+				for(var i=0;i<arr.length;i++){
+					mTween(arr[i],{top:obj[i].tops,left:obj[i].left},300,"linear");
+				}
+				divsMove();
+			};
+			function divsMove(){
+				for( var i = 0; i < divs.length; i++ ){
+					divs[i].index = i;
+					divs[i].onmousedown = function (ev){
+						var disX = ev.clientX - divs[this.index].offsetLeft;	
+						var disY = ev.clientY - divs[this.index].offsetTop;	
+						var maxX = content.clientWidth - divs[this.index].clientWidth;
+						var maxY = content.clientHeight - divs[this.index].clientHeight;
+						var n = this.index;
+						var zIndex = 1;
+						document.onmousemove  =function (ev){
+							var l = ev.clientX - disX;
+							var t = ev.clientY - disY;
+							if(l < 0) {
+								l = 0;
+							}
+							if(t < 0){
+								t = 0;
+							}
+							if(l >= maxX){
+								l = maxX;
+							}
+							if(t >= maxY){
+								t = maxY;
+							}
+							divs[n].style.zIndex = zIndex;
+							divs[n].style.left = l + 'px';
+							divs[n].style.top = t + 'px';
+						document.onmouseup = function (){
+							document.onmousemove = null;
+							var arr2 =[];
+							for( var i = 0; i < divs.length; i++ ){
+								if(i == n){
+									continue;
+								}
+								if(collision(divs[n],divs[i])){
+									arr2.push(divs[i]);
+								}else{
+									var c=arr.indexOf(divs[i]);
+									mTween(divs[i],{top:obj[c].tops,left:obj[c].left},300)
+								}
+							}
+							var boxX = divs[n].offsetLeft + divs[n].offsetWidth/2;
+							var boxY = divs[n].offsetTop + divs[n].offsetHeight/2;
+							var min = 99999999;
+							var oDiv = null;
+							for( var i = 0; i < arr2.length; i++ ){
+								var x = arr2[i].offsetLeft + arr2[i].offsetWidth/2;
+								var y = arr2[i].offsetTop + arr2[i].offsetHeight/2;
+								var chaX = x - boxX;
+								var chaY = y - boxY;
+								var xiebian = chaX * chaX + chaY*chaY;
+								if(min >= xiebian){
+									min = xiebian;
+									oDiv = arr2[i];
+								}
+							}
+							if(oDiv){
+								var a = arr.indexOf(divs[n]);
+								var b = arr.indexOf(oDiv);
+								oDiv.style.zIndex = zIndex;
+								mTween(divs[n],{top:obj[b].tops,left:obj[b].left},300);
+								mTween(oDiv,{top:obj[a].tops,left:obj[a].left},300,"linear",function (){
+										arr[a]=[arr[b],arr[b]=arr[a]][0];
+								})
+							}
+						};
+						}
+						ev.preventDefault();
+					};
+				}	
+			};
+		</script>
+	</body>
+</html>

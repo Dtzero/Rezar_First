@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+	</head>
+
+	<body>
+		<script>
+			
+			
+			console.log(window.n);  // 不报错
+			console.log( typeof n );
+
+			//var n;  // 排除定义未赋值 
+
+			// 判断变量有没有定义
+			if( typeof n !== 'undefined' ){
+				console.log('定义了');
+			}else{
+				console.log("没定义");
+			}
+
+			// 总之，在代码块内，使用let命令声明变量之前，该变量都是不可用的。这在语法上，称为“暂时性死区”（temporal dead zone，简称 TDZ）。
+
+			console.log(typeof m);//报错
+			let m = 10;
+
+
+		</script>
+	</body>
+</html>

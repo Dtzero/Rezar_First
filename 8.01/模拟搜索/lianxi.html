@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="./css/reset.css"/>
+		<link rel="stylesheet" href="./css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div class="clearfix">
+					<div class="search fl"></div>
+					<span class="fl">GO</span>
+				</div>
+				<ul class="list">
+					<li>第七个读者</li>
+					<li>心理罪 画像</li>
+					<li>心里罪 城市之光</li>
+					<li>心理罪 教化场</li>
+					<li>地球往事</li>
+				</ul>
+			</div>
+		</div>
+		<script src="./utils.js"></script>
+		<script>
+			var search = $('.search')[0];
+			var list = $('.list')[0];
+			var lis = $('li');
+			search.onclick = function (){
+				list.style.display = 'block';
+				search.style.background = '#fff url(./images/s.png) no-repeat 8px 6px';
+				search.style.border = '1px solid #fd635e';
+			};
+			for( var i = 0; i < lis.length; i++ ){
+				lis[i].onclick = function (){
+					search.innerHTML = this.innerHTML;
+					search.style.background =  '#d9d9e2 url(./images/s1.png) no-repeat 8px 6px';
+					search.style.border = '';
+					list.style.display = 'none';
+				};
+			}
+		</script>
+	</body>
+</html>

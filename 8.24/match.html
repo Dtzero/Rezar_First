@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			var str = 'miaov123ke34tan2g123' 
+			var arr = str.split('');
+			var newArr = [];
+			for( var i = 0; i < arr.length; i++ ){
+				if(!isNaN(Number(arr[i]))){
+					newArr.push(arr[i]);
+				}
+			}
+			console.log(newArr);
+
+			var newArr2 = [];
+			for( var i = 0; i < arr.length; i++ ){
+				if(!isNaN(Number(arr[i])) && !isNaN(Number(arr[i+1])) && !isNaN(Number(arr[i+2]))){
+					newArr2.push(arr[i]+arr[i+1]+arr[i+2]);
+				}else if(isNaN(Number(arr[i-1])) && !isNaN(Number(arr[i])) && !isNaN(Number(arr[i+1]))){
+					newArr2.push(arr[i]+arr[i+1]);
+				}else if(isNaN(Number(arr[i-1])) && !isNaN(Number(arr[i])) && isNaN(Number(arr[i+1]))){
+					newArr2.push(arr[i]);
+				}
+			}
+			console.log(newArr2);
+
+			var newArr3 = [];
+			var n = '';
+			for( var i = 0; i < arr.length; i++ ){
+				if(!isNaN(Number(arr[i]))){
+					n += Number(arr[i])
+				}else{
+					if(n){
+						newArr3.push(n);
+						n = '';
+					}
+				}
+			}
+			if(n){
+				newArr3.push(n);
+			}
+			console.log(newArr3);
+
+			//正则
+			console.log(str.match(/\d/g));
+			console.log(str.match(/\d+/g));
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<link rel="stylesheet" href="./css/reset.css"/>
+		<link rel="stylesheet" href="./css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="photo fl">
+				<p id="box"></p>
+			</div>
+			<div class="bigPhoto fl"></div>
+		</div>
+		<script>
+			var disX = 0, disY = 0;
+			var photo = document.getElementsByClassName('photo')[0];
+			var bigPhoto = document.getElementsByClassName('bigPhoto')[0];
+			var box = document.getElementById('box');
+
+			photo.onmouseover = function (ev){
+				box.style.display = 'block';
+				bigPhoto.style.display = 'block';
+				box.style.left = ev.clientX - 186 + 'px';
+				box.style.top = ev.clientY - 195 + 'px';
+				disX = ev.clientX - box.offsetLeft;
+				disY = ev.clientY - box.offsetTop;
+				var maxX = photo.clientWidth - box.clientWidth;
+				var maxY = photo.clientHeight - box.clientHeight;
+				photo.onmousemove = function (ev){
+					var l = ev.clientX - disX;
+					var t = ev.clientY - disY;
+					if(l < 0) {
+						l = 0;
+					}
+					if(t < 0){
+						t = 0;
+					}
+
+					if(l >= maxX){
+						l = maxX;
+					}
+					if(t >= maxY){
+						t = maxY;
+					}
+					box.style.left = l + 'px';
+					box.style.top = t + 'px';
+					bigPhoto.style.backgroundPositionX = -l*2 + 'px';
+					bigPhoto.style.backgroundPositionY = -t*2 + 'px';
+				};
+				photo.onmouseout = function (){
+					box.style.display = 'none';	
+					bigPhoto.style.display = 'none';
+				};
+			};
+		</script>
+	</body>
+</html>

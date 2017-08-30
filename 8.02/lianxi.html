@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<link rel="stylesheet" href="./css/reset.css"/>
+		<style>
+			#box {
+				width: 50px;
+				height: 500px;
+				border: 1px solid #000;
+				position: relative;
+			}
+			#bar {
+				width: 100%;
+				height: 50px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: green;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<div id="box">
+			<div id="bar"></div>
+		</div>
+		<script>
+			function mousewheel(element,upFn,downFn){
+				element.onmousewheel = fn;
+				if(element.addEventListener){
+					element.addEventListener("DOMMouseScroll",fn);
+				}
+				function fn(ev){
+					var e = ev || event;
+					var direction = true;
+					if(e.wheelDelta){
+						direction = e.wheelDelta > 0 ? true : false;
+					}
+					if(e.detail){
+						direction = e.detail < 0 ? true : false;
+					}
+					if(direction){
+						upFn(e);
+					}else{
+						downFn(e);
+					}
+				};	
+			}
+
+			mousewheel(document,function (e){
+				if(bar.offsetTop == 0){
+					return;
+				}
+				bar.style.top = bar.offsetTop - 5 + 'px';
+				e.stopPropagation();
+				e.preventDefault();
+			},function (e){
+				if(bar.offsetTop == 450){
+					return;
+				}
+				bar.style.top = bar.offsetTop + 5 + 'px';
+				e.stopPropagation();
+				e.preventDefault();	
+			})
+
+			bar.onmousedown = function (ev){
+				bar.onmousemove = function (ev){
+					if(bar.offsetTop == 450){
+						return;
+					}
+					bar.style.top = bar.offsetTop + 5 + 'px';
+					ev.stopPropagation();
+					ev.preventDefault();
+				};
+				bar.onmouseup = function (ev){
+					bar.onmousemove = null;
+				};
+			};
+
+			box.onclick = function (ev){
+				if(ev.clientY > bar.offsetTop){
+					if(bar.offsetTop == 450){
+						return;
+					}
+					bar.style.top = bar.offsetTop + 5 + 'px';
+					ev.stopPropagation();
+					ev.preventDefault();
+				}else{
+					if(bar.offsetTop == 0){
+						return;
+					}
+					bar.style.top = bar.offsetTop - 5 + 'px';
+					e.stopPropagation();
+					e.preventDefault();
+				}
+			};
+		</script>
+	</body>
+</html>

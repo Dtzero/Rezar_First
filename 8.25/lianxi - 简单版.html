@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<input type="text" id="email" />
+		<p id="op">没有输入邮箱</p>
+		<script>
+			let re = /^\w+@[0-9a-z]{2,5}(\.[a-z]{2,3}){1,3}$/i;
+			email.oninput = function (){
+				if(re.test(this.value)){
+					op.innerHTML = '正确';
+				}else{
+					op.innerHTML = '错误';
+				}
+			};
+		</script>
+	</body>
+</html>

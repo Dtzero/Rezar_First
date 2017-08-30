@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<link rel="stylesheet" href="./css/reset.css"/>
+		<link rel="stylesheet" href="./css/style.css"/>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="top clearfix">
+				<p class="fl">妙味云盘</p>
+				<i>新建文件夹成功！</i>
+				<span>删除文件成功！</span>
+				<b>请选择文件！</b>
+				<ul class="fr clearfix">
+					<li class="fl li1"></li>
+					<li class="fl li2"></li>
+					<li class="fl li3"></li>
+					<li class="fl li4"></li>
+				</ul>
+			</div>
+			<div class="second clearfix">
+				<ul class="list fl clearfix">
+					<li class="fl li1">下载</li>
+					<li class="fl li2">分享</li>
+					<li class="fl li3">移动到</li>
+					<li class="fl li4">重命名</li>
+					<li class="fl li5">删除</li>
+					<li class="fl li6">新建文件夹</li>
+					<li class="fl li7"></li>
+				</ul>
+				<i class="fr clearfix"></i>
+				<ul class="paixu">
+					<li>按时间排序</li>
+					<li>按字母排序</li>
+					<li>显示缩略图</li>
+				</ul>
+				<p class="fr clearfix"></p>
+			</div>
+			<div class="content clearfix">
+				<div class="left fl">
+				</div>
+				<div class="right fl">
+					<div class="title clearfix">
+						<span class="kuang fl"></span>
+						<p class="titleP fl"></p>
+					</div>
+					<div class="wenjian">
+						<div class="shu clearfix"></div>
+					</div>
+				</div>
+			</div>
+			<div id="tanbox">
+				<div class="conf">
+					<i class="close-ico">X</i>
+					<h3 class="conf-title">删除文件</h3>
+					<div class="conf-content">
+						确定要删除文件吗？
+					</div>
+					<div class="conf-btn">
+						<a href="javascript:;">确定</a>
+						<a href="javascript:;">取消</a>
+					</div>
+				</div>
+			</div>
+			<div id="tanbox2">
+				<div class="conf2">
+					<i class="close-ico2">X</i>
+					<h3 class="conf-title2">选择储存的位置</h3>
+					<div class="conf-content2">
+					</div>
+					<div class="conf-btn2">
+						<a href="javascript:;">确定</a>
+						<a href="javascript:;">取消</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="./js/utils.js"></script>
+		<script src="./js/data.js"></script>
+		<script>
+			//------------------------左侧生成结构------------------
+			function getChildsById(id){
+				var arr = [];
+				for(var attr in data){
+					if(data[attr].pid == id){
+						arr.push(data[attr])
+					}
+				}
+				return arr;
+			}
+			var initId = -1;
+			function render(id){
+				var arr = getChildsById(id);
+				var html = '';
+				if(arr.length){
+					html += '<ul>';
+		            arr.forEach(function (item){
+		            	html += `<li data-id="${item.id}" data-pid="${item.pid}" class="${getChildsById(item.id) != '' ? 'you' : '' }"><i>${item.title}</i>`;	
+		            	html += render(item.id);
+		            	html += `</li>`;
+		            })
+		            html += '</ul>';
+	        	}
+	        	return html;
+	        }
+	        var left = $(".left")[0];
+	        var titleHtml = '';
+       		left.innerHTML = render(initId);
+       		//--------------------生成移动到结构-------------------
+       		function render3(id){
+				var arr = getChildsById(id);
+				var html = '';
+				if(arr.length){
+					html += '<ul>';
+		            arr.forEach(function (item){
+		            	html += `<li data-id="${item.id}" data-pid="${item.pid}" class="${getChildsById(item.id) != '' ? 'xia' : '' }"><i>${item.title}</i>`;	
+		            	html += render3(item.id);
+		            	html += `</li>`;
+		            })
+		            html += '</ul>';
+	        	}
+	        	return html;
+	        }
+       		var confContent2 = $('.conf-content2')[0];
+       		confContent2.innerHTML = render3(initId);
+       		//------------------------------左侧点击--------------------------------
+       		var lis = left.getElementsByTagName("li");
+       		var shu = $(".shu")[0];
+       		var titleP = $('.titleP')[0];
+       		var wenjian = $('.wenjian')[0];
+       		var dls = '';
+       		var titlePa = '';
+       		var n = 0;
+       		var kuang = $('.kuang')[0];
+       		function kuangF(){
+				kuang.innerHTML = '';
+	       		kuang.style.background = '#fff';
+	       		kuang.isChecked = false;	
+			};
+			function kuangT(){
+				kuang.innerHTML = '√';
+	       		kuang.style.background = '#55addc';
+	       		kuang.style.color = '#fff';
+	       		kuang.isChecked = true;	
+			};
+			var inputFocus = '';
+			tree();
+       		function tree(){
+       			for( var i = 0; i < lis.length; i++ ){
+	       			lis[i].index = i;
+	       			lis[i].isChecked = false;
+	       			lis[i].onclick = function (ev){
+	       				if(inputFocus == 1){
+	       					return;
+	       				}
+	       				n = 0;
+	       				var treeId = this.dataset.id;
+	       				var ptreeId = this.parentNode.parentNode.dataset.id;
+	       				kuangF();
+	       				if(this.className != '' && getChildsById(treeId) != ''){
+	       					wenjian.style.background = '#f5f8fa';
+	       					if(this.isChecked){
+		       					this.className = "you";
+		       					this.isChecked = false;
+		       					var uls = lis[this.index].getElementsByTagName("ul");
+		       					for( var j = 0; j < uls.length; j++ ){
+		       						uls[j].style.display = 'none';
+		       					}
+		       					var childLis = lis[this.index].getElementsByTagName("li");
+		       					for( var j = 0; j < childLis.length; j++ ){
+		       						if(childLis[j].className == 'xia'){
+		       							childLis[j].className = "you";
+		       							childLis[j].isChecked = false;
+		       						}
+		       					}
+		       					if(this.parentNode.parentNode.nodeName != 'DIV'){
+		       						shu.style.display = 'block';
+			       					shu.innerHTML = render2(ptreeId);
+			       					titleP.innerHTML = createNavHtml(ptreeId);
+						       		dls = document.getElementsByTagName('dl');
+		       						rightOlick(dls);
+		       						titlePa = $('a',titleP);
+		       						caidan(titlePa);
+		       						positionElement(ptreeId);
+		       					}else{
+		       						shu.style.display = 'none';
+			       					shu.innerHTML = '';
+						       		titleP.innerHTML = '';
+						       		titlePa = $('a',titleP);
+		       						caidan(titlePa);
+		       						positionElement(treeId);
+		       					}
+		       				}else{
+		       					this.className = "xia";
+		       					this.isChecked = true;
+		       					if(this.children[1].nodeName == 'UL'){
+		       						var nextUl = this.getElementsByTagName('ul')[0];
+		       						nextUl.style.display = 'block';
+		       					}
+		       					shu.style.display = 'block';
+		       					shu.innerHTML = render2(treeId);
+		       					titleP.innerHTML = createNavHtml(treeId);
+		       					dls = document.getElementsByTagName('dl');
+		       					rightOlick(dls);
+		       					titlePa = $('a',titleP);
+		       					caidan(titlePa);
+		       					positionElement(treeId);
+		       				}
+	       				}else{
+	       					shu.style.display = 'none';
+	       					wenjian.style.background = 'url(./images/wu.png) no-repeat';
+	       					titleP.innerHTML = createNavHtml(treeId);
+	       					titlePa = $('a',titleP);
+	       					caidan(titlePa);
+	       					positionElement(treeId);
+	       				}
+	       				ev.stopPropagation();
+	       			};
+	       		}	
+       		};
+       		//-----------------右侧生成结构-----------------------
+       		function getDateById(id){
+				if(data[id]){
+					return data[id]
+				}
+				return null;
+			}
+			function render2(id){
+				var arr = getChildsById(id);
+				var html = '';
+				if(arr.length){
+		            arr.forEach(function (item){
+		            	html += `<div class="editor fl"><dl data-dlpid="${item.pid}" data-dlid="${item.id}"><dt><span class="xuan"></span><img src="images/bigwenjian.png"></dt><dd><input type="text" value="${item.title}"/></dd>`;	
+		            	html += `</dl></div>`;
+		            })
+	        	}
+	        	return html;
+	        }
+	        shu.innerHTML = render2(0);
+	        dls = document.getElementsByTagName('dl');
+	        rightOlick(dls)
+       		//-----------------进入文件--------------------------
+       		function rightOlick(dls){
+       			for( var i = 0; i < dls.length; i++ ){
+	       			dls[i].index = i;
+	       			dls[i].onclick = function (ev){
+	       				if(inputFocus == 1){
+	       					return;
+	       				}
+	       				n = 0;
+	       				var dlId = this.dataset.dlid;
+       					titleP.innerHTML = createNavHtml(dlId);
+       					for( var j = 0; j < lis.length; j++ ){
+							if(lis[j].dataset.id == dlId){
+								var parentN = lis[j].parentNode;
+								if(parentN.style.display == 'none'){
+								 	parentN.style.display = 'block';
+								 	parentN.parentNode.className = "xia";
+									parentN.parentNode.isChecked = true;
+								}
+								if(getChildsById(lis[j].dataset.id) != ''){
+									lis[j].children[1].style.display = 'block';
+									lis[j].className = "xia";
+									lis[j].isChecked = true;
+									titlePa = $('a',titleP);
+       								caidan(titlePa);
+								}else{
+									titlePa = $('a',titleP);
+       								caidan(titlePa);
+       								positionElement(dlId);
+       								shu.style.display = 'none';
+	       							wenjian.style.background = 'url(./images/wu.png) no-repeat';
+								}								
+							}
+						}
+       					titlePa = $('a',titleP);
+       					caidan(titlePa);
+       					positionElement(dlId);
+       					kuangF();
+       					if(getChildsById(dlId) != ''){
+       						shu.style.display = 'block';
+	       					shu.innerHTML = render2(dlId);
+	       				}else{
+	       					shu.style.display = 'none';
+	       					shu.innerHTML = '';
+	       					wenjian.style.background = 'url(./images/wu.png) no-repeat';
+	       				}
+	       				dls = document.getElementsByTagName('dl');
+       					rightOlick(dls);
+       					ev.stopPropagation();
+	       			}
+	       		}	
+	       		//------------------------------单击-----------------------------
+	   			var spans = document.getElementsByClassName('xuan');
+		        for( var i = 0; i < dls.length; i++ ){
+	       			dls[i].index = i;
+	       			dls[i].onmouseover = function (){
+	       				this.style.background = '#fff';
+						this.style.border = '1px solid #55addc';
+						this.children[0].children[0].style.border = '1px solid #55addc';
+	       			}
+	       			dls[i].onmouseout = function (){
+	       				var span = this.querySelector("span");
+	       				if(!span.isChecked){ 
+							span.innerHTML = '';
+							span.style.border = '1px solid #f1f1f1';
+							this.style.background = '#f1f1f1';
+							this.style.border = '1px solid #f1f1f1';	
+						}	
+	       			}
+		       		spans[i].onclick = function (ev){
+		       			if(inputFocus == 1){
+	       					return;
+	       				}
+		       			if(this.isChecked){
+	       					n--;
+	       					this.innerHTML = '';
+	       					this.isChecked = false;
+	       					this.style.background = '';
+	       					var input = this.parentNode.nextElementSibling.children[0];
+	       					input.blur();
+	       				}else{
+	       					n++;
+	       					this.innerHTML = '√';
+	       					this.isChecked = true;
+	       					this.style.background = '#55addc';
+	       				}
+	       				kuang.isChecked = false;
+	       				if(n == dls.length){
+	       					kuangT();
+	       				}else{
+	       					kuangF();
+	       				}
+	       				ev.stopPropagation();
+	       			}	
+	       		}
+	       		//-------------------多选--------------------------
+	       		kuang.onclick = function (){
+	       			if(inputFocus == 1){
+       					return;
+       				}
+	       			if(shu.style.display != 'none'){
+	       				var spans = shu.getElementsByTagName('span');
+		       			if(kuang.isChecked){
+		       				for( var j = 0; j < spans.length; j++ ){
+		       					spans[j].isChecked = false;
+		       					dls[j].style.background = '#f1f1f1';
+								dls[j].style.border = '1px solid #f1f1f1';
+								spans[j].style.border = '1px solid #f1f1f1';
+		       					spans[j].style.background = '';
+			       				spans[j].innerHTML = '';
+		       				}
+		       				kuangF();
+		       				n = 0;
+		       			}else{
+		       				for( var j = 0; j < spans.length; j++ ){
+		       					spans[j].isChecked = true;
+		       					dls[j].style.background = '#fff';
+								dls[j].style.border = '1px solid #55addc';
+								spans[j].style.border = '1px solid #55addc';
+		       					spans[j].style.background = '#55addc';
+			       				spans[j].innerHTML = '√';
+		       				}
+		       				kuangT();
+		       				n = dls.length;
+		       			}
+	       			}
+	       		}	
+       		}	
+       		//------------------------生成导航栏-----------------------------
+			function getParentsById(id){
+				var arr = [];
+				for(var attr in data){
+					if(data[attr].id == id){
+						arr.push(data[attr]);
+						arr = arr.concat(getParentsById(data[attr].pid));
+						break;
+					}
+				}
+				return arr;
+			}	
+			function createNavHtml(id){
+				var parents = getParentsById(id).reverse();
+				var navHtml = '';
+				if(parents.length){
+					for( var i = 0; i < parents.length-1; i++ ){
+						navHtml += `<a href="javascript:;" id="${parents[i].id}">${parents[i].title}</a>`;
+					}
+					navHtml += `<span data-id="${parents[parents.length-1].id}">${parents[parents.length-1].title}</span>`;
+				}
+				return navHtml;
+			}
+			titleP.innerHTML = createNavHtml(0);
+			//-----------------------面包屑导航点击---------------------------
+			function caidan(titlePa){
+				for( var i = 0; i < titlePa.length; i++ ){
+					titlePa[i].index = i;
+					titlePa[i].onclick = function (){
+						if(inputFocus == 1){
+	       					return;
+	       				}
+						wenjian.style.background = '#f5f8fa';
+						shu.style.display = 'block';
+	       				shu.innerHTML = render2(this.id);
+	       				for( var j = 0; j < lis.length; j++ ){
+							if(lis[j].dataset.id == this.id){
+								var uls = lis[j].getElementsByTagName('ul');
+								for( var x = 0; x < uls.length; x++ ){
+									uls[x].style.display = 'none';
+									uls[x].parentNode.className = "you";
+									uls[x].parentNode.isChecked = true;
+								}
+								lis[j].children[1].style.display = 'block';
+								lis[j].className = "xia";
+								lis[j].isChecked = true;
+							}	
+						}		
+	       				positionElement(this.id);
+	       				titleP.innerHTML = createNavHtml(this.id);
+	       				dls = document.getElementsByTagName('dl');
+	       				rightOlick(dls);
+	       				kuangF();
+	       				titlePa = $('a',titleP);
+	       				caidan(titlePa);
+					};
+				}	
+			};
+			//---------------------框选---------------------------
+			document.onmousedown = function (ev){
+				var newDiv = document.createElement("div");
+				newDiv.className = "box";
+				newDiv.isAppendChild = false;
+				var disX = ev.clientX;
+				var disY = ev.clientY;
+				newDiv.style.left = disX + 'px';
+				newDiv.style.top = disY + 'px';
+				document.onmousemove  =function (ev){
+					if(Math.abs(ev.clientX - disX) > 20 || Math.abs(ev.clientY - disY) > 20){
+						if(!newDiv.isAppendChild){
+							document.body.appendChild(newDiv);
+							newDiv.isAppendChild = true;
+						}
+						newDiv.style.width = Math.abs(ev.clientX - disX) + 'px';
+						newDiv.style.height = Math.abs(ev.clientY - disY) + 'px';
+						newDiv.style.left = Math.min(disX,ev.clientX) + 'px';	
+						newDiv.style.top = Math.min(disY,ev.clientY) + 'px';
+						var spans = shu.getElementsByTagName('span');
+						var arr = [];
+						for( var i = 0; i < dls.length; i++ ){
+							if(collision(newDiv,dls[i])){
+								arr.push(i);
+								dls[i].style.background = '#fff';
+								dls[i].style.border = '1px solid #55addc';
+								spans[i].style.border = '1px solid #55addc';
+								spans[i].isChecked = true;
+			       				spans[i].innerHTML = '√';
+			       				spans[i].style.background = '#55addc';
+							}else{
+								dls[i].style.background = '#f1f1f1';
+								dls[i].style.border = '1px solid #f1f1f1';
+								spans[i].isChecked = false;
+			       				spans[i].innerHTML = '';
+			       				spans[i].style.border = '1px solid #f1f1f1';
+			       				spans[i].style.background = '';
+							}
+							if(arr.length && arr.length == dls.length){
+		      					kuangT();
+		      					n = dls.length;
+		      				}else{
+		      					kuangF();
+		      					n = arr.length;
+		      				}
+						}
+					}
+				};
+				document.onmouseup = function (ev){
+					document.onmousemove = null;
+					newDiv.remove();	
+				}
+				ev.preventDefault();
+			};
+			var second = $('.second')[0];
+			//--------------------------移动到------------------------
+			var tanbox2 = $('#tanbox2');
+			var li3 = $('.li3',second)[0];
+			var topB = $('b',tops)[0];
+			var closeIco2 = document.getElementsByClassName("close-ico2")[0];
+			var confBtn2 = document.getElementsByClassName("conf-btn2")[0];
+			var confBtnA1 = confBtn2.getElementsByTagName("a")[0];
+			var confBtnA2 = confBtn2.getElementsByTagName("a")[1];
+			var newLis = confContent2.getElementsByTagName('li');
+			var obj = [];
+			li3.onclick = function (){
+				if(inputFocus == 1){
+   					return;
+   				}
+				var spans = document.getElementsByClassName('xuan');
+				if(n == 0){
+					topB.style.visibility = 'visible';
+					tiShi(topB);
+					return;
+				}
+				for( var i = 0; i < spans.length; i++ ){
+					if(spans[i].isChecked){
+						tanbox2.style.display = 'block';
+						var input = spans[i].parentNode.nextElementSibling.children[0];
+						var spanId = spans[i].parentNode.parentNode.dataset.dlid;
+						var spanPid = spans[i].parentNode.parentNode.dataset.dlpid;
+						var spanParent = spans[i].parentNode.parentNode;
+						obj.push({
+							'spanId':spanId,
+							'spanPid':spanPid,
+							'spanParent':spanParent,
+							'input':input
+						})
+					}		
+				}
+				for( var j = 0; j < newLis.length; j++ ){
+					newLis[j].index = j;
+					newLis[j].onclick = function (ev){
+						ev.stopPropagation();
+						for( var i = 0; i < obj.length; i++ ){
+							if(this.dataset.id == obj[i].spanId || this.dataset.pid == obj[i].spanId || this.parentNode.parentNode.dataset.pid == obj[i].spanId || this.parentNode.parentNode.parentNode.parentNode.dataset.pid == obj[i].spanId){
+								alert('亲，不能移动到本身元素或子元素下');
+								return;
+							}
+							if(this.dataset.id == obj[i].spanPid){
+								alert('亲，文件已经在此目录下');
+								return;
+							}
+							var reChild = this.children[1];
+							var reThis = this;
+							var value = obj[i].input.value;
+						}	
+						for( var x = 0; x < newLis.length; x++ ){
+							newLis[x].classList.remove('active');
+						}
+						this.classList.add('active');
+						var newLisId = this.dataset.id;
+						confBtnA1.onclick = function (){
+							tanbox2.style.display = 'none';
+							for( var x = 0; x < newLis.length; x++ ){
+								newLis[x].classList.remove('active');
+							}
+							a:for( var i = 0; i < obj.length; i++ ){
+								if(reChild != undefined ){
+									for( var q = 0; q < lis.length; q++ ){
+										if(lis[q].dataset.pid == reThis.dataset.id){
+											var newIs = lis[q].getElementsByTagName('i');
+											for( var c = 0; c < newIs.length; c++ ){
+												if(value == newIs[c].innerHTML){
+											 		alert('亲，部分移动失败，重命名');
+											 		if(obj[i].spanPid > reThis.dataset.id){
+											 			obj.splice(i,1);
+											 		}else{
+											 			obj.splice(n-1,1);
+											 		}
+											 		if(n == 1){
+											 			continue a;
+											 		}else{
+											 			continue;
+											 		}
+												}
+											}
+										}
+									}	
+								}
+								for( var k = 0; k < newLis.length; k++ ){
+									if(newLis[k].dataset.id == obj[i].spanId){
+										var moveLi = newLis[k];	
+										newLis[k].dataset.pid = newLisId;
+										for( var k = 0; k < newLis.length; k++ ){
+											if(newLis[k].dataset.id == newLisId){
+												if(newLis[k].children[1] != undefined){
+													newLis[k].children[1].appendChild(moveLi);
+												}else{
+													var newUl = document.createElement("ul");
+													newLis[k].appendChild(newUl);
+													newUl.appendChild(moveLi);
+												}
+											}	
+										}	
+									}
+								}
+								for( var k = 0; k < lis.length; k++ ){
+									if(lis[k].dataset.id == obj[i].spanId){
+										var moveLi = lis[k];
+										lis[k].dataset.pid = newLisId;
+										for( var k = 0; k < lis.length; k++ ){
+											if(lis[k].dataset.id == newLisId){
+												if(lis[k].children[1] != undefined){
+													lis[k].children[1].appendChild(moveLi);
+												}else{
+													var newUl = document.createElement("ul");
+													lis[k].appendChild(newUl);
+													newUl.appendChild(moveLi);
+												}
+											}
+										}	
+									}
+								}
+								obj[i].spanParent.parentNode.dataset.dlpid = Number(newLisId);
+								data[obj[i].spanId].pid = Number(newLisId);
+								obj[i].spanParent.parentNode.remove();
+								n = n - 1;
+							};	
+							if(shu.innerHTML == ''){
+								wenjian.style.background = 'url(./images/wu.png) no-repeat';
+							};
+							if(n == 0){
+								kuangF();
+							};
+							obj = [];
+						}
+					};
+				}
+				closeIco2.onclick = confBtnA2.onclick = function (){
+					tanbox2.style.display = 'none';
+					obj = [];
+				}
+			};
+			//--------------------------重命名------------------------
+			var li4 = $('.li4',second)[0];
+			var arr2 = [];
+			var newArr = [];
+			li4.onclick = function (){
+				if(inputFocus == 1){
+   					return;
+   				}
+				if(dls.length != 0){
+					if(n == 0){
+						topB.style.visibility = 'visible';
+						tiShi(topB)
+						return;
+					}
+					var spans = document.getElementsByClassName('xuan');
+					for( var i = 0; i < spans.length; i++ ){
+						if(spans[i].isChecked){
+							if(n > 1){
+								alert('亲，不能同时重命名！');
+								return;
+							}
+						}	
+					}		
+					for( var i = 0; i < spans.length; i++ ){
+						if(spans[i].isChecked){
+							var dd = spans[i].parentNode.nextElementSibling;
+							var input = dd.children[0];
+							input.focus();
+							input.select();
+							inputFocus = 1;
+							input.onclick = function (ev){
+								this.focus();	
+								ev.stopPropagation();
+							};
+							var name = input.value;
+							shu.onclick = function (ev){
+								input.onclick = null;
+								if(input.value == ''){
+									input.value = name;
+									input.blur();
+									inputFocus = '';
+									return;
+								}
+								input.blur();
+								inputFocus = '';
+								for(attr in data){
+									if(data[attr].id == dd.parentNode.dataset.dlid){
+										data[attr].title = input.value;
+										for( var i = 0; i < lis.length; i++ ){
+											if(lis[i].dataset.id == dd.parentNode.dataset.dlid){
+												var is = lis[i].getElementsByTagName('i')[0];
+												var ul = lis[i].getElementsByTagName('ul')[0];
+												is.innerHTML = input.value;
+												parents(dd.parentNode.dataset.dlid);
+												positionElement(dd.parentNode.dataset.dlpid);
+											}
+											if(newLis[i].dataset.id == dd.parentNode.dataset.dlid){
+												var is = newLis[i].getElementsByTagName('i')[0];
+													is.innerHTML = input.value;
+											}	
+										}
+									}
+								}
+								ev.stopPropagation();
+							}
+						}	
+					}
+				}		
+			};
+			//---------------------删除------------------
+			var tanbox = $('#tanbox');
+			var li5 = $('.li5',second)[0];
+			var tops = $('.top')[0];
+			var topB = $('b',tops)[0];
+			li5.onclick = function (){
+				if(inputFocus == 1){
+   					return;
+   				}
+				var spans = document.getElementsByClassName('xuan');
+				if(n == 0){
+					topB.style.visibility = 'visible';
+					tiShi(topB);
+					return;
+				}	
+				for( var i = 0; i < spans.length; i++ ){
+					if(spans[i].isChecked){
+						tanbox.style.display = 'block';
+						Del();
+					}
+				}
+			};
+			var closeIco = document.getElementsByClassName("close-ico")[0];
+			var confBtn = document.getElementsByClassName("conf-btn")[0];
+			var confBtn1 = confBtn.getElementsByTagName("a")[0];
+			var confBtn2 = confBtn.getElementsByTagName("a")[1];
+			function Del(){
+				confBtn1.onclick = function (){
+					tanbox.style.display = 'none';
+					var spans = document.getElementsByClassName('xuan');
+					for( var i = 0; i < spans.length; i++ ){
+						if(spans[i].isChecked){
+							for( var j = 0; j < lis.length; j++ ){
+								if(lis[j].dataset.id == dls[i].dataset.dlid){
+									lis[j].remove();
+									var dlId = dls[i].dataset.dlid;
+								}
+								if(newLis[j].dataset.id == dls[i].dataset.dlid){
+									newLis[j].remove();
+								}
+							}
+							dls[i].parentNode.remove();
+							i--;
+							n--;
+							for(var attr in data){
+								if(data[attr].id == dlId){
+									delete data[attr];
+								}	
+							}
+							if(shu.innerHTML == ''){
+								wenjian.style.background = 'url(./images/wu.png) no-repeat';
+							}
+							if(n == 0){
+								kuangF();
+							}
+							var topSpan = $('span',tops)[0];
+							topSpan.style.visibility = 'visible';
+							tiShi(topSpan)
+						}
+					};
+				}
+				closeIco.onclick = confBtn2.onclick = function (){
+					tanbox.style.display = 'none';
+				}
+			};
+			//-------------------------新建文件夹---------------------------
+			var li6 = $('.li6',second)[0];
+			var q = 4;
+			li6.onclick = function (ev){
+				shu.onclick = null;
+				kuangF();
+				var inputs = shu.getElementsByTagName('input');
+				for( var i = 0; i < inputs.length; i++ ){
+					if(inputs[i].value == ''){
+						return;
+					}
+				}
+				q++;
+				var span = titleP.getElementsByTagName("span")[0];
+				data[q] = {
+					'id':q,
+					'pid':span.dataset.id,
+					"title": '',
+    				"type": "file"
+				}
+				var newDivs = document.createElement("div");
+				newDivs.className = "editor fl";
+				newDivs.innerHTML = `<dl data-dlpid="${data[q].pid}" data-dlid="${data[q].id}"><dt><span class="xuan"></span><img src="images/bigwenjian.png"></dt><dd><input type="text" value=""/></dd></dl>`;
+				var input = newDivs.getElementsByTagName('input')[0];
+				if(shu.innerHTML != ''){
+					shu.insertBefore(newDivs,shu.firstElementChild);
+				}else{
+					shu.insertBefore(newDivs,null);
+				}
+				setTimeout(function(){
+					input.focus();
+					inputFocus = 1;
+				})
+				input.onclick = function (ev){
+					this.focus();	
+					ev.stopPropagation();
+				};	
+				var body = $('body')[0];
+				body.onclick = function (ev){
+					inputFocus = '';
+					input.onclick = null;
+					if(ev.target.nodeName != 'INPUT'){
+						if(input.value == '' || input.value == ' '){
+							delete data[q];
+							newDivs.remove();
+							if(n == dls.length){
+		       					kuangT();
+		       				}
+							body.onclick = null;
+							return;
+						}else{
+							var currentInputs = shu.getElementsByTagName('input');
+							for( var j = 0; j < currentInputs.length; j++ ){
+								if(currentInputs[j] != input){
+									if(currentInputs[j].value == input.value){
+										alert('亲，请重命名！');
+								 		input.focus();
+								 		input.select();
+								 		return;
+									}
+								}
+							}
+							input.blur();
+							data[q].title = input.value;
+							left.innerHTML = render(initId);
+							confContent2.innerHTML = render3(initId);
+							var topI = $('i',tops)[0];
+			   				topI.style.visibility = 'visible';
+							tiShi(topI);
+							parents(span.dataset.id);
+							positionElement(span.dataset.id);
+							dls = document.getElementsByTagName('dl');
+			   				rightOlick(dls);
+			   				titlePa = $('a',titleP);
+			   				caidan(titlePa);
+			   				tree();	
+			   				body.onclick = null;
+						}
+					}
+					ev.stopPropagation();
+				};
+				shu.style.display = 'block';
+				if(shu.innerHTML != ''){
+					wenjian.style.background = '#f5f8fa';
+				}
+				ev.stopPropagation();
+			};
+			//----------------------------父级显示-------------------------
+			parents(0);
+			function parents(n){
+				for( var i = 0; i < lis.length; i++ ){
+					if(lis[i].dataset.id == n){
+						if(lis[i].parentNode != ''){
+							lis[i].parentNode.style.display = 'block';
+						}
+						if(lis[i].parentNode.parentNode != '' && lis[i].parentNode.parentNode.nodeName !== 'DIV'){
+							lis[i].parentNode.parentNode.className = "xia";
+		   					lis[i].parentNode.parentNode.isChecked = true;
+							lis[i].parentNode.parentNode.parentNode.style.display = 'block';
+						}
+						if(lis[i].parentNode.parentNode.parentNode != '' && lis[i].parentNode.parentNode.parentNode.parentNode.nodeName !== 'DIV'){
+							lis[i].parentNode.parentNode.parentNode.parentNode.isChecked = true;
+							lis[i].parentNode.parentNode.parentNode.parentNode.className = "xia";
+							lis[i].parentNode.parentNode.parentNode.parentNode.style.display = 'block';
+						}	
+						if(lis[i].children[1] != undefined){
+							lis[i].children[1].style.display = 'block';
+							lis[i].className = 'xia';
+							lis[i].isChecked = true;
+						}
+					}	
+				}
+			};
+			//-----------------------------定位----------------------------
+			function positionElement(positionId){
+				for( var i = 0; i < lis.length; i++ ){
+					lis[i].classList.remove('active');
+					if(lis[i].dataset.id == positionId){
+						lis[i].classList.add('active');
+					}
+				}
+			}
+			positionElement(0)
+			//----------------------提示----------------
+			function tiShi(item){
+				mTween(item,{height:40},300)
+				setTimeout(function (){
+					mTween(item,{height:0},300,'linear',function (){
+						item.style.visibility = 'hidden';	
+					})
+				},800);	
+			};
+		</script>
+	</body>
+</html>

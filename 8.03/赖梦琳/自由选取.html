@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				background:blue;
+				opacity:0.3;
+				position:absolute;
+				top:0;
+				left:0;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<script>
+			document.onmousedown = function (ev){
+				var newDiv = document.createElement('div');
+				document.body.appendChild(newDiv);
+				var disX = ev.clientX;
+				var disY = ev.clientY;
+				document.onmousemove = function (ev){
+					newDiv.style.width = Math.abs(disX - ev.clientX) + 'px';
+					newDiv.style.height = Math.abs(disY - ev.clientY) + 'px';
+					if(disX - ev.clientX > 0){
+						newDiv.style.left = ev.clientX + 'px';
+						newDiv.style.top = ev.clientY + 'px';
+					}else{
+						newDiv.style.left = disX + 'px';
+						newDiv.style.top = disY + 'px';
+					}
+				};
+				document.onmouseup = function (){
+					document.onmousemove = null;
+					newDiv.remove();
+				};
+			};
+		</script>
+	</body>
+</html>

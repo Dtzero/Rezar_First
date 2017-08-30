@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			// \d 代表一个数字 所有的数字 \d/g  \d+/g + 限定符 至少出现一次
+			// \D 代表非数字
+			// \w 代表字母、数字、下划线
+			// \s 代表空格
+			// \n 代表换行符
+			// \' 代表一个单引号
+			// \" 代表一个双引号
+			// \t 制表符，代表一个tab
+			//  + 限定符 至少出现一次
+			//  * 限定符 至少出现0次
+			//  ? 限定符 至少出现0~1次
+			//  {n} 限定符 重复出现n次
+			//  {n,} 限定符 至少出现n次,不限制最高次数
+			//  {n,m} 限定符 至少出现n次,至多出现m次
+			// 	i 修饰符,忽略大小写  ignore
+			//  g 修饰符,全局匹配 global
+			/**
+				str.match(str|re)
+
+					作用
+						检索指定字符串或正则表达式匹配到的字符串
+					语法
+						Array|Null string.match(string|regexObj)
+					参数
+						string|regexObj
+						字符串或正则表达式
+					返回值
+						返回数组---把匹配到的字符串放在数组中
+						没有检索到返回null
+
+				参数为regexObj时
+					带有g，全局匹配，返回的是匹配到的字符串组成的数组
+					不带g，匹配一个字符串，并且数组会有index和input属性
+
+					index 是匹配到的字符的位置
+					input 就是要检索的字符串
+				
+				re.test(str)
+					作用
+						用来检测指定的字符串是否符合正则的规则
+					语法
+						boolean regexObj.test(string)
+					参数
+						字符串
+
+					返回值
+						符合规则返回true，不符合返回false
+						
+				str.replace(string|re)
+					作用
+						用来替换字符串中的某些符合规则的字符
+					语法
+						String string.replace(string|regexObj,string|function)
+					参数
+						第一个参数：字符串或正则表达式
+						第二个参数：字符串或函数
+					返回值
+						替换后新字符串
+				str.search(string|re);
+					作用
+						检索指定字符串或正则表达式匹配到的字符串首次出现的位置
+					语法
+						number string.search(string|regexObj)
+					参数
+						string|regexObj
+						字符串或正则表达式
+
+					返回值
+						匹配到的字符串首次出现的位置
+						没有检索到返回-1
+
+				indexOf只能接收字符串作为参数
+
+				| 或
+
+				[] 范围
+					[字符]
+					匹配到中括号中任意一个字符，有或的意思
+				[1-9]
+				[5-9]
+				[a-zA-Z]
+				[1-40] 的意思是匹配到1或2或3或4或0 任意一个字符
+
+				^ 写在中括号开始，排除任意一个字符
+				^ 写在/^/中,代表字符串的开始
+				$ 代表字符串的结尾
+			**/				
+			let str = 'miaovketang';
+			let re = str.match(/a/g);
+			console.log(re);
+
+		</script>
+	</head>
+
+	<body>
+		<input type='' id='inputs'/>
+		<span id="tip"></span>
+		<script>
+			let re2 = /\d/;
+			inputs.oninput = function (){
+				if(!re2.test(this.value)){
+					tip.innerHTML = '请输入数字';
+					tip.style.color = 'red';
+				}else{
+					tip.innerHTML = '';
+				}
+			};
+		</script>
+	</body>
+</html>

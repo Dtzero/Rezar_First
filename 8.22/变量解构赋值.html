@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			// ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。
+			let obj = {
+				a:1,
+				b:2,
+				c:3,
+				miaov:"ketang"
+			}
+
+			// 给变量设置默认值
+			let {miaov=1} = obj; 
+
+			console.log(miaov);
+
+			// 数组的结构赋值
+			let arr =[1,2,3,4];
+			// 设置默认值
+			let [a,b,c,d,e='miaov']  = arr;
+
+			console.log(e);
+
+			// 传值为数组，把数组中两个值相加
+			function add([a=0,b=0]){
+
+				//return arr[0]+arr[1]
+				return a+b;
+			}
+
+			console.log(add([1]));
+			console.log(add([3,4]));
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

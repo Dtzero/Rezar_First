@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+
+			/*
+				Object.defineProperty() 方法会直接在一个对象上定义一个新属性
+
+				Object.defineProperty(obj, prop, descriptor)
+			*/
+
+			// 当给一个对象定义一个属性的时候，能不能对这个属性进行一些描述
+			/*
+				属性值是什么  value
+				属性值能不能重新改写  writable
+			*/
+
+			var obj = {
+				a:1
+			};
+
+			Object.defineProperty(obj,'ketang',{
+				value:'123',    // 属性对应的值 默认为undefined
+				writable:true,	// 是否可被改写，true，可以，false不可以，默认为false
+				enumerable: true // 是否可被枚举 true，可以，false不可以，默认为false
+			});
+
+			obj.ketang = '我被改了';
+
+			for(var attr in obj){
+				console.log(attr);
+			}
+
+			console.log(obj);
+
+
+		</script>
+	</head>
+
+	<body>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<input type="text" id="email" />
+		<p id="op">没有输入邮箱</p>
+		<script>
+			let re = /^\w+@?$/g;
+			let re2 = /\./g;
+			let re3 = /\.(\w+)/g;
+			let re4 = /@(\w+)\./g;
+			email.oninput = function (){
+				let val = this.value;
+				if(val.match(re) != null){
+					if(val.indexOf('@') === -1){
+						op.innerHTML = '至少输入1个@';
+						return;
+					}
+					if(val.match(re4) == null){
+						op.innerHTML = '@后.前至少输入1个数字或字母';
+						return;
+					}
+					if(val.match(re4)[0].length > 7){
+						op.innerHTML = '@后.前最多输入2~5个数字或字母';
+						return;
+					}
+					if(val.match(re3) != null){
+						for( var i = 0; i < val.match(re3).length; i++ ){
+							if(val.match(re3)[i].length > 4){
+								op.innerHTML = '.后最多输入3个字母';
+								return;
+							}
+						}
+					}
+					if(val.match(re2) != null){
+						if(val.match(re2).length > 3){
+							op.innerHTML = '最多输入3组';
+							return;
+						}
+					}
+					op.innerHTML = '';
+				}else{
+					op.innerHTML = '请输入数字或字母或下划线';
+				}
+			};
+		</script>
+	</body>
+</html>

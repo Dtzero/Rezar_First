@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<script>
+			"use strict"//严格模式
+			function fn(a){
+				a = 1000;
+				//形参发生改变，arguments会追踪
+				//严格模式下，形参发生改变，arguments不会追踪
+				console.log(arguments);		
+			};
+			fn(1,2,3,4,5);
+			fn(7,8)
+		</script>
+	</body>
+</html>

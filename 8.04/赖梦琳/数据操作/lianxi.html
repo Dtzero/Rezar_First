@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            td {
+                text-align: center;
+            }
+            .red{
+                background: red;
+            }
+            .color{
+                background-image: linear-gradient(135deg, #41c8ff 0, #41c8ff 25%,#46e6fe 75%);
+            }
+            tbody tr:nth-child(2n){
+                background: #fff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form action="" name="form">
+            <p>
+                姓名:<input type="text" id="userName" name="username"/>
+            </p>
+            <p>
+                年龄:<input type="text" id="age" name="age"/>
+            </p>
+            <p>
+                性别: <select name="sex" id="sex">
+                    <option value=" 男 ">男</option>
+                    <option value="女">女</option>
+                </select>
+            </p>
+            <p>
+                <input type="button" id="add" value="添加" name="add"/>
+            </p>
+        </form>
+        <input type="button" id="delectAll" value="删除选中"  class="btn"> 
+        <input type="button" value="年龄从小到大" id="ageSort"  class="btn"> 
+        <table id="tab1" width="100%" border="1">
+            <thead>
+            <tr>
+                <th>
+                    <input id="checkAll" type="checkbox" /> 全选
+                </th>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <script type="text/javascript">
+            var data = [
+                {
+                     'id' : 1,
+                    'username' : 'LEO',
+                    'age' : 36,
+                    'sex' : '男'
+                },
+                {
+                    'id' : 2,
+                    'username' : 'MOMO',
+                    'age' : 16,
+                    'sex' : '男'
+                },
+                {
+                    'id' : 3,
+                    'username' : 'DUODUO',
+                    'age' : 29,
+                    'sex' : '男'
+                },
+                {
+                    'id' : 4,
+                    'username' : '勇升',
+                    'age' : 46,
+                    'sex' : '男'
+                },
+                {
+                    'id' : 5,
+                    'username' : '小美',
+                    'age' : 40,
+                    'sex' : '女'
+                }
+            ];
+            //生成结构
+            var tbody = document.getElementsByTagName('tbody')[0];
+            var shanchuA = document.getElementsByTagName("a");
+            newHtml();
+            //添加
+            var add = document.getElementById('add');
+            add.onclick = function (){
+                if(userName.value == ''){
+                    alert('亲，请输入姓名');
+                    return;
+                }
+                if(age.value == ''){
+                    alert('亲，请输入姓年龄');
+                    return;
+                }
+                data.push(
+                    {
+                        'id' : ages.length + 1,
+                        'username' : userName.value,
+                        'age' : age.value,
+                        'sex' : sex.value
+                    }
+                )
+                newHtml();
+                checkAll.checked = false;
+            };
+            //年龄从小到大
+            var ageSort = document.getElementById('ageSort');
+            var ages = document.getElementsByClassName('age');
+            var isChecked = 1;
+            ageSort.onclick = function (){
+                if(isChecked == 1){
+                    ageSort.value = '年龄从大到小';
+                    isChecked = 2;
+                    data.sort(function (a,b){
+                        return a.age-b.age;
+                    });
+                    newHtml()
+                }else{
+                    ageSort.value = '年龄从小到大';
+                    isChecked = 1;
+                    data.sort(function (a,b){
+                        return b.age-a.age;
+                    });
+                    newHtml()
+                }
+            };
+            function newHtml(){
+                 var html = data.map(function (item){
+                    return  `   
+                                <tr class="color">
+                                    <td>
+                                        <input type="checkbox"/>
+                                    </td>
+                                    <td>${item.id}</td>
+                                    <td>${item.username}</td>
+                                    <td class="age">${item.age}</td>
+                                    <td>${item.sex}</td>
+                                    <td>
+                                        <a href="javascript:;">删除</a>
+                                    </td>
+                                </tr>
+                            `   
+                }).join('');        
+                tbody.innerHTML = html;   
+                var color = document.getElementsByClassName("color");
+                var checkbox = tbody.getElementsByTagName("input");
+                var checkAll = document.getElementById('checkAll');
+                var n = 0;
+                //单选
+                for( var i = 0; i < checkbox.length; i++ ){
+                    checkbox[i].onclick = function (){
+                       if(!this.checked){
+                            n--;
+                        }else{
+                            n++;
+                        }
+                        if( n == checkbox.length){
+                            checkAll.checked = true;
+                        }else{
+                            checkAll.checked = false;
+                        }
+                    };
+                }
+                //全选
+                checkAll.onclick = function (){
+                    if(!checkAll.checked){
+                        for( var j = 0; j < checkbox.length; j++ ){
+                            checkbox[j].checked = false;
+                        }
+                        n = 0;
+                    }else{
+                        for( var j = 0; j < checkbox.length; j++ ){
+                            checkbox[j].checked = true;
+                        }
+                        n = checkbox.length;
+                    }
+                }
+                //删除
+                for( var i = 0; i < shanchuA.length; i++ ){
+                    shanchuA[i].onclick = function (){
+                        this.parentNode.parentNode.remove();
+                        data.splice(this.index,1);
+                        if(this.parentNode.parentNode.children[0].children[0].checked){
+                           n--; 
+                        }
+                        if( n == checkbox.length){
+                            checkAll.checked = true;
+                        }else{
+                            checkAll.checked = false;
+                        }
+                    };
+                }
+                 //选中删除
+                var delectAll = document.getElementById('delectAll');
+                delectAll.onclick = function (){
+                    for( var i = 0; i < checkbox.length ; i++ ){
+                        if(checkbox[i].checked){
+                            checkbox[i].parentNode.parentNode.remove();
+                            n--;
+                            i--;
+                            data.splice(checkbox[i],1);
+                        }
+                        if(n == 0){
+                            checkAll.checked = false;
+                        }
+                    }
+                };
+            };
+        </script>
+    </body>
+</html>

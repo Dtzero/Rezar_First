@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			div{
+				width:100px;
+				height:100px;	
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			#div1{
+				background:blue;
+				opacity:0.3;
+				position:absolute;
+				top:200px;
+				left:200px;
+			}
+			#div2{
+				background:pink;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<script>
+			fn(div1,div2);
+			function fn(obj1,obj2){
+				obj2.onmousedown = function (ev){
+					var disX = ev.clientX - obj2.offsetLeft;
+					var disY = ev.clientY - obj2.offsetTop;
+					document.onmousemove = function (ev){
+						obj2.style.left = ev.clientX - disX + 'px';
+						obj2.style.top = ev.clientY - disY + 'px';
+
+						var obj1Rect = obj1.getBoundingClientRect();
+						var obj2Rect = obj2.getBoundingClientRect();
+						var tiaojian1 = obj2Rect.left + obj2Rect.width - obj1Rect.left;
+						var tiaojian2 = obj2Rect.top + obj2Rect.height - obj1Rect.top;
+						var tiaojian3 = obj2Rect.left - obj1Rect.left - obj1Rect.width;
+						var tiaojian4 = obj2Rect.top - obj1Rect.top - obj1Rect.height;
+
+						if( tiaojian1 < 0 || tiaojian2 < 0 || tiaojian3 > 0 || tiaojian4 > 0){
+							obj1.style.background = 'blue';
+						}else{
+							obj1.style.background = 'pink';
+						}
+					};
+					obj2.onmouseup = function (){
+						document.onmousemove = null;
+					};
+				};	
+			};
+		</script>
+	</body>
+</html>

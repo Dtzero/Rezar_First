@@ -1,0 +1,443 @@
+/* CSS Document */
+body{
+	background: #6e7db2;
+}
+.wrap{
+	width: 1200px;
+	height: 711px;
+	background: #fff;
+	border-radius: 15px;
+	margin: 10px auto;
+	position: relative;
+}
+.top{
+	width: 1072px;
+	line-height:40px;
+	background: #fff url(../images/logo.png) no-repeat 28px 18px;
+	padding:15px 40px 15px 88px;
+	border-radius: 15px 15px 0 0;
+	color:#fff;
+	font-size: 14px;
+	position: relative;
+}
+.top p {
+	margin-right: 90px;
+	font-size: 18px;
+	color: #389cd1;
+}
+.top i{
+	width:227px;
+	height: 0;
+	background: #ef8989 url(../images/full-tip-s.png) no-repeat 19px 8px;
+	border-radius: 20px;
+	text-align: center;
+	margin-right: 16px;
+	padding-left: 29px;
+	visibility: hidden;
+	position: absolute;
+	top:15px;
+	left: 45%;
+}
+.top span{
+	width:137px;
+	height: 0;
+	background: #86ce8b url(../images/2.png) no-repeat 19px 8px;
+	border-radius: 20px;
+	text-align: center;
+	margin-right: 16px;
+	padding-left: 29px;
+	visibility: hidden;
+	position: absolute;
+	top:15px;
+	left: 45%;
+}
+.top b{
+	width:117px;
+	height: 0;
+	background: #f3a960 url(../images/3.png) no-repeat 19px 8px;
+	border-radius: 20px;
+	text-align: center;
+	margin-right: 16px;
+	padding-left: 29px;
+	visibility: hidden;
+	position: absolute;
+	top:15px;
+	left: 45%;
+}
+.top ul{
+	margin-top:5px; 
+}
+.top .li1{
+	width: 32px;
+	height:32px;
+	background: url(../images/user-ico.jpg) no-repeat -2px -2px;
+	border-radius: 16px;
+}
+.top .li2{
+	width: 32px;
+	height:32px;
+	background: url(../images/sanjiao.png) no-repeat 10px 15px;
+	border-radius: 16px;
+	margin-right: 4px;
+}
+.top .li3{
+	width: 1px;
+	height:22px;
+	background: #e0e6e7;
+	border-radius: 16px;
+	padding: 5px 0;
+}
+.top .li4{
+	width: 30px;
+	height:32px;
+	background: url(../images/shezhi.png) no-repeat 14px 8px;
+	border-radius: 16px;
+}
+.second{
+	width: 1160px;
+	height:48px;
+	background: #ecf0f6;
+	border-top:1px #d0d9de solid;
+	border-bottom:1px #d0d9de solid;
+	padding: 10px 20px 0  20px;
+}
+.list li{
+	line-height: 36px;
+	border:1px #55addc solid;
+	border-radius: 4px;
+	padding: 0 22px 0 55px;
+	color: #55addc;
+	font-size: 14px;
+	margin-right: 10px;
+}
+.list .li7{
+	width: 36px;
+	height: 36px;
+	padding: 0;
+	background: url(../images/shuaxin.png) no-repeat 10px 11px;
+}
+.list .li1{
+	background: url(../images/xiazai.png) no-repeat 20px 11px;
+}
+.list .li2{
+	background: url(../images/fenxiang.png) no-repeat 20px 11px;
+}
+.list .li3{
+	background: url(../images/yidong.png) no-repeat 20px 11px;
+}
+.list .li4{
+	background: url(../images/chongmingmin.png) no-repeat 20px 11px;
+}
+.list .li5{
+	background: url(../images/shanchu.png) no-repeat 20px 11px;
+}
+.list .li6{
+	background: url(../images/xinjian.png) no-repeat 20px 11px;
+}
+.second p{
+	width: 38px;
+	height: 38px;
+	background: url(../images/caidan.png) no-repeat;
+	border-radius: 4px;
+	margin-right: 10px;
+}
+.second i{
+	width: 56px;
+	height: 36px;
+	background: url(../images/paixu.png) no-repeat 10px 10px,url(../images/sanjiao.png) no-repeat 34px 17px #fff;
+	border-radius: 4px;
+	border:1px solid #55addc;
+}
+.content{
+	width: 1200px;
+	height:582px;
+	border-radius: 0 0 15px 15px; 
+}
+.content .left{
+	width: 240px;
+	height:569px;
+	background: #fff;
+	padding-top: 12px;
+	padding-left: 20px;
+	border-radius: 0 0 0 15px; 
+}
+.left li,.conf-content2 li{
+	font-size: 16px;
+	color: #66757f;
+	line-height: 33px;
+	padding-left: 42px;
+	background: url(../images/wenjian.png) no-repeat 20px 8px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+.left ul .active,.conf-content2 ul .active{
+	font-size: 24px;
+	color: pink;
+}
+.left .you{
+	background: url(../images/you.png) no-repeat left 9px,url(../images/wenjian.png) no-repeat 20px 8px;
+}
+.left .xia,.conf-content2 .xia{
+	background: url(../images/xia.png) no-repeat left 13px,url(../images/wenjian.png) no-repeat 20px 8px;
+}
+.left ul ul{
+	display: none;
+}
+.content .right{
+	width: 940px;
+	height:582px;
+	border-radius: 0 0 15px 0; 
+}
+.title{
+	width: 940px;
+	background: #fff;
+	border-bottom: 2px solid #e1e8ed;
+	padding: 15px 0 0;
+}
+.kuang{
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	background: #fff;
+	border:1px solid #d0d9de;
+	margin: 0 20px 15px  15px;
+	text-align: center;
+}
+.title p a{
+	padding:0 24px 14px 14px;
+	float:left;
+	color:#2f3334;
+	font-size:14px;
+	background: url(../images/br_jt.png) no-repeat right -3px;
+}
+.title p span{
+	float:left;
+	padding:0 14px 14px;
+	color:#55addd;
+	border-bottom:2px solid #55addd;
+	cursor: default;
+}
+.wenjian{
+	width: 940px;
+	height: 528px;
+	background: #f5f8fa;
+	position: relative;
+}
+.heng{
+	height: 528px;
+	display: none;
+}
+.heng li{
+	padding:16px 0 0;
+	border:1px solid #e1e8ed;
+}
+.heng i{
+	font-size: 14px;
+	color:#66757f;
+	padding-left: 34px;
+}
+.tubiao{
+	width: 575px;
+	margin-top: 3px;
+}
+.tubiao a{
+	margin-right: 20px;
+}
+.tubiao b{
+	margin-right: 20px;
+	font-size: 12px;
+	color:#66757f;
+}
+.shu{
+	height: 448px;
+	padding: 40px 0 0 40px;
+	-display: none;
+}
+input{
+	line-height: 30px;
+	text-align: center;
+	font-size: 14px;
+	color: #55addc;
+	height: 30px;
+}
+.shu dl{
+	width: 178px;
+	height: 144px;
+	text-align: center;
+	padding-top: 34px;
+	border-radius: 4px;
+	border:1px solid #f1f1f1;
+	background: #f1f1f1;
+	margin-right: 40px;
+	margin-bottom: 20px;
+}
+.shu dt{
+	position: relative;
+}
+.shu dt span{
+	position: absolute;
+	top:-25px;
+	left:6px;
+	width: 14px;
+	height: 14px;
+	border-radius: 4px;
+	color:#fff;
+	border: 1px solid #f1f1f1;
+}
+.shu dd{
+	display: inline-block;
+	margin-top: 14px;
+}
+.paixu{
+	position: absolute;
+	top:128px;
+	right:20px;
+	display: none;
+	border-radius: 4px;
+	border:1px solid #55addc;
+	background: #fff;
+}
+.paixu li{
+	width: 90px;
+	line-height: 36px;
+	padding-left: 40px;
+	font-size: 12px;
+	color:#66757f;
+	background: url(../images/shijian.png) no-repeat 10px 10px;
+}
+.paixu li:hover{
+	background: #e1e8ed;
+}
+.box{
+	background:blue;
+	opacity:0.3;
+	position:absolute;
+	top:0;
+	left:0;
+}
+#tanbox,#tanbox2{
+	width:100%;
+	height:100%;
+	background: rgba(0,0,0,0.3);
+	position: absolute;
+	left:0;
+	top:0;
+	display: none;
+}
+#tanbox .conf{
+	width:360px;
+	height:200px;
+	background: #fff;
+	position: fixed;
+	left:50%;
+	top:50%;
+	margin-left:-180px;
+	margin-top:-100px;
+	border-radius: 4px;
+	box-shadow: 0px 0px 6px #f1f1f1;
+}
+.conf .conf-title{
+	font:normal 18px/46px "微软雅黑";
+	padding:0 20px;
+	margin:0;
+	border-bottom:1px solid #ccc;
+}
+.conf .conf-content{
+	padding:40px 40px 20px 40px;
+	text-align: center;
+}
+.conf .conf-btn{
+	margin-top:20px;
+	padding-right:40px;
+	text-align: right;
+}
+.conf-btn a{
+	display: inline-block;
+	width:60px;
+	height:26px;
+	margin-left:10px;
+	border-radius: 15px;
+	background: #ccc;
+	text-align: center;
+	font:14px/26px "微软雅黑";
+	color:#fff;
+}
+.conf-btn a:nth-of-type(1){
+	background: #00BFFF;
+}
+.conf .close-ico{
+	position: absolute;
+	right:10px;
+	top:10px;
+	width:20px;
+	height:20px;
+	text-align: center;
+	border: 1px solid #ccc;
+	color: #ccc;
+	font:normal 16px/20px "微软雅黑";
+	cursor: pointer;
+}
+.conf .close-ico:hover{
+	background: #999;
+	color:#fff;
+}
+#tanbox2 .conf2{
+	width:380px;
+	background: #fff;
+	position: fixed;
+	left:50%;
+	top:40%;
+	margin-left:-180px;
+	margin-top:-100px;
+	border-radius: 4px;
+	box-shadow: 0px 0px 6px #f1f1f1;
+	overflow-x:scroll; 
+}
+.conf2 .conf-title2{
+	font:normal 18px/46px "微软雅黑";
+	padding:0 20px;
+	margin:0;
+	border-bottom:1px solid #ccc;
+}
+.conf2 .conf-content2{
+	padding:5px 40px 20px 5px;
+	height:250px;
+	overflow-y:scroll; 
+}
+.conf2 .conf-btn2{
+	padding-right:40px;
+	text-align: right;
+	border-top:1px solid #ccc;
+	padding: 20px 10px 20px 0;
+}
+.conf-btn2 a{
+	display: inline-block;
+	width:60px;
+	height:26px;
+	margin-left:10px;
+	border-radius: 15px;
+	background: #ccc;
+	text-align: center;
+	font:14px/26px "微软雅黑";
+	color:#fff;
+}
+.conf-btn2 a:nth-of-type(1){
+	background: #00BFFF;
+}
+.conf2 .close-ico2{
+	position: absolute;
+	right:10px;
+	top:10px;
+	width:20px;
+	height:20px;
+	text-align: center;
+	border: 1px solid #ccc;
+	color: #ccc;
+	font:normal 16px/20px "微软雅黑";
+	cursor: pointer;
+}
+.conf2 .close-ico2:hover{
+	background: #999;
+	color:#fff;
+}

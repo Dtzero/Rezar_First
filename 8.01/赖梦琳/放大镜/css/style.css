@@ -1,0 +1,31 @@
+.wrap{
+	width: 900px;
+	height:500px;
+	background: url(../images/bg.png) no-repeat;
+}
+.photo{
+	width: 337px;
+	height:195px;
+	background: url(../images/1.png) no-repeat;
+	margin:155px 0 0 146px;
+	position: relative;
+}
+.photo p{
+	position: absolute;
+	width: 91px;
+	height:91px;
+	border-radius: 45px;
+	background: pink;
+	opacity: 0.7;
+	border:1px solid yellow;
+	display: none;
+}
+.bigPhoto{
+	width: 182px;
+	height:182px;
+	margin:158px 0 0 104px;
+	border-radius: 91px;
+	background: url(../images/1.png) no-repeat;
+	background-size:674px 390px; 
+	display: none;
+}

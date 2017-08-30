@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#box{
+				display:inline-block;
+				width:100px;
+				height:100px;
+				border:1px solid pink;
+			}
+		</style>
+		<script>
+			window.onload = function(){
+				var section = document.getElementsByTagName('section')[0];
+				var all = section.querySelectorAll('*');
+				console.log(all);
+				// var arr = [];
+				// fn(section);
+				// function fn(item){
+				// 	for( var i = 0; i < item.children.length; i++ ){
+				// 			arr.push(item.children[i]);
+				// 			fn(item.children[i]);
+				// 	}	
+				// };
+				function fn(item){
+					var arr = [];
+					for( var i = 0; i < item.children.length; i++ ){
+							arr.push(item.children[i]);
+							arr = arr.concat(fn(item.children[i]));
+					}	
+					return arr;
+				};
+				console.log(fn(section));
+			};
+		</script>
+	</head>
+
+	<body>
+		<section>
+			<div id="div1">
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<span id="box"></span>
+			</div>
+		</section>
+	</body>
+</html>

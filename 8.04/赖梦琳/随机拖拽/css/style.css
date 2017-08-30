@@ -1,0 +1,29 @@
+.wrap{
+	width: 892px;
+	height: 566px;
+	background: url(../images/bg.png) no-repeat;
+	padding: 234px 0 0 308px;
+	margin: 0 auto;
+}
+.btn{
+	width: 96px;
+	line-height: 38px;
+	border: 2px solid #fff;
+	border-radius: 3px;
+	text-align: center;
+	color: #fff;
+	margin:130px 33px 0 0; 
+}
+.content{
+	width:480px;
+	height:340px;
+	position: relative;
+}
+.content div{
+	width:100px;
+	height:100px;
+	margin-right: 20px;
+	position:absolute;
+	top:0;
+	left:0;
+}

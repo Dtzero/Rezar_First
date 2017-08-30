@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			let str = '2017---08--25';
+			let re = /(\d+)\D+(\d+)\D+(\d+)/;
+
+			let newStr = str.replace(re,($0,$1,$2,$3) => {
+				return $1+'年'+$2+'月'+$3+'日'
+			})
+			console.log(newStr);
+			// . 任意字符，除了换行符 \n
+			let str2 = 'abc.1(ketang)2\\3';
+			let re2 = /\.|\(|\)|\\/g;
+			console.log(str2.replace(re2,'*'));
+
+			let str3 = 'abc123a32ca79cdf32';
+			let re3 = /a\w+c/g;
+			let re4 = /a\w+?c/g;//懒惰模式
+			console.log(str3.match(re3));
+			console.log(str3.match(re4));
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

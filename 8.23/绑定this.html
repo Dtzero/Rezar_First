@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			// 绑定this 就是把函数中this指向指定的值
+			/*
+				立马执行了：
+					函数.call()
+					函数.apply()
+				不执行函数，改this值
+					函数.bind();
+			*/
+
+			function bind(fn,oThis){
+				// 调用bind之后，会返回新函数，在新函数中调用改变this的函数
+				function oBind(){
+					fn.apply(oThis)		
+				}
+				return oBind;
+			}
+
+			function fn(){
+				console.log("我被调用了");
+				console.log(this);
+			}
+			// 改变fn中this的指向，不立马调用函数
+			var f = bind(fn,[1,2,3])
+
+			f();
+		</script>
+	</head>
+
+	<body>
+		<script>
+
+
+
+		</script>
+	</body>
+</html>

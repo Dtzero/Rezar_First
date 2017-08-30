@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+		<script>
+			//let会形成块级作用域
+			var lis = document.getElementsByTagName('li');
+			for( let i = 0; i < lis.length; i++ ){
+				lis[i].onclick = function (){
+					console.log(i);
+				};
+			}
+		</script>
+	</body>
+</html>
