@@ -1,0 +1,38 @@
+8.29
+	笔记
+		1、instanceOf
+			二元运算符
+				对象  instanceOf 函数
+
+				描述有问题：
+						简单理解：运算一下这个函数是不是对象的构造函数
+					是 结果为true
+					不是 结果为false
+				正确描述（待定）：
+					运算一下函数的原型是不是在这这个对象的原型链上
+
+		2、对象.hasOwnProperty(属性名)
+			判断属性名是不是对象自身的属性
+
+			并不会找原型链上的
+
+		3、对象.hasOwnProperty(属性名)
+			判断属性名是不是对象自身的属性
+
+			并不会找原型链上的
+
+
+			for in 遍历一个对象上的属性
+				去找原型链上允许被遍历的属性
+
+			当只遍历自身属性加上 hasOwnProperty		
+
+		4、判断类型
+			typeof 
+				数组和对象不能分辨出来
+			constructor
+				容易被改写
+			instanceof
+				找原型链上的函数	
+			Object.prototype.toString
+				几乎完美		

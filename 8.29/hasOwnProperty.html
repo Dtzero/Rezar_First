@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			let obj  = {
+				a:1
+			}
+
+			function Info(){
+					
+			}
+
+			Info.prototype.abc = 10;
+
+
+			let i = new Info();
+
+			i.a = 10;
+
+			console.log( i.hasOwnProperty('abc') );
+			console.log( i.hasOwnProperty('a') );
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>
