@@ -1,0 +1,118 @@
+9.05
+	笔记：
+		1、AJAX
+		---------------------------------------------------
+		即“Asynchronous Javascript And XML”
+		（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。
+
+			作用：
+				1. 发送数据和服务器进行交互
+				2. 实现异步更新，不需要刷新整个页面，只做局部更新
+
+		当在浏览器打开html页面，浏览器有内核会把html解析并渲染（显示）网页，不是看的一堆的文本
+
+		2、form表单
+		---------------------------------------------------
+		属性：
+			action  要提交的地址
+			method  提交方式  get/post
+			enctype 规定在发送到服务器之前应该如何对表单数据进行编码。
+				默认：application/x-www-form-urlencoded
+				text/plain 文本
+				multipart/form-data 编码为二进制的，上传文件
+
+		3、get和post的区别，讨论的范围的是浏览器 
+		--------------------------------------------------
+		get 方式
+			http://localhost:8088/backend/php/get.php?user=leo123&password=222
+			发送数据的方式
+				在地址栏中?的后面，就是查询信息
+					key=value&lkey2=value2&key3=value3 成为为queryString
+			浏览器对地址有长度有限制
+				所以get的数据会有限制
+			不安全，发送一些无关紧要的
+				浏览器好缓存地址
+
+		post
+			http://localhost:8088/backend/php/post.php
+			发送数据的方式
+				放在HTTP的请求body（主体）发送的
+			理论上没有大小限制
+				服务端会有限制
+			理论上是安全的
+
+		4、设置请求头：
+		xhr.setRequestHeader( 'Content-Type',
+					'application/x-www-form-urlencoded');
+		-----------------------------------------------------
+
+		http://www.baidu.com/index.html
+
+		5、请求 request
+		------------------------------------------------------
+		post 119.75.213.61:443 1.1.1  请求行
+
+		cookie:                       请求信息、消息
+		Connection:Keep-Alive
+		Content-Encoding:gzip
+
+		body                           请求数据 主体
+
+
+		6、响应 response
+		--------------------------------------------------------
+		1.1.1 200 ok
+
+		cookie:                         响应信息、消息
+		Connection:Keep-Alive
+		Content-Encoding:gzip
+
+		body 主体
+
+		二进制的 文本
+		<百度的index.html的页面>
+		--------------------------------------------------------
+		同步
+			在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么这个执行将会一直等待下去，直到收到返回信息才继续执行下去
+
+		异步
+			
+			不需要一直等下去，而是继续执行下面的操作，不管其他执行的状态。当有消息返回时系统会进行通知处理，这样可以提高执行的效率。
+
+		post方式发送
+
+		open 连接地址，准好数据
+			参数：
+				1. 请求方式 get|post 不区分大小写
+				2. 发送的地址
+				3. 是否异步 true异步 false 同步
+		----------------------------------------------------------
+		7、http状体码 -- 报错
+		----------------------------------------------------------
+		https://baike.baidu.com/item/HTTP%E7%8A%B6%E6%80%81%E7%A0%81/5053660?fr=aladdin
+
+		200 ok 
+		304 Not Modified
+		404 Not found
+		502 Bad Gateway
+
+		例子(使用方法)：
+			if(xhr.status >= 200 || xhr.status <= 307){
+				console.log( xhr.status );
+
+				console.log("ajax回来了");
+				console.log(xhr.responseText);
+			}else if( xhr.status === 404 ){
+				console.log(xhr.status);     // 状态码
+				console.log(xhr.statusText); // 状态短语
+			}else if(xhr.status === 502){
+				console.log("服务器有问题");
+			}
+
+		8、ajax工作流程
+		----------------------------------------------------
+		初始化，未发送			0	UNSENT
+		准备数据，连接地址		1	OPENED
+		返回响应头				2	HEADERS_RECEIVED   未返回内容，只返回了响应头
+		接收数据中				3	LOADING            返回内容，数据量大，分批返回
+		接收数据完毕			4	DONE               数据完全接受完成

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			let json = '{"username":"leo","age":30}';
+			let obj = JSON.parse(json);//把JSON字符串转成对象
+			let userName = JSON.parse(json).username;
+			console.log(obj);
+			console.log(userName);
+
+			let obj2 = {abc:1,miaov:'ketang'};
+			let str = JSON.stringify(obj2);//把对象转成JSON字符串
+			//stringify 最后一个参数，是格式化的缩进的空格数量，最大是10
+			console.log(JSON.stringify(obj,null,1));
+			console.log(typeof str);
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

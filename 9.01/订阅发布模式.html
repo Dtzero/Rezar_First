@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+
+	</head>
+
+	<body>
+		<script>
+			class SalesOffices{
+				constructor(){
+					this.telephoneBook = {}; 
+				}
+				subscribe(area,telephone){
+					if(!this.telephoneBook[area]){
+						this.telephoneBook[area] = [];
+					}
+					this.telephoneBook[area].push(telephone)
+				}
+				publish(areaName){
+					let arr = this.telephoneBook[areaName];
+					if(arr){
+						for( var i = 0; i < arr.length; i++ ){
+							arr[i]();        
+						}
+					}
+				}
+				remove(area,telephone){
+					for( let i in this.telephoneBook[area]){
+						if(this.telephoneBook[area][i] === telephone){
+							this.telephoneBook[area].splice(i,1);
+							break;
+						}
+					}	
+				}			
+			}
+
+			let office = new SalesOffices();
+			function fn(){
+				console.log('通知小明');
+			}
+			office.subscribe('100',fn);
+			office.remove('100',fn);
+			office.subscribe('100',function (){
+				console.log('通知小李');
+			})
+			office.subscribe('200',function (){
+				console.log('通知小红');
+			})
+
+			document.onclick = function (){
+				office.publish('100');
+			};
+
+		</script>
+	</body>
+</html>

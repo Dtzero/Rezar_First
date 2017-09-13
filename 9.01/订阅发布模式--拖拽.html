@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#box1{
+				width: 100px;
+				height: 100px;
+				background: paleturquoise;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#box2{
+				width: 500px;
+				height: 30px;
+				border: 1px solid #000;
+				position: relative;
+				margin-top: 120px;
+			}
+			#bar{
+				width: 30px;
+				height: 100%;
+				background: palegreen;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+		<script>
+			class SalesOffices{
+				constructor(){
+					this.telephoneBook = {}; 
+				}
+				subscribe(area,telephone){
+					if(!this.telephoneBook[area]){
+						this.telephoneBook[area] = [];
+					}
+					this.telephoneBook[area].push(telephone)
+				}
+				publish(areaName){
+					let arr = this.telephoneBook[areaName];
+					if(arr){
+
+						for( var i = 0; i < arr.length; i++ ){
+							arr[i]();        
+						}
+					}
+				}
+				remove(telephone){
+					for( var i = 0; i < this.telephoneBook.length; i++ ){
+						if(this.telephoneBook[i] === telephone){
+							this.telephoneBook.splice(i,1);
+							break;
+						}
+					}
+				}
+			}
+			class Drag extends SalesOffices{
+				constructor(dragbox){
+					super();
+					this.dragbox = dragbox;
+				}
+				dragInit(){
+					this.dragbox.onmousedown = this.downFn.bind(this);
+				}
+				downFn(ev){
+					this.publish("down-publish")
+					this.disX = ev.clientX - this.dragbox.offsetLeft;
+					this.disY = ev.clientY - this.dragbox.offsetTop;
+					document.onmousemove = this.moveFn.bind(this)
+					document.onmouseup = this.upFn.bind(this)
+				}
+				moveFn(ev){
+					this.publish("move-publish");
+					this.left = ev.clientX - this.disX;
+					this.top = ev.clientY - this.disY;
+					// 做限制
+					this.publish("limit-publish")
+					this.dragbox.style.left = this.left + 'px';
+					this.dragbox.style.top = this.top + 'px';
+				}
+				upFn(){
+					this.publish("up-publish")
+					document.onmousemove = document.onmouseup = null;
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="box1"></div>
+		<div id="box2">
+			<div id="bar"></div>
+		</div>
+		<script>
+			let d = new Drag(bar);
+			d.dragInit();
+
+			d.subscribe('limit-publish',function (){
+				d.top = 0;
+				if(d.left < 0){
+					d.left = 0;
+				}	
+				if(d.left > 470){
+					d.left = 470;
+				}
+			})
+			d.subscribe('move-publish',function (){
+				d.top = 0;
+				box1.style.left = d.left/470*(document.documentElement.clientWidth-100) + 'px';	
+			})
+
+			let d2 = new Drag(box1);
+			d2.dragInit();
+
+			d2.subscribe('limit-publish',function (){
+				if(d2.left < 0){
+					d2.left = 0;
+				}	
+				if(d2.top < 0){
+					d2.top = 0;
+				}
+				if(d2.left > document.documentElement.clientWidth-100){
+					d2.left = document.documentElement.clientWidth-100;
+				}	
+				if(d2.top > document.documentElement.clientHeight-100){
+					d2.top = document.documentElement.clientHeight-100;
+				}
+			})
+		</script>
+	</body>
+</html>

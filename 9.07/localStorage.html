@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			span{
+				margin-right:10px;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<h2>可选商品</h2>
+		<hr/>
+		<span>mark</span>
+		<span>jackson</span>
+		<span>markson</span>
+		<span>jacky</span>
+		<hr/>
+		<h2>购物车</h2>
+		<hr/>
+		<ul id="list"></ul>
+		<script>
+			//一打开页面，查询localSorage有没有数据，有，渲染；没有，为空数组；
+			let data = localStorage.getItem('shop');
+			let dataArr = [];
+			if(data){
+				dataArr = JSON.parse(data);
+				let newLi = dataArr.map(function (item){
+					return `<li>${item}</li>`	
+				});
+				list.innerHTML += newLi.join('');
+			}else{
+				data = [];
+			}
+			//触发storage
+			window.addEventListener('storage',function (){
+				let data = localStorage.getItem('shop');
+				let dataArr = JSON.parse(data);//转换为数组
+				arr = dataArr;//更新数据
+				if(dataArr){//map循环结束，将所有的项的函数返回值，存于newLi中；
+					let newLi = dataArr.map(function (item){
+						return `<li>${item}</li>`
+					});
+					list.innerHTML = newLi.join('');
+				}else{
+					arr = [];
+					list.innerHTML = '';
+				}
+			});
+			let arr = dataArr;
+			let spans = document.getElementsByTagName('span');
+			for( var i = 0; i < spans.length; i++ ){
+				spans[i].onclick = function (){
+					arr.push(this.innerHTML);
+					let newLi = `<li>${this.innerHTML}</li>`;
+					list.innerHTML += newLi;
+					//添加数据进localStorage
+					localStorage.setItem('shop',JSON.stringify(arr));	
+				};
+			}
+		</script>
+	</body>
+</html>

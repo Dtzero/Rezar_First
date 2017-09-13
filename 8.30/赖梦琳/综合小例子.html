@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			let obj = {
+				fn:function (){
+					console.log(this)
+				}
+			} 
+			obj.fn();//直接调用，this指向obj
+			let func = obj.fn;//==let func = function(){console.log(this)}
+			func();//取值调用，this指向window
+
+
+			function fn2(){
+				this.a = 1;
+				this.b = 10;
+			};
+			let obj2 = {};
+			fn2.call(obj2);
+			console.log(obj2);
+
+			function fn3(a,b){
+				this.a = a;
+				this.b = b;
+			};
+			function Coder(a,b,c){
+				fn3.call(this,a,b)
+				this.c = c;
+			};
+			let t = new Coder(2,3,4);
+			console.log(t);
+
+			function Coder2(a,b,d){
+				this.d = d;
+			};
+			for( var attr in fn3.prototype){
+				if(fn3.prototype.hasOwnProperty(attr)){
+					Coder2.prototype[attr] = fn3.prototype[attr];
+				}
+			}
+			let t2 = new Coder2(5,7,8);
+			console.log(t2);
+
+			function Coder2(a,b,e){
+				this.e = e;
+			};
+			
+			let t3 = new Coder3(0,6,9);
+			console.log(t3);
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

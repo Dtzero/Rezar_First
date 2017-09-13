@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="box">
+			<!--view V-->
+			<input type="text" v-model="message">
+			<p>{{message}}</p>
+		</div>
+		<script src="./src/vue.js"></script>
+		<script>
+		// model 数据
+			let d = {
+					message:"hello"
+				};
+
+			// VM
+
+			new Vue({
+				el:"#box",
+				data:d
+			})
+		</script>
+	</body>
+</html>

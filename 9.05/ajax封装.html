@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+		function ajax(options){
+			let defaults =  Object.assign({
+				url:'',
+				method: 'get',
+				data:'',
+				success(){},
+				error(){}
+			},options);
+
+			if(defaults.url === ''){
+				throw new Error("地址不能为空")
+			}
+
+			let xhr = new XMLHttpRequest();
+			if(defaults.method.toLowerCase() === 'get'){
+				defaults.url = defaults.url + '?'+defaults.data;
+			}
+
+			xhr.open(defaults.method,defaults.url,true);
+
+			xhr.onload = function (){
+				if(xhr.status === 200){
+					defaults.success(xhr.responseText);
+				}else{
+					defaults.error(xhr.status,xhr.statusText)
+				}
+			};
+
+			if(defaults.method.toLowerCase() === "get"){
+				xhr.send();
+			}else if(defaults.method.toLowerCase() === "post"){
+				xhr.setRequestHeader( 'Content-Type',
+			'application/x-www-form-urlencoded');
+				xhr.send(defaults.data);
+
+			}
+		}
+		</script>
+	</head>
+
+	<body>
+		<h2>注册get-ajax</h2>
+			用户名：<input type="text" name="user" id="username" /><span id="tip"></span>
+			<br/>
+			邮箱：<input type="text" name="email" id="email" />
+			<br/>
+			密码：<input type="password" name="password" /><br/>
+			<input type="button" id="send" value="提交">
+		<script>
+			// get
+			username.onblur = function (){
+				ajax({
+					url: 'http://localhost/backend/php/get.php',
+					method: 'Get',
+					data: 'user=leo',
+					success(data){
+						console.log(data);
+						ajax({
+							url: 'http://localhost/backend/php/get.php',
+							method: 'Get',
+							data: 'user=leo',
+						});
+					},
+					error(status,statusText){
+						console.log(status,statusText);
+					}
+				});
+			};
+			// post
+			email.onblur =function (){
+				ajax({
+					url:'http://localhost/backend/php/post.php',
+					method: 'post',
+					data: 'user=leo123',
+					success(data){
+						console.log(data);
+					},
+					error(status,statusText){
+						console.log(status,statusText);
+					}
+				});	
+			}
+		</script>
+	</body>
+</html>

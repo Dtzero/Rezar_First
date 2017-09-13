@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		<input type="button" value="获取数据" id="btn" />
+		<script>
+			btn.onclick = function (){
+				let xhr = new XMLHttpRequest();
+				xhr.open(
+					res.header("Access-Control-Allow-Origin", "http://localhost:3000");//允许跨域
+					'get',
+					'http://localhost:3000/backend/get_sae.php/?'+Math.random(),
+					true
+				)
+				xhr.onload = function (){
+					console.log(xhr.responseText);	
+				};
+
+				xhr.send();
+			};
+		</script>
+	</body>
+</html>

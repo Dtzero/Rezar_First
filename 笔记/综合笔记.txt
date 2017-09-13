@@ -281,7 +281,7 @@
 		4. 数据类型转换
 			其他类型 => 数字类型
 				Number()：转换为数字
-				pareseInt()：转换为数字,第一个为字母，结果为NaN，否则，转换为整数，与字母停止；
+				parseInt()：转换为数字,第一个为字母，结果为NaN，否则，转换为整数，与字母停止；
 				parseFloat()：转换为数字,可以转换为小数，也可以转换为整数
 
 		5.转不成数字 NaN来表示
@@ -1238,7 +1238,8 @@
 			       *
 			       * 参考：http://www.ruanyifeng.com/blog/2013/01/javascript_strict_mode.html
 			       * https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Functions_and_function_scope/Strict_mode
-			* */			
+			* */
+
 		2、箭头函数
 			函数形式：
 				let 变量 = (形参,形参) => {return 形参-形参};
@@ -1293,6 +1294,19 @@
 			enumerable: true // 是否可被枚举 true，可以，false不可以，默认为false	
 			configurable:true  // 是否可被删除，true可以，false不可以，默认为false
 		});
+		6、var 声明变量
+
+			let 
+				1. 不能重复声明变量
+				2. let不存在变量提升，必须声明后才使用
+				3. 使用let会形成块级作用域
+
+			const
+				声明常量
+					一但定义了值不能改变
+
+			块级作用域
+				一对大括号形成的作用域
 
 8.23 
     笔记
@@ -1558,7 +1572,7 @@
 		3、constructor
 
 			函数的原型是一个对象，对象初始的时候有一个属性为constructor
-
+ 
 				constructor的值指向的是拥有这个原型的函数						
 				
 8.29

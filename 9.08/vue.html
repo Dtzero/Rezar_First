@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<div id="box">
+			<p>{{abc}}</p>
+			<p>{{1+num}}</p>
+			<ul>
+				<li v-for="item in list">{{item}}</li>
+			</ul>
+			<input type='text' :value="abc" v-bind:test="abc" v-on:keydown.13.38='fn' />
+			<p v-if="a==2">5</p>
+		</div>
+		<!-- 只当事件在该元素本身（比如不是子元素）触发时触发回调 -->
+		<div v-on:click.self="doThat">...</div>
+		<!-- 
+			使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 @click.prevent.self 会阻止所有的点击，而 @click.self.prevent 只会阻止元素上的点击。-->
+		<script src="./vue.js/vue.js"></script>
+		<script>
+			// {{key}} 大胡子语法
+			// v-for="item,index in key"  循环key ,index可以不写
+			// v-on:事件名 = 函数/表达式; 简写为 @事件名;click/keydown/keyup/mouseover
+			//	事件修饰符：.条件 例：keydown.13  触发一次：keydown.13.once 或
+			//  ：keydown.13.38
+			// v-bind:key="表达式"; v-bind: 简写为 : 
+			// v-if="表达式" 表达式值的真假来插入/移除 <p> 元素
+			// v-show="true/false/0/1/表达式判断" 1和true显示，0和false不显示
+			// v-model="表达式" 
+			let message = "hello,world";
+
+			let vm = new Vue({
+				el:"#box",
+				data:{
+					num:5,
+					abc:message,
+					a:1,
+					list:[1,2,3,4]
+				},
+				methods:{
+					fn(){
+						this.a=2;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

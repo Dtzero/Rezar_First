@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		
+	</head>
+
+	<body>
+		<div id="box">
+			<input type="button" value="改变" @click="message='miaov'"/>{{message}}
+			<hr/>
+			<custom-com :mes="message"></custom-com>	
+			<div>
+				<div>
+					<custom-com :mes="message"></custom-com>
+				</div>
+			</div>	
+		</div>
+		<script src="./src/vue.js"></script>
+		<script>
+			Vue.component("customCom",{
+				data:function (){
+			 		return {
+			 			value:"子组件的btn",
+						m:this.mes
+				 	}
+				},
+				computed:{
+					n(){
+						return this.mes;
+					}
+				},
+				props:['mes'],
+				template:`
+						<div>
+							<input type="button" v-model="value" @click="m='ketang'"/>
+							<p>{{m}}</p>
+						</div>
+					`
+			})
+			new Vue({
+				el:"#box",
+				data:{
+					message:"hello"
+				}
+			})
+		</script>
+	</body>
+</html>

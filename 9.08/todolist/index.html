@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>todos</title>
+        <link rel="stylesheet" type="text/css" href="css/base.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+    </head>
+
+    <body>
+        <section class="todoapp">
+            <div>
+                <header class="header" >
+                    <h1>todos</h1>
+                    <input class="new-todo" placeholder="请输入内容" value="" checked="">
+                </header>
+                <section class="main">
+                    <input class="toggle-all" type="checkbox">
+                    <ul class="todo-list">
+                       <!-- <li class="completed">
+                            <div class="view">
+                                <input class="toggle" type="checkbox">
+                                <label>多多对对对</label>
+                                <button class="destroy"></button>
+                            </div>
+                            <input class="edit" value="多多对对对">
+                        </li>-->
+                    </ul>
+                </section>
+                <footer class="footer">
+    	            <span class="todo-count">
+    	            	<strong>0</strong>
+    	            	<span>条未选中</span>
+    	            </span>
+                </footer>
+            </div>
+        </section>
+        <script>
+            let todoList = document.getElementsByClassName('todo-list')[0];
+            let data = localStorage.getItem('search');
+            let dataArr = [];
+            if(data){
+                dataArr = JSON.parse(data);
+                let newLi = dataArr.map(function (item){
+                    return `<li class="completed">
+                                <div class="view">
+                                    <input class="toggle" type="checkbox">
+                                    <label>${item}</label>
+                                    <button class="destroy"></button>
+                                </div>
+                                <input class="edit" value="${item}">
+                            </li>`   
+                });
+                todoList.innerHTML += newLi.join('');
+            }else{
+                data = [];
+            }
+
+            let arr = dataArr;
+            let n = 0;
+            var toggleAll = document.querySelector(".toggle-all");
+            var inputs = document.getElementsByClassName("toggle");
+            var strong = document.getElementsByTagName('strong')[0];
+            var newTodo = document.getElementsByClassName('new-todo')[0];
+            var footer = document.getElementsByClassName('footer')[0];
+            var edit = document.getElementsByClassName('edit');
+            var view = document.getElementsByClassName('view');
+            //添加
+            newTodo.onkeydown = function (ev){
+                if(ev.keyCode === 13){
+                    toggleAll.checked = false;
+                    footer.style.display = 'block';
+                    arr.push(this.value);
+                    let newLi = `
+                            <li class="completed">
+                                <div class="view">
+                                    <input class="toggle" type="checkbox">
+                                    <label>${this.value}</label>
+                                    <button class="destroy"></button>
+                                </div>
+                                <input class="edit" value="${this.value}">
+                            </li>
+                        `;
+                    todoList.innerHTML += newLi;
+                    localStorage.setItem('search',JSON.stringify(arr)); 
+                    fn();
+                    strong.innerHTML = inputs.length - n;
+                }else if(ev.keyCode === 27){
+                    newTodo.value = '';
+                }
+            };
+            fn();
+            function fn(){
+                //删除
+                document.onclick = function (ev){
+                    if(ev.target.nodeName == 'BUTTON'){
+                        for( var i = 0; i < inputs.length; i++ ){
+                            if(ev.target.previousElementSibling.innerHTML == inputs[i].nextElementSibling.innerHTML){
+                                arr.splice(i,1);
+                                ev.target.parentNode.parentNode.remove();
+                            }
+                        }
+                        localStorage.setItem('search',JSON.stringify(arr));  
+                        strong.innerHTML = inputs.length - n;
+                    }  
+                    ev.stopPropagation();
+                };
+                // 全选
+                toggleAll.onclick = function (){
+                    for( var i = 0; i < inputs.length; i++ ){
+                        inputs[i].checked = this.checked;
+                        if(this.checked){
+                            n = inputs.length;
+                            strong.innerHTML = 0;
+                        }else{
+                            n = 0;
+                            strong.innerHTML = inputs.length;
+                        }
+
+                    }
+                };
+                //单选
+                for( var j = 0; j < inputs.length; j++ ){
+                    inputs[j].onclick = function (){
+                        if(this.checked){
+                            n++;
+                            var checkedAll = true; 
+                            for( var i = 0; i < inputs.length; i++ ){
+                                if(!inputs[i].checked){
+                                    checkedAll = false;
+                                    break;
+                                }
+                            }
+                            toggleAll.checked = checkedAll;
+                        }else{
+                            n--;
+                            toggleAll.checked = false;
+                        }
+                        strong.innerHTML = inputs.length - n;
+                    };
+                }  
+                //双击
+                var index = '';
+                var val = '';
+                for( var i = 0; i < view.length; i++ ){
+                    view[i].index = i;
+                    view[i].ondblclick = function (ev){
+                        this.style.display = 'none';
+                        edit[this.index].style.display = 'block';
+                        index = this.index;
+                        val = this.children[1].innerHTML;
+                        edit[index].onkeydown = function (ev){
+                            if(ev.keyCode === 13){
+                                edit[index].style.display = 'none';
+                                view[index].style.display = 'block';
+                                view[index].children[1].innerHTML = edit[index].value;
+                                arr[index] = edit[index].value;
+                                localStorage.setItem('search',JSON.stringify(arr));
+                            }else if(ev.keyCode === 27){
+                                edit[index].style.display = 'none';
+                                view[index].style.display = 'block';
+                            }
+                        } 
+                        edit[index].onblur = function (ev){
+                            edit[index].blur();
+                            edit[index].style.display = 'none';
+                            view[index].style.display = 'block';
+                            view[index].children[1].innerHTML = edit[index].value;
+                            arr[index] = edit[index].value;
+                            localStorage.setItem('search',JSON.stringify(arr));  
+                        };
+                    }  
+                }     
+            };
+            strong.innerHTML = inputs.length - n;
+        </script>
+    </body>
+</html>

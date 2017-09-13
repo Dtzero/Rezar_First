@@ -1,0 +1,49 @@
+
+click -- git bach(启动栏上棱形的那个) ---> input {cd 你的工作目录} eg:(cd /e/妙味前端/)
+
+pwd:显示当前所在目录
+
+exit:退出git bach
+
+--------------------主要操作----------------------------
+1.初始化某个文件,纳入git代码分支管理
+
+git init(该操作针对一个目录只能执行一次)
+
+2.git status:查看当前变更操作
+
+{工作区 --> 缓存区 }
+3.git add . :全部目录都添加当前所有变更到git分支
+	git add 文件名 :添加当前文件中所述文件名变更到git分支
+
+{缓存区 --> 版本库}
+4.git commit -m '{注释（一定要加）}':提交当前所有变更到git分支
+
+5.git reser hard:获取删除的文件
+
+6.git pull origin #{branchName}:拉取远端变更到本地(如有代码冲突需要本地先解决)
+
+7.git push origin #{branchName}:上传本地变更到远端
+
+
+
+
+--------------------其余操作-------------------------------
+
+1.git branch:查看所有git分支
+
+2.git checkout #{branchName}:切换到某个代码分支
+
+3.git branch #{newBranchName}:从当前分支新建一个名称为{newBranchName}的git代码分支
+
+4.git branch -D #{branchName}:从当前分支删除一个名称为{branchName}的git代码分支
+
+5.git log :查看git代码提交历史 ---> git log ---> git checkout #{logMark}(切换到{logMark}的历史提交版本)
+
+6.git diff #{filePath} :比较当前变更的某个文件和之前未变更时的区别
+
+爱你,媳妇,加油!^_^
+
+
+
+

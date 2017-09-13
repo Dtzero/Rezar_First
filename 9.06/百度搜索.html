@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			body{
+				background:url(./1.jpg);
+				background-size:1366px 768px;
+			}
+			ul {
+				list-style: none;
+			}
+			#box {
+				width: 600px;
+				margin: 50px auto;
+			}
+
+			#box #searchInput {
+				width: 493px;
+				height: 30px;
+				padding-left:5px;
+				background:transparent;
+				color:#fff;
+				font-family:'黑体';
+				font-size:18px;
+				outline:none;
+			}
+			#box #sendInput {
+				width: 98px;
+				height: 34px;
+				margin-left:-8px;
+				background:transparent;
+				border:none;
+				color:#fff;
+				font-size:20px;
+				font-family:'黑体';
+			}
+			#box ul {
+				width: 500px;
+				border: 1px solid papayawhip;
+				border-top:none;
+				display:none;
+			}
+
+			#box ul li {
+				width: 100%;
+				height: 20px;
+				padding: 5px 0;
+
+			}
+			#box ul li:hover {
+				background: #ccc;
+			}
+
+			a {
+				padding-left:5px;
+				text-decoration: none;
+				color:#fff;
+				font-family:'黑体';
+			}
+			#bar{
+				position: absolute;
+				top:50%;
+				left:0;
+				text-shadow: 0 0 20px #fefcc9,
+					10px -10px 30px #feec85, 
+					-20px -20px 40px #ffae34,
+					20px -40px 50px #ec760c, 
+					-20px -60px 60px #cd4606,
+					0 -80px 70px #973716, 
+					10px -90px 80px #451b0e; 
+				font-family:Verdana, Geneva, sans-serif;
+				font-size:100px;
+				font-weight:bold; 
+				color:white;
+				text-align: center;
+				display: none;
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<input id="searchInput" type="text" />
+			<input id="sendInput" type="submit" value="搜索" target="_blank"/>
+			<ul id="list">
+			</ul>
+		</div>
+		<div id="bar">哈哈</div>
+		<script>
+			function func(data){ 
+				let search = data.s;
+				let html = search.map(function (item){
+					return 	`
+						<li>
+							<a href="https://www.baidu.com/s?word=${item}" target="_blank">${item}</a>
+						</li>
+						`	
+				});
+				list.innerHTML = html.join('')
+			};
+			searchInput.oninput = function (){
+				let script = document.createElement("script");
+				script.src = `http://suggestion.baidu.com/su?wd=${this.value}&cb=func`;
+				document.body.appendChild(script);
+				list.style.display = 'block';
+			};
+			let time = null;
+			let a = document.documentElement.clientWidth-204;
+			sendInput.onclick = function (){
+				if(searchInput.value == ""){
+					bar.style.display = 'block';
+					time = setInterval(function (){
+						var l = bar.offsetLeft + 50;
+						bar.style.left = l + 'px';
+						if(parseInt(bar.style.left) >= a ){
+							bar.style.left = a +'px';
+							clearInterval(time);
+						}
+					},200)
+					return;
+				}
+				list.style.display = 'none';
+				window.open(`https://www.baidu.com/s?word=${searchInput.value}`,"_blank" );
+			};	
+			document.onclick = function (ev){
+				if(ev.target.nodeName !== 'INPUT'){
+					bar.style.display = 'none';
+					clearInterval(time);
+				}
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+			
+	</head>
+
+	<body>
+		<input type="file" name="file" id="inputFlie" />
+		<input type="button" id="send" value="提交">
+		<script>
+			send.onclick = function (){
+				let xhr = new XMLHttpRequest();
+				xhr.open(
+					'post',
+					'http://localhost/backend/post_file.php',
+					true
+				);
+				let f = new FormData();
+				f.append('file',inputFlie.files[0]);
+				xhr.send(f);
+			}	
+		</script>
+	</body>
+</html>

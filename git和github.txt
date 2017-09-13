@@ -1,0 +1,34 @@
+git config --global user.email ''
+git config --global user.name  ''
+
+生成ssh
+
+'736810414@qq.com'
+
+ssh-keygen -t rsa -C "你自己的邮箱"
+一路回车
+
+.ssh目录下找两个文件：
+id_rsa     私钥
+id_rsa.pub  公钥
+
+打开公钥，把内容复制给github的添加ssh
+
+测试是否连上：
+ssh -T git@github.com
+
+--------------git上传到github上-----------------
+
+1.打开上上传的目录
+2. git init
+3. git add .
+4. git commit -m "增加学习的笔记"
+5. 链接远程地址 
+	git remote add origin '地址'
+6. 推送
+	git push -u origin master
+
+--------------第二次提交-------------
+1. git add .
+2. git commit -m ''
+3. git push

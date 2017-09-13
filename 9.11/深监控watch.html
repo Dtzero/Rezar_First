@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.blue {
+				font-size: 50px;
+				background: blue;
+			}
+		</style>
+		<script>
+			
+		</script>
+	</head>
+
+	<body>
+		
+		<div id="box">
+			<input type="button" value="改变" @click="message=123" />
+			<input type="text" v-model="message" />
+			<input type="text" v-model="list[0].a" />
+		</div>
+		<script src="./src/vue.js"></script>
+		<script>
+			new Vue({
+				el: '#box',
+				watch:{
+					message(){
+						console.log("改变了");
+					},
+					/*list(){//浅监控--监控一层
+						console.log("list改变了");//改变后要做的事；
+					}*/
+					list: {
+					deep: true,//深监控--监控list内所有的变化
+						handler(){
+							console.log("list中的数据改变了");//改变后要做的事；
+						}
+					}
+				},
+				data:{
+					message:'',
+					list:[
+						{
+							a:10
+						}
+					]
+				}
+			})
+		</script>
+	</body>
+</html>

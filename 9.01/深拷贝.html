@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			
+		</style>
+		<script>
+			let obj1 = {
+				a:1,
+				b:{
+					list:[1,2]
+				}
+			}
+			let obj2 = {};
+			// for(let attr in obj1){
+			// 	if(typeof obj1[attr] === "object"){
+			// 		let cloneObj = {};
+			// 		for(let attr2 in obj1[attr]){
+			// 			cloneObj[attr2] = obj1[attr][attr2];
+			// 		}
+			// 		obj2[attr] = cloneObj;
+			// 	}else{
+			// 		obj2[attr] = obj1[attr];
+			// 	}
+			// }
+			function deepClone(obj){
+				let newObj = obj instanceof Array ? [] : {};
+				for(let attr in obj){
+					if(typeof obj[attr] === "object" && obj[attr] !== null){
+						newObj[attr] = deepClone(obj[attr])
+					}else{
+						newObj[attr] = obj[attr];
+					}	
+				}
+				return newObj;
+			}
+			obj2 = deepClone(obj1);
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

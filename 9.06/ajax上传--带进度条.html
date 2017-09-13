@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width:500px;
+				height:30px;
+				border:1px solid black;
+				position:relative;
+				text-align:center;
+			}
+			#box i{
+				width: 100%;
+				text-align: center;
+				line-height: 30px;
+				position: relative;
+				z-index: 10;
+			}
+			#box p{
+				width: 0px;
+				height: 100%;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+			
+	</head>
+
+	<body>
+		<input type="file" name="file" id="inputFlie" />
+		<input type="button" id="send" value="提交">
+		<div id="box">
+			<i id="tip">0%</i>
+			<p id="bar"></p>
+		</div>
+		<script>
+			send.onclick = function (){
+				let xhr = new XMLHttpRequest();
+				xhr.open(
+					'post',
+					'http://localhost/backend/post_file.php',
+					true
+				);
+				xhr.upload.onprogress = function (ev){
+					tip.innerHTML = Math.round(ev.loaded/ev.total*100)+'%';
+					bar.style.width = ev.loaded/ev.total * 500 + 'px';
+				}; 
+				let f = new FormData();
+				f.append('file',inputFlie.files[0]);
+				xhr.send(f);
+			}	
+		</script>
+	</body>
+</html>
